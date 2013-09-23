@@ -1,0 +1,179 @@
+<div class="main-content">
+  <h2><a name="UserApi"></a>User</h2>
+  <p>This is the User API</p>
+
+  <h2><a name="getResources"></a>getResources</h2>
+  <hr>
+  <p></p>
+  <p>See listed operations for each resource available.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Resources"><a href="../models/Resources.html" target="content-window">Resources</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="getChallenge"></a>getChallenge</h2>
+  <hr>
+  <p></p>
+  <p>Use this question to challenge the user..</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/challenge</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Question"><a href="#">Question</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">email&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">User email used to request security question.</p>
+	  </div>
+    </ul>
+  <h2><a name="answerChallenge"></a>answerChallenge</h2>
+  <hr>
+  <p></p>
+  <p>Use this to gain temporary access to change password.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/challenge</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Session"><a href="#">Session</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Answer"><a href="#">Answer</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Answer to the security question.</p>
+	  </div>
+    </ul>
+  <h2><a name="confirmUser"></a>confirmUser</h2>
+  <hr>
+  <p></p>
+  <p>The new user is confirmed and assumes the role given by system admin.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/confirm</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Confirm"><a href="#">Confirm</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs for new user confirmation.</p>
+	  </div>
+    </ul>
+  <h2><a name="changePassword"></a>changePassword</h2>
+  <hr>
+  <p></p>
+  <p>A valid session is required to change the password through this API.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/password</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Password"><a href="#">Password</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs for password change.</p>
+	  </div>
+    </ul>
+  <h2><a name="getProfile"></a>getProfile</h2>
+  <hr>
+  <p></p>
+  <p>This profile, along with password, is the only things that the user can directly change.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/profile</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Profile"><a href="#">Profile</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="changeProfile"></a>changeProfile</h2>
+  <hr>
+  <p></p>
+  <p>Update the security question and answer through this api, as well as, display name, email, etc.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/profile</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Profile"><a href="#">Profile</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs for the user profile.</p>
+	  </div>
+    </ul>
+  <h2><a name="registerUser"></a>registerUser</h2>
+  <hr>
+  <p></p>
+  <p>The new user is created and sent an email for confirmation.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/register</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Register"><a href="#">Register</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs for new user registration.</p>
+	  </div>
+    </ul>
+  <h2><a name="getSession"></a>getSession</h2>
+  <hr>
+  <p></p>
+  <p>Calling this refreshes the current session, or returns an error for timed-out or invalid sessions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/session</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Session"><a href="#">Session</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="login"></a>df.apis.user.login</h2>
+  <hr>
+  <p></p>
+  <p>Calling this creates a new session and logs in the user.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/session</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Session"><a href="#">Session</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Login"><a href="#">Login</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs used for logging into the system.</p>
+	  </div>
+    </ul>
+  <h2><a name="logout"></a>logout</h2>
+  <hr>
+  <p></p>
+  <p>Calling this deletes the current session and logs out the user.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/user/session</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  </div>

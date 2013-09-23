@@ -1,0 +1,29 @@
+<div class="main-content">
+  <h2><a name="GmailApi"></a>GmailApi</h2>
+  <p>This is the GmailApi API</p>
+
+  <h2><a name="sendEmail"></a>sendEmail</h2>
+  <hr>
+  <p></p>
+  <p>If a template is not used with all required fields, then they must be included in the request. If the 'from' address is not provisioned in the service, then it must be included in the request..</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/gmail</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="EmailResponse"><a href="#">EmailResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">template&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Optional template to base email on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Email"><a href="#">Email</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs used for provisioning emails.</p>
+	  </div>
+    </ul>
+  </div>

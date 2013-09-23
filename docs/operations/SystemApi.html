@@ -1,0 +1,1595 @@
+<div class="main-content">
+  <h2><a name="SystemApi"></a>SystemApi</h2>
+  <p>This is the SystemApi API</p>
+
+  <h2><a name="getResources"></a>getResources</h2>
+  <hr>
+  <p></p>
+  <p>See listed operations for each resource available.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Resources"><a href="#">Resources</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="getApps"></a>getApps</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Apps"><a href="#">Apps</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createApps"></a>createApps</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Apps"><a href="#">Apps</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateApps"></a>updateApps</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Apps"><a href="#">Apps</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteApps"></a>deleteApps</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Apps"><a href="#">Apps</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getApp"></a>getApp</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="App"><a href="#">App</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateApp"></a>updateApp</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="App"><a href="#">App</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteApp"></a>deleteApp</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getAppGroups"></a>getAppGroups</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="AppGroups"><a href="#">AppGroups</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createAppGroups"></a>createAppGroups</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="AppGroups"><a href="#">AppGroups</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateAppGroups"></a>updateAppGroups</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="AppGroups"><a href="#">AppGroups</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteAppGroups"></a>deleteAppGroups</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="AppGroups"><a href="#">AppGroups</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getAppGroup"></a>getAppGroup</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="AppGroup"><a href="#">AppGroup</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateAppGroup"></a>updateAppGroup</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="AppGroup"><a href="#">AppGroup</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteAppGroup"></a>deleteAppGroup</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/app_group/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getConfig"></a>getConfig</h2>
+  <hr>
+  <p></p>
+  <p>The retrieved properties control how the system behaves.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/config</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Config"><a href="#">Config</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="setConfig"></a>setConfig</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of properties.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/config</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Config"><a href="#">Config</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of properties to set.</p>
+	  </div>
+    </ul>
+  <h2><a name="getEmailTemplates"></a>getEmailTemplates</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="EmailTemplates"><a href="#">EmailTemplates</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createEmailTemplates"></a>createEmailTemplates</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="EmailTemplates"><a href="#">EmailTemplates</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateEmailTemplates"></a>updateEmailTemplates</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="EmailTemplates"><a href="#">EmailTemplates</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteEmailTemplates"></a>deleteEmailTemplates</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="EmailTemplates"><a href="#">EmailTemplates</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getEmailTemplate"></a>getEmailTemplate</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="EmailTemplate"><a href="#">EmailTemplate</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateEmailTemplate"></a>updateEmailTemplate</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="EmailTemplate"><a href="#">EmailTemplate</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteEmailTemplate"></a>deleteEmailTemplate</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/email_template/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getRoles"></a>getRoles</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Roles"><a href="#">Roles</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createRoles"></a>createRoles</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Roles"><a href="#">Roles</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateRoles"></a>updateRoles</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Roles"><a href="#">Roles</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteRoles"></a>deleteRoles</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Roles"><a href="#">Roles</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getRole"></a>getRole</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Role"><a href="#">Role</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateRole"></a>updateRole</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Role"><a href="#">Role</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteRole"></a>deleteRole</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/role/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getServices"></a>getServices</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Services"><a href="#">Services</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createServices"></a>createServices</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Services"><a href="#">Services</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateServices"></a>updateServices</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Services"><a href="#">Services</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteServices"></a>deleteServices</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Services"><a href="#">Services</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getService"></a>getService</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Service"><a href="#">Service</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateService"></a>updateService</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Service"><a href="#">Service</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteService"></a>deleteService</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/service/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getUsers"></a>getUsers</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit records that are returned. Use the 'fields' and 'related' parameters to limit properties returned for each record. By default, all fields and no relations are returned for all records.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Users"><a href="#">Users</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;&nbsp;<div class="model" id="integer"><a href="#">integer</a>&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_schema&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the schema of the table queried.</p>
+	  </div>
+    </ul>
+  <h2><a name="createUsers"></a>createUsers</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Users"><a href="#">Users</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateUsers"></a>updateUsers</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Users"><a href="#">Users</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteUsers"></a>deleteUsers</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' and 'related' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the records to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Users"><a href="#">Users</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getUser"></a>getUser</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to limit properties that are returned. By default, all fields and no relations are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="User"><a href="#">User</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateUser"></a>updateUser</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' and/or 'related' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="User"><a href="#">User</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteUser"></a>deleteUser</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' and/or 'related' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/system/user/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the record to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">related&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of related names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  </div>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-responsive.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+  <script src="assets/js/main.js" type="text/javascript"></script>
+
+  <title>REST API Resources</title>
+</head>
+<body>
+  <div class="header">
+    <div class="top-bar">
+      <h1 id="logo"><a class="logo" href="/"><span>Dreamfactory</span><span class="light">&nbsp;SDK Reference</span></a></h1>
+    </div>
+  </div>
+  <div class="model-container"></div>
+  <div class="content">
+    <div class="box clearfix">
+      <div class="sidebar">
+        <div class="section-box">
+          <div class="section-header">
+            Overview
+          </div>
+          <ul>
+            <li>Getting Started</li>
+          </ul>
+        </div>
+    		<div class="section-box">
+          <div class="section-header">
+            <a href="#!/UserApi">User</a>
+          </div>
+          <ul>
+			<li><a href="#!/UserApi#getResources" target="content-window">getResources</a></li>
+            <li><a href="#!/UserApi#getChallenge">getChallenge</a></li>
+            <li><a href="#!/UserApi#answerChallenge">answerChallenge</a></li>
+            <li><a href="#!/UserApi#confirmUser">confirmUser</a></li>
+            <li><a href="#!/UserApi#changePassword">changePassword</a></li>
+            <li><a href="#!/UserApi#getProfile">getProfile</a></li>
+            <li><a href="#!/UserApi#changeProfile">changeProfile</a></li>
+            <li><a href="#!/UserApi#registerUser">registerUser</a></li>
+            <li><a href="#!/UserApi#getSession">getSession</a></li>
+            <li><a href="#!/UserApi#login">login</a></li>
+            <li><a href="#!/UserApi#logout">logout</a></li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/SchemaApi">SchemaApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/SchemaApi#getResources">getResources</a></li>
+            <li><a href="#!/SchemaApi#createTables">createTables</a></li>
+            <li><a href="#!/SchemaApi#updateTables">updateTables</a></li>
+            <li><a href="#!/SchemaApi#describeTable">describeTable</a></li>
+            <li><a href="#!/SchemaApi#createFields">createFields</a></li>
+            <li><a href="#!/SchemaApi#updateFields">updateFields</a></li>
+            <li><a href="#!/SchemaApi#deleteTable">deleteTable</a></li>
+            <li><a href="#!/SchemaApi#describeField">describeField</a></li>
+            <li><a href="#!/SchemaApi#updateField">updateField</a></li>
+            <li><a href="#!/SchemaApi#deleteField">deleteField</a></li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/SystemApi">SystemApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/SystemApi#getResources">getResources</a></li>
+            <li><a href="#!/SystemApi#getApps">getApps</a></li>
+            <li><a href="#!/SystemApi#createApps">createApps</a></li>
+            <li><a href="#!/SystemApi#updateApps">updateApps</a></li>
+            <li><a href="#!/SystemApi#deleteApps">deleteApps</a></li>
+            <li><a href="#!/SystemApi#getApp">getApp</a></li>
+            <li><a href="#!/SystemApi#updateApp">updateApp</a></li>
+            <li><a href="#!/SystemApi#deleteApp">deleteApp</a></li>
+            <li><a href="#!/SystemApi#getAppGroups">getAppGroups</a></li>
+            <li><a href="#!/SystemApi#createAppGroups">createAppGroups</a></li>
+            <li><a href="#!/SystemApi#updateAppGroups">updateAppGroups</a></li>
+            <li><a href="#!/SystemApi#deleteAppGroups">deleteAppGroups</a></li>
+            <li><a href="#!/SystemApi#getAppGroup">getAppGroup</a></li>
+            <li><a href="#!/SystemApi#updateAppGroup">updateAppGroup</a></li>
+            <li><a href="#!/SystemApi#deleteAppGroup">deleteAppGroup</a></li>
+            <li><a href="#!/SystemApi#getConfig">getConfig</a></li>
+            <li><a href="#!/SystemApi#setConfig">setConfig</a></li>
+            <li><a href="#!/SystemApi#getEmailTemplates">getEmailTemplates</a></li>
+            <li><a href="#!/SystemApi#createEmailTemplates">createEmailTemplates</a></li>
+            <li><a href="#!/SystemApi#updateEmailTemplates">updateEmailTemplates</a></li>
+            <li><a href="#!/SystemApi#deleteEmailTemplates">deleteEmailTemplates</a></li>
+            <li><a href="#!/SystemApi#getEmailTemplate">getEmailTemplate</a></li>
+            <li><a href="#!/SystemApi#updateEmailTemplate">updateEmailTemplate</a></li>
+            <li><a href="#!/SystemApi#deleteEmailTemplate">deleteEmailTemplate</a></li>
+            <li><a href="#!/SystemApi#getRoles">getRoles</a></li>
+            <li><a href="#!/SystemApi#createRoles">createRoles</a></li>
+            <li><a href="#!/SystemApi#updateRoles">updateRoles</a></li>
+            <li><a href="#!/SystemApi#deleteRoles">deleteRoles</a></li>
+            <li><a href="#!/SystemApi#getRole">getRole</a></li>
+            <li><a href="#!/SystemApi#updateRole">updateRole</a></li>
+            <li><a href="#!/SystemApi#deleteRole">deleteRole</a></li>
+            <li><a href="#!/SystemApi#getServices">getServices</a></li>
+            <li><a href="#!/SystemApi#createServices">createServices</a></li>
+            <li><a href="#!/SystemApi#updateServices">updateServices</a></li>
+            <li><a href="#!/SystemApi#deleteServices">deleteServices</a></li>
+            <li><a href="#!/SystemApi#getService">getService</a></li>
+            <li><a href="#!/SystemApi#updateService">updateService</a></li>
+            <li><a href="#!/SystemApi#deleteService">deleteService</a></li>
+            <li><a href="#!/SystemApi#getUsers">getUsers</a></li>
+            <li><a href="#!/SystemApi#createUsers">createUsers</a></li>
+            <li><a href="#!/SystemApi#updateUsers">updateUsers</a></li>
+            <li><a href="#!/SystemApi#deleteUsers">deleteUsers</a></li>
+            <li><a href="#!/SystemApi#getUser">getUser</a></li>
+            <li><a href="#!/SystemApi#updateUser">updateUser</a></li>
+            <li><a href="#!/SystemApi#deleteUser">deleteUser</a></li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/DbApi">DbApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/DbApi#getTables">getTables</a></li>
+            <li><a href="#!/DbApi#createTables">createTables</a></li>
+            <li><a href="#!/DbApi#updateTables">updateTables</a></li>
+            <li><a href="#!/DbApi#deleteTables">deleteTables</a></li>
+            <li><a href="#!/DbApi#getRecords">getRecords</a></li>
+            <li><a href="#!/DbApi#createRecords">createRecords</a></li>
+            <li><a href="#!/DbApi#updateRecords">updateRecords</a></li>
+            <li><a href="#!/DbApi#mergeRecords">mergeRecords</a></li>
+            <li><a href="#!/DbApi#deleteRecords">deleteRecords</a></li>
+            <li><a href="#!/DbApi#getRecord">getRecord</a></li>
+            <li><a href="#!/DbApi#createRecord">createRecord</a></li>
+            <li><a href="#!/DbApi#updateRecord">updateRecord</a></li>
+            <li><a href="#!/DbApi#mergeRecord">mergeRecord</a></li>
+            <li><a href="#!/DbApi#deleteRecord">deleteRecord</a></li>
+            </ul>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/AppApi">AppApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/AppApi#getContainers">getContainers</a></li>
+            <li><a href="#!/AppApi#createContainers">createContainers</a></li>
+            <li><a href="#!/AppApi#deleteContainers">deleteContainers</a></li>
+            <li><a href="#!/AppApi#getContainer">getContainer</a></li>
+            <li><a href="#!/AppApi#createContainer">createContainer</a></li>
+            <li><a href="#!/AppApi#updateContainerProperties">updateContainerProperties</a></li>
+            <li><a href="#!/AppApi#deleteContainer">deleteContainer</a></li>
+            <li><a href="#!/AppApi#getFile">getFile</a></li>
+            <li><a href="#!/AppApi#createFile">createFile</a></li>
+            <li><a href="#!/AppApi#updateFile">updateFile</a></li>
+            <li><a href="#!/AppApi#updateFileProperties">updateFileProperties</a></li>
+            <li><a href="#!/AppApi#deleteFile">deleteFile</a></li>
+            <li><a href="#!/AppApi#getFolder">getFolder</a></li>
+            <li><a href="#!/AppApi#createFolder">createFolder</a></li>
+            <li><a href="#!/AppApi#updateFolderProperties">updateFolderProperties</a></li>
+            <li><a href="#!/AppApi#deleteFolder">deleteFolder</a></li>
+            </ul>
+        </div>
+        </div>
+    <div class="non-sidebar">
+      <div class="main-content">
+        Welcome.  Choose a method on the left to begin exploring.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

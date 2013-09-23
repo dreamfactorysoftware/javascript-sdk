@@ -1,0 +1,203 @@
+<div class="main-content">
+  <h2><a name="SchemaApi"></a>SchemaApi</h2>
+  <p>This is the SchemaApi API</p>
+
+  <h2><a name="getResources"></a>getResources</h2>
+  <hr>
+  <p></p>
+  <p>See listed operations for each resource available.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Resources"><a href="#">Resources</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="createTables"></a>createTables</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single table definition or an array of table definitions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Resources"><a href="#">Resources</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="updateTables"></a>updateTables</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single table definition or an array of table definitions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Resources"><a href="#">Resources</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	</ul>
+  <h2><a name="describeTable"></a>describeTable</h2>
+  <hr>
+  <p></p>
+  <p>This describes the table, its fields and relations to other tables.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="TableSchema"><a href="#">TableSchema</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    </ul>
+  <h2><a name="createFields"></a>createFields</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of field properties for a single record or an array of fields.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Fields"><a href="#">Fields</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Array of field definitions.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateFields"></a>updateFields</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of field properties for a single record or an array of fields.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Fields"><a href="#">Fields</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Array of field definitions.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteTable"></a>deleteTable</h2>
+  <hr>
+  <p></p>
+  <p>Careful, this drops the database table and all of its contents.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    </ul>
+  <h2><a name="describeField"></a>describeField</h2>
+  <hr>
+  <p></p>
+  <p>This describes the field and its properties.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}/{field_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="FieldSchema"><a href="#">FieldSchema</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">field_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the field to perform operations on.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateField"></a>updateField</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of field properties for the given field.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}/{field_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">field_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the field to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="FieldSchema"><a href="#">FieldSchema</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Array of field properties.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteField"></a>deleteField</h2>
+  <hr>
+  <p></p>
+  <p>Careful, this drops the database table field/column and all of its contents.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/schema/{table_name}/{field_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Success"><a href="#">Success</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">field_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the field to perform operations on.</p>
+	  </div>
+    </ul>
+  </div>

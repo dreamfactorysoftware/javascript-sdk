@@ -1,0 +1,563 @@
+<div class="main-content">
+  <h2><a name="MongohqApi"></a>MongohqApi</h2>
+  <p>This is the MongohqApi API</p>
+
+  <h2><a name="getTables"></a>getTables</h2>
+  <hr>
+  <p></p>
+  <p>List the names of the available tables in this storage. Use 'include_properties' to include any properties of the tables.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Tables"><a href="#">Tables</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">include_properties&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Return all properties of the tables, if any.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">names&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the table names to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Tables"><a href="#">Tables</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Array of tables to retrieve.</p>
+	  </div>
+    </ul>
+  <h2><a name="createTables"></a>createTables</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single table definition or an array of table definitions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Tables"><a href="#">Tables</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Tables"><a href="#">Tables</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Array of tables to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">check_exist&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">If true, the request fails when the table to create already exists.</p>
+	  </div>
+    </ul>
+  <h2><a name="updateTables"></a>updateTables</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single table definition or an array of table definitions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PATCH</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Tables"><a href="#">Tables</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Tables"><a href="#">Tables</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Array of tables to create.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteTables"></a>deleteTables</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single table definition or an array of table definitions.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Tables"><a href="#">Tables</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">names&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the table names to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Tables"><a href="#">Tables</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Array of tables to delete.</p>
+	  </div>
+    </ul>
+  <h2><a name="getRecords"></a>getRecords</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'ids' or 'filter' parameter to limit resources that are returned. Use the 'fields' parameter to limit properties returned for each resource. By default, all fields are returned for all resources. To send the 'ids' or 'filter' as posted data, use the POST command and set 'method' parameter to 'GET'. </p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Records"><a href="#">Records</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the resources to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the resources to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">limit&nbsp;:&nbsp;int&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to limit the filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">offset&nbsp;:&nbsp;int&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Set to offset the filter results to a particular record count.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">order&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like order containing field and direction for filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">include_count&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Include the total number of filter results.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    </ul>
+  <h2><a name="createRecords"></a>createRecords</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Records"><a href="#">Records</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Records"><a href="#">Records</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">method&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">HTTP verb override allows posting data for GET or use of other verbs not allowed by server</p>
+	  </div>
+    </ul>
+  <h2><a name="updateRecords"></a>updateRecords</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Records"><a href="#">Records</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Records"><a href="#">Records</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the resources to modify.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the resources to modify.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="mergeRecords"></a>mergeRecords</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be a single record or an array of records (shown). By default, only the id property of the record is returned on success, use 'fields' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PATCH</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Records"><a href="#">Records</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Table"><a href="#">Table</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the resources to modify.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the resources to modify.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteRecords"></a>deleteRecords</h2>
+  <hr>
+  <p></p>
+  <p>Use 'ids' or post data should be a single record or an array of records (shown) containing an id. By default, only the id property of the record is returned on success, use 'fields' to return more info.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Records"><a href="#">Records</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">ids&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the identifiers of the resources to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">filter&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">SQL-like filter to limit the resources to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Records"><a href="#">Records</a>&nbsp;(body)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="getRecord"></a>getRecord</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' parameter to limit properties that are returned. By default, all fields are returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Record"><a href="#">Record</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the resource to retrieve.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">properties_only&nbsp;:&nbsp;boolean&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Return just the properties of the record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="createRecord"></a>createRecord</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Record"><a href="#">Record</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the resource to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Record"><a href="#">Record</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to create.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">method&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">HTTP verb override, allows posting data for GET or use of other verbs not allowed by server</p>
+	  </div>
+    </ul>
+  <h2><a name="updateRecord"></a>updateRecord</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Record"><a href="#">Record</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the resource to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Record"><a href="#">Record</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Data containing name-value pairs of records to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="mergeRecord"></a>mergeRecord</h2>
+  <hr>
+  <p></p>
+  <p>Post data should be an array of fields for a single record. Use the 'fields' parameter to return more properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PATCH</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Record"><a href="#">Record</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">The name of the table you want to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the resource to update.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">body&nbsp;:&nbsp;&nbsp;<div class="model" id="Table"><a href="#">Table</a>&nbsp;(body)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">An array of record properties.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  <h2><a name="deleteRecord"></a>deleteRecord</h2>
+  <hr>
+  <p></p>
+  <p>Use the 'fields' parameter to return deleted properties. By default, the id is returned.</p><h3 class="section">URL</h3>
+  <code>https://yourdspname.cloud.dreamfactory.com/rest/mongohq/{table_name}/{id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" id="Record"><a href="#">Record</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  	<div class="parameter">
+	    <div class="param">table_name&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Name of the table to perform operations on.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id&nbsp;:&nbsp;string&nbsp;(path)</div>
+	      <span></span>
+	    </div>
+	    <p class="param-description">Identifier of the resource to delete.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">id_field&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of the fields used as identifiers or primary keys for the table.</p>
+	  </div>
+    <div class="parameter">
+	    <div class="param">fields&nbsp;:&nbsp;string&nbsp;(query)</div>
+	      <span>optional</span>
+	    </div>
+	    <p class="param-description">Comma-delimited list of field names to retrieve for each record.</p>
+	  </div>
+    </ul>
+  </div>
