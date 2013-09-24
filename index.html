@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script>
-
-
-        window.onload=function () {
+        window.onload = function () {
             //replace this dsp_url with yours ( leave the /rest/api_docs part )
-            var dsp_url = "https://next.cloud.dreamfactory.com/rest/api_docs";
+            var dsp_url = "https://_your_dsp_hostname_/rest/api_docs";
             //replace this app_name with yours
-            var app_name = "todoangular";
+            var app_name = "_your_app_api_name_here_";
 
             //These are are necessary to communicate with the DreamFactory API
             window.authorizations.add("X-DreamFactory-Application-Name", new ApiKeyAuthorization("X-DreamFactory-Application-Name", app_name, "header"));
             window.authorizations.add('Content-Type', new ApiKeyAuthorization('Content-Type', 'application/json', 'header'));
+
             // Here I grab all the apis available, assigning them to a global df object
             window.df = new SwaggerApi({
-                url:dsp_url,
+                url: dsp_url,
                 supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'merge', 'delete']
             });
             //attach headers
             window.df.authorizations = window.authorizations;
             window.df.build();
-            
-//Here I  could say, I just want the user service
 
-//            window.dfUser = new SwaggerApi({
-//                url:dsp_url + "/user",
-//                supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'merge', 'delete']
-//            });
-//            window.dfUser.authorizations = window.authorizations;
-//            window.dfUser.build();
+            //Here I  could say, I just want the user service
 
-
-
+            // window.dfUser = new SwaggerApi({
+            // url:dsp_url + "/user",
+            // supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'merge', 'delete']
+            // });
+            // window.dfUser.authorizations = window.authorizations;
+            // window.dfUser.build();
         };
     </script>
 </head>
