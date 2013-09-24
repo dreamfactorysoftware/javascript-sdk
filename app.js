@@ -22,8 +22,9 @@ window.app.getTables = function () {
     });
 };
 //get records from a table?  easy.  Just pass the path variable table_name
-window..app.getTodos = function(){
-    window.df.apis.db.getRecords({table_name:"todo"}, function(response)){
+window.app.getTodos = function(){
+    window.df.apis.db.getRecords({table_name:"todo"}, function(response)
+    {
        console.log(response);
-    })
+    });
 }
