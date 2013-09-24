@@ -25,13 +25,15 @@
             //attach headers
             window.df.authorizations = window.authorizations;
             window.df.build();
-            //Here I say, I just want the user service
-            window.dfUser = new SwaggerApi({
-                url:dsp_url + "/user",
-                supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'merge', 'delete']
-            });
-            window.dfUser.authorizations = window.authorizations;
-            window.dfUser.build();
+            
+//Here I  could say, I just want the user service
+
+//            window.dfUser = new SwaggerApi({
+//                url:dsp_url + "/user",
+//                supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'merge', 'delete']
+//            });
+//            window.dfUser.authorizations = window.authorizations;
+//            window.dfUser.build();
 
 
 
