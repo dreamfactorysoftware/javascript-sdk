@@ -1,10 +1,10 @@
 {
 	"name":              "dreamfactory/javascript-sdk",
-	"version":           "1.0.0",
+	"version":           "1.0.1",
 	"homepage":          "http://dreamfactorysoftware.github.io",
 	"description":       "DreamFactory Services Platform(tm) Javascript SDK",
 	"keywords":          ["dreamfactory", "dsp", "javascript", "sdk", "api", "rest", "swagger"],
-	"type":              "dreamfactory-platform",
+	"type":              "library",
 	"authors":           [
 		{
 			"name":  "Sykes, Jason",
@@ -18,7 +18,5 @@
 		"issues": "https://github.com/dreamfactorysoftware/javascript-sdk/issues",
 		"wiki":   "https://github.com/dreamfactorysoftware/javascript-sdk/wiki"
 	},
-	"minimum-stability": "dev",
-	"require":           {
-	}
+	"minimum-stability": "dev"
 }
