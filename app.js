@@ -1,7 +1,7 @@
 window.app = {};
 
 //to access services that require a session, you'll need to post a body object containing login info in the following format:
-$(window).one("apiReady", function(){
+$(window).on("apiReady", function(){
     window.app.login = function () {
         var body = {
             email: "dspuser@host.com",
@@ -31,3 +31,5 @@ $(window).one("apiReady", function(){
 //invoke these right away
     window.app.getTodos();
 });
+
+
