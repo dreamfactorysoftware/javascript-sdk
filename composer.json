@@ -20,6 +20,5 @@
 	},
 	"minimum-stability": "dev",
 	"require":           {
-		"dreamfactory/lib-platform-installer": "dev-master"
 	}
 }
