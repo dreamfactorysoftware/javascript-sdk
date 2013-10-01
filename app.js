@@ -18,17 +18,20 @@ $(window).on("apiReady", function(){
 
     window.app.getTables = function () {
         window.df.apis.db.getTables(function (response) {
-            //console.log(response.body.data.resource);
+            //Here is your resource list
+            console.log(response.body.data.resource);
         });
     };
 //get records from a table?  easy.  Just pass the path variable table_name
     window.app.getTodos = function () {
         window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
-            console.log(response);
+            //Here is your data
+            console.log(response.body.data.record);
         });
     }
 
 //invoke these right away
+    window.app.getTables();
     window.app.getTodos();
 });
 
