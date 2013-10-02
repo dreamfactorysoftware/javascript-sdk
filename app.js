@@ -1,15 +1,18 @@
 window.app = {};
 
-//to access services that require a session, you'll need to post a body object containing login info in the following format:
-$(window).on("apiReady", function(){
+window.addEventListener('apiReady', function(){
+    document.getElementById("try-db").setAttribute("style", "display:block");
+    document.getElementById("results").innerHTML = "API Loaded";
+
     window.app.login = function () {
         var body = {
-            email: "dspuser@host.com",
-            password: "password"
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
         };
-        window.df.apis.user.login({body: JSON.stringify(body)}, function (response) {
+        window.df.apis.user.login({body: body}, function (response) {
             //assign session token to be used for the session duration
-            window.authorizations.add("X-DreamFactory-Session-Token", new ApiKeyAuthorization("X-Dreamfactory-Session-Token", response.body.data.session_id, 'header'));
+            console.log(response);
+            window.authorizations.add("X-DreamFactory-Session-Token", new ApiKeyAuthorization("X-Dreamfactory-Session-Token", response.session_id, 'header'));
         });
     };
 
@@ -23,16 +26,16 @@ $(window).on("apiReady", function(){
         });
     };
 //get records from a table?  easy.  Just pass the path variable table_name
+//A path variable simply gets tacked on to the endpoint, not as a query param.
     window.app.getTodos = function () {
         window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
-            //Here is your data
-            console.log(response.body.data.record);
+            //Do something with the data;
+            console.log(response);
+            document.getElementById("results").innerHTML = JSON.stringify(response);
         });
     }
 
-//invoke these right away
-    window.app.getTables();
-    window.app.getTodos();
+
 });
 
 

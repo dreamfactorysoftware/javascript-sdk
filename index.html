@@ -18,7 +18,27 @@
 </p>
 <a href="http://developers-blog.helloreverb.com/the-fastest-way-to-connect-to-an-api-with-javascript/">Click Here</a> for a primer on using APIs defined for Swagger.
 
-<script src='lib/jquery-10-2.js' type='text/javascript'></script>
+Sample SDK calls.
+
+<P>Grab Records from the "todo" table on your DSP</P>
+
+<pre>
+   window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
+          //Do something with the data;
+        var records = response.body.data.record
+            console.log(records);
+        });
+</pre>
+<button style="display:none" id="try-db" onclick="window.app.getTodos()">Try it Now</button><br/>
+
+<div id="results">Loading APIs</div>
+<p>
+
+        <input type="email" id="email"><br/>
+        <input type="password" id="password">
+        <button onclick="window.app.login()">Log In</button>
+
+</p>
 <script src='lib/shred.bundle.js' type='text/javascript'></script>
 <script src='lib/swagger.js' type='text/javascript'></script>
 <script src='lib/sdk-init.js' type='text/javascript'></script>
