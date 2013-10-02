@@ -36,6 +36,9 @@ window.addEventListener('apiReady', function(){
     window.app.getTodos = function () {
         window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
             //Do something with the data;
+           document.getElementById("get-results").innerHTML = JSON.stringify(response);
+
+        }, function(response) {
             document.getElementById("get-results").innerHTML = window.app.getErrorString(response);
         });
     };
