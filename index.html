@@ -27,8 +27,8 @@
     <button onclick="window.app.login()">Log In</button>
     <div id="login-status" style="color:blue"></div>
 
-</p>
-</p>
+
+
 <p><b>Sample SDK calls.</b></p>
 
 
@@ -65,7 +65,7 @@
             document.getElementById("delete-results").innerHTML = JSON.stringify(response);
         });
 </pre>
-ID of record to delete : <input type="text" id="delete-id"></input>
+ID of record to delete : <input type="text" id="delete-id">
 <button style="display:none" id="try-now-delete" onclick="window.app.deleteTodo()">Try it Now</button><br/>
 <p><b>Response:</b></p>
 <textarea class="results" style="width:400px;height:200px" id="delete-results">Loading APIs...</textarea>
@@ -81,7 +81,7 @@ ID of record to delete : <input type="text" id="delete-id"></input>
             document.getElementById("update-results").innerHTML = JSON.stringify(response);
         });
 </pre>
-ID of record to update : <input type="text" id="update-id"></input>
+ID of record to update : <input type="text" id="update-id">
 <button style="display:none" id="try-now-update" onclick="window.app.updateTodo()">Try it Now</button><br/>
 <p><b>Response:</b></p>
 <textarea class="results" style="width:400px;height:200px" id="update-results">Loading APIs...</textarea>

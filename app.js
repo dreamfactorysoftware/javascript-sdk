@@ -1,6 +1,5 @@
 window.app = {};
-
-window.addEventListener('apiReady', function(){
+document.addEventListener("apiReady", function(){
     document.getElementById("try-now-get").setAttribute("style", "display:block");
     document.getElementById("get-results").innerHTML = "API Loaded";
     document.getElementById("try-now-post").setAttribute("style", "display:block");
@@ -79,6 +78,6 @@ window.addEventListener('apiReady', function(){
         msg = msg.replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').replace(/&apos;/g, '\'');
         return msg;
     };
-});
+}, false);
 
 
