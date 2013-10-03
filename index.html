@@ -18,7 +18,73 @@
 </p>
 <a href="http://developers-blog.helloreverb.com/the-fastest-way-to-connect-to-an-api-with-javascript/">Click Here</a> for a primer on using APIs defined for Swagger.
 
-<script src='lib/jquery-10-2.js' type='text/javascript'></script>
+<p><b>Authentication</b><br/>
+<p>Unless you have a guest role setup with allow guest users enabled, you'll need to log in for these calls to work.</p>
+<p>
+
+    <input type="email" id="email"><br/>
+    <input type="password" id="password"><br/>
+    <button onclick="window.app.login()">Log In</button>
+    <div id="login-status" style="color:blue"></div>
+
+
+
+<p><b>Sample SDK calls.</b></p>
+
+
+<P>Grab Records from the "todo" table on your DSP</P>
+
+<pre>
+   window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
+          //Do something with the data;
+            console.log(response);
+        });
+</pre>
+<button style="display:none" id="try-now-get" onclick="window.app.getTodos()">Try it Now</button><br/>
+<p><b>Response:</b></p>
+<textarea class="results" style="width:400px;height:200px" id="get-results">Loading APIs...</textarea>
+<P>Insert Records from the "todo" table on your DSP</P>
+
+<pre>
+        var item = {"record":[{"name":"New Item","complete":false}]};
+        window.df.apis.db.createRecords({"table_name":"todo", "body":item}, function(response) {
+            document.getElementById("post-results").innerHTML = JSON.stringify(response);
+        }, function(response) {
+            document.getElementById("post-results").innerHTML = JSON.stringify(response);
+        });
+</pre>
+<button style="display:none" id="try-now-post" onclick="window.app.addTodo()">Try it Now</button><br/>
+<p><b>Response:</b></p>
+<textarea class="results" style="width:400px;height:200px" id="post-results">Loading APIs...</textarea>
+<P>Delete Record(s) from the "todo" table on your DSP</P>
+<pre>
+        var id= document.getElementById("delete-id").value;
+        window.df.apis.db.deleteRecords({"table_name":"todo", "ids":id}, function(response) {
+            document.getElementById("delete-results").innerHTML = JSON.stringify(response);
+        }, function(response) {
+            document.getElementById("delete-results").innerHTML = JSON.stringify(response);
+        });
+</pre>
+ID of record to delete : <input type="text" id="delete-id">
+<button style="display:none" id="try-now-delete" onclick="window.app.deleteTodo()">Try it Now</button><br/>
+<p><b>Response:</b></p>
+<textarea class="results" style="width:400px;height:200px" id="delete-results">Loading APIs...</textarea>
+<P>Update a record from the "todo" table on your DSP to be complete</P>
+
+<pre>
+        var id= document.getElementById("update-id").value;
+        var complete = true;
+        var item = {"record":[{"id":id,"complete":complete}]};
+        df.apis.db.mergeRecords({"table_name":"todo", "body":item}, function(response) {
+            document.getElementById("update-results").innerHTML = JSON.stringify(response);
+        }, function(response) {
+            document.getElementById("update-results").innerHTML = JSON.stringify(response);
+        });
+</pre>
+ID of record to update : <input type="text" id="update-id">
+<button style="display:none" id="try-now-update" onclick="window.app.updateTodo()">Try it Now</button><br/>
+<p><b>Response:</b></p>
+<textarea class="results" style="width:400px;height:200px" id="update-results">Loading APIs...</textarea>
 <script src='lib/shred.bundle.js' type='text/javascript'></script>
 <script src='lib/swagger.js' type='text/javascript'></script>
 <script src='lib/sdk-init.js' type='text/javascript'></script>
