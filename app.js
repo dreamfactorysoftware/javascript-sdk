@@ -66,7 +66,7 @@ document.addEventListener("apiReady", function(){
         var id= document.getElementById("update-id").value;
         var complete = true;
         var item = {"record":[{"id":id,"complete":complete}]};
-        df.apis.db.mergeRecords({"table_name":"todo", "body":item}, function(response) {
+        df.apis.db.updateRecords({"table_name":"todo", "body":item}, function(response) {
             document.getElementById("update-results").innerHTML = JSON.stringify(response);
         }, function(response) {
             document.getElementById("update-results").innerHTML = window.app.getErrorString(response);
