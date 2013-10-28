@@ -1,6 +1,6 @@
 {
 	"name":              "dreamfactory/javascript-sdk",
-	"version":           "1.0.11",
+	"version":           "1.0.12",
 	"homepage":          "http://dreamfactorysoftware.github.io",
 	"description":       "DreamFactory Services Platform(tm) Javascript SDK",
 	"keywords":          ["dreamfactory", "dsp", "javascript", "sdk", "api", "rest", "swagger"],
