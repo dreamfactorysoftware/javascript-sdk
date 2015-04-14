@@ -3,8 +3,6 @@ javascript-sdk
 
 DeamFactory Javascript SDK built with Swagger-JS
 
-Requires version 1.1 of the DreamFactory Platform, set for release September 24th.
-
 You'll need your app_name which is the name of the Application you created on your DSP.
 Make sure to set these variables in sdk-init.js: 
 ```javascript

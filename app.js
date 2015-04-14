@@ -23,7 +23,17 @@ document.addEventListener("apiReady", function(){
         });
     };
 
-//after which, you could make a call to the db service, if the current user has access
+    window.app.logout = function () {
+        window.df.apis.user.login(null, function (response) {
+            //assign session token to be used for the session duration
+            document.getElementById("login-status").innerHTML = "Logged In"
+            window.authorizations.add("X-DreamFactory-Session-Token", new ApiKeyAuthorization("X-Dreamfactory-Session-Token", response.session_id, 'header'));
+        }, function(response){
+            document.getElementById("login-status").innerHTML = window.app.getErrorString(response);
+        });
+    };
+
+//after login, you could make a call to the db service, if the current user has access
 //if you've enabled a guest user, you can give them access to any resource without auth.
 
     window.app.getTables = function () {
