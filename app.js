@@ -33,7 +33,7 @@ document.addEventListener("apiReady", function(){
         });
     };
 
-//after login, you could make a call to the db service, if the current user has access
+//after login, you can make a call to the db service, if the current user has access
 //if you've enabled a guest user, you can give them access to any resource without auth.
 
     window.app.getTables = function () {
