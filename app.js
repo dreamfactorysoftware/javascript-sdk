@@ -24,10 +24,8 @@ document.addEventListener("apiReady", function(){
     };
 
     window.app.logout = function () {
-        window.df.apis.user.login(null, function (response) {
-            //assign session token to be used for the session duration
+        window.df.apis.user.logout(null, function (response) {
             document.getElementById("login-status").innerHTML = "Logged In"
-            window.authorizations.add("X-DreamFactory-Session-Token", new ApiKeyAuthorization("X-Dreamfactory-Session-Token", response.session_id, 'header'));
         }, function(response){
             document.getElementById("login-status").innerHTML = window.app.getErrorString(response);
         });
