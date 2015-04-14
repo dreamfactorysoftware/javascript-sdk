@@ -25,7 +25,7 @@ document.addEventListener("apiReady", function(){
 
     window.app.logout = function () {
         window.df.apis.user.logout(null, function (response) {
-            document.getElementById("login-status").innerHTML = "Logged In"
+            document.getElementById("login-status").innerHTML = "Logged Out"
         }, function(response){
             document.getElementById("login-status").innerHTML = window.app.getErrorString(response);
         });
