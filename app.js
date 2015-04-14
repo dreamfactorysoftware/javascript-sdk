@@ -14,7 +14,7 @@ document.addEventListener("apiReady", function(){
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
         };
-        window.df.apis.user.login({body: JSON.stringify(body)}, function (response) {
+        window.df.apis.user.login({body: body}, function (response) {
             //assign session token to be used for the session duration
             document.getElementById("login-status").innerHTML = "Logged In"
             window.authorizations.add("X-DreamFactory-Session-Token", new ApiKeyAuthorization("X-Dreamfactory-Session-Token", response.session_id, 'header'));
@@ -37,7 +37,7 @@ document.addEventListener("apiReady", function(){
     window.app.getTodos = function () {
         window.df.apis.db.getRecords({table_name: "todo"}, function (response) {
             //Do something with the data;
-           document.getElementById("get-results").innerHTML = response.data;
+           document.getElementById("get-results").innerHTML = JSON.stringify(response);
 
         }, function(response) {
             document.getElementById("get-results").innerHTML = window.app.getErrorString(response);
@@ -46,8 +46,8 @@ document.addEventListener("apiReady", function(){
 //Insert a record
     window.app.addTodo = function () {
         var item = {"record":[{"name":"New Item","complete":false}]};
-        window.df.apis.db.createRecords({"table_name":"todo", "body":JSON.stringify(item)}, function(response) {
-            document.getElementById("post-results").innerHTML = response.data;
+        window.df.apis.db.createRecords({"table_name":"todo", "body":item}, function(response) {
+            document.getElementById("post-results").innerHTML = JSON.stringify(response);
         }, function(response) {
             document.getElementById("post-results").innerHTML = window.app.getErrorString(response);
         });
@@ -56,7 +56,7 @@ document.addEventListener("apiReady", function(){
     window.app.deleteTodo = function () {
         var id= document.getElementById("delete-id").value;
         window.df.apis.db.deleteRecords({"table_name":"todo", "ids":id}, function(response) {
-            document.getElementById("delete-results").innerHTML = response.data;
+            document.getElementById("delete-results").innerHTML = JSON.stringify(response);
         }, function(response) {
             document.getElementById("delete-results").innerHTML = window.app.getErrorString(response);
         });
@@ -66,8 +66,8 @@ document.addEventListener("apiReady", function(){
         var id= document.getElementById("update-id").value;
         var complete = true;
         var item = {"record":[{"id":id,"complete":complete}]};
-        df.apis.db.updateRecords({"table_name":"todo", "body":JSON.stringify(item)}, function(response) {
-            document.getElementById("update-results").innerHTML = response.data;
+        df.apis.db.updateRecords({"table_name":"todo", "body":item}, function(response) {
+            document.getElementById("update-results").innerHTML = JSON.stringify(response);
         }, function(response) {
             document.getElementById("update-results").innerHTML = window.app.getErrorString(response);
         });
