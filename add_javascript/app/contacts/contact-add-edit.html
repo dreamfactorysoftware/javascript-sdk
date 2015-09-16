@@ -1,0 +1,115 @@
+<md-tabs md-dynamic-height="true">
+    <md-tab label="Detail">
+        <div layout="row">
+            <md-content flex>
+                <form name="contactForm" ng-submit="save()">
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                            <label>First name</label>
+                            <input ng-model="contact.first_name">
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Last Name</label>
+                            <input ng-model="contact.last_name">
+                        </md-input-container>
+                    </div>
+                    
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                            <label>Twitter</label>
+                            <input ng-model="contact.twitter">
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Skype</label>
+                            <input ng-model="contact.skype">
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container flex>
+                        <label>Image URL</label>
+                        <input ng-model="contact.image_url">
+                    </md-input-container>
+
+                    <md-input-container flex>
+                        <label>Notes</label>
+                        <textarea ng-model="contact.notes" columns="1" md-maxlength="150"></textarea>
+                    </md-input-container>
+
+                    <div layout="column" flex ng-show="contact.id">
+                        <label>Groups</label>
+                        <md-checkbox ng-repeat="group in groups" ng-model="selectedGroups[group.id]">
+                            {{ group.name }}
+                        </md-checkbox>
+                    </div>
+
+                    <md-button type="submit" class="md-raised md-primary">Save</md-button>
+                    <md-button type="button" class="md-raised md-warn" ng-click="remove()" ng-show="contact.id">Remove</md-button>
+                </form>
+            </md-content>
+        </div>
+    </md-tab>
+
+    <md-tab label="Contact Info" ng-if="contact.id">
+        <div layout="row">
+            <md-content flex>
+                <table class="table table-hover" ng-init="loadData()" ng-if="contactInfo.length && !$root.isMobile">
+                    <thead>
+                        <tr>
+                            <th> Type </th>
+                            <th> Phone </th>
+                            <th> Email </th>
+                            <th> Address </th>
+                            <th> City </th>
+                            <th> State </th>
+                            <th> Country </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="item in contactInfo" ng-click="addEditContactInfo($event, item)">
+                            <td> {{ item.info_type }} </td>
+                            <td> {{ item.phone }} </td>
+                            <td> {{ item.email }} </td>
+                            <td> {{ item.address }} </td>
+                            <td> {{ item.city }} </td>
+                            <td> {{ item.state }} </td>
+                            <td> {{ item.country }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div ng-if="$root.isMobile" ng-init="loadData()" layout="row">
+                     <md-list flex layout-fill>
+                        <md-list-item class="md-3-line" ng-repeat="item in contactInfo" ng-click="addEditContactInfo($event, item)">
+                            <div class="md-list-item-text">
+                                <h3>{{ item.info_type + ' | ' + item.phone }}</h3>
+                                <h4><a ng-href="mailto:{{ item.email }}" ng-show="item.email">{{ item.email }}</a></h4>
+                                <p>{{ item.address || '' }}</p>
+                            </div>
+                            <md-divider ></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+
+                <div class="text-center" ng-if="paginate.meta.count > paginate.limit">
+                    <md-button 
+                        class="md-raised md-primary" 
+                        ng-disabled="paginate.page === 0" 
+                        ng-click="loadData(paginate.page-1)">
+                        Previous
+                    </md-button>
+                    <md-button 
+                        class="md-raised md-primary" 
+                        ng-disabled="!paginate.meta.next" 
+                        ng-click="loadData(paginate.page+1)">
+                        Next
+                    </md-button>
+                </div>
+
+                <md-button class="md-fab btn-material-add" aria-label="Add contact" ng-click="addEditContactInfo($event)">
+                     <md-icon md-font-icon="fa-plus" class="fa fa-2x"></md-icon>
+                </md-button>
+            </md-content>
+        </div>
+    </md-tab>
+</md-tabs>

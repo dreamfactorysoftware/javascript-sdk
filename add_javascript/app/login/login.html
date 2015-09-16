@@ -1,0 +1,24 @@
+<div class="signin-card">
+
+  <h1 class="text-center">Dreamfactory - Addressbook 2.0</h1>
+  <form ng-submit="submit()">
+    <md-input-container>
+      <label>Username</label>
+      <input ng-model="username">
+    </md-input-container>
+
+    <md-input-container>
+      <label>Password</label>
+      <input type="password" ng-model="password">
+    </md-input-container>
+
+    <div class="text-center">
+      <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+    </div>
+
+    <div class="text-center">
+      <md-button type="button" class="md-primary" ng-click="register()">Register</md-button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,58 @@
+<h3>{{ contactName }}</h3>
+<table class="table table-hover" ng-init="loadData()" ng-if="contactInfo.length && !$root.isMobile">
+	<thead>
+		<tr>
+			<th> Type </th>
+			<th> Phone </th>
+			<th> Email </th>
+			<th> Address </th>
+			<th> City </th>
+			<th> State </th>
+			<th> Country </th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="item in contactInfo" ng-click="addEditContactInfo($event, item)">
+			<td> {{ item.info_type }} </td>
+			<td> {{ item.phone }} </td>
+			<td> {{ item.email }} </td>
+			<td> {{ item.address }} </td>
+			<td> {{ item.city }} </td>
+			<td> {{ item.state }} </td>
+			<td> {{ item.country }} </td>
+		</tr>
+	</tbody>
+</table>
+
+<div ng-if="$root.isMobile" ng-init="loadData()">
+	 <md-list>
+		<md-list-item class="md-3-line" ng-repeat="item in contactInfo" ng-click="addEditContactInfo($event, item)">
+			<div class="md-list-item-text">
+			  	<h3>{{ item.info_type + ' | ' + item.phone }}</h3>
+			  	<h4><a ng-href="mailto:{{ item.email }}" ng-show="item.email">{{ item.email }}</a></h4>
+			  	<p>{{ item.address || '' }}</p>
+			</div>
+			<md-divider ></md-divider>
+		</md-list-item>
+	</md-list>
+</div>
+
+<div class="text-center" ng-if="paginate.meta.count > paginate.limit">
+	<md-button 
+		class="md-raised md-primary" 
+		ng-disabled="paginate.page === 0" 
+		ng-click="loadData(paginate.page-1)">
+		Previous
+	</md-button>
+	<md-button 
+		class="md-raised md-primary" 
+		ng-disabled="!paginate.meta.next" 
+		ng-click="loadData(paginate.page+1)">
+		Next
+	</md-button>
+</div>
+
+<md-button class="md-fab btn-material-add" aria-label="Add contact" ng-click="addEditContactInfo($event)">
+	 <md-icon md-font-icon="fa-plus" class="fa fa-2x"></md-icon>
+</md-button>

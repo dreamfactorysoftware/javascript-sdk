@@ -1,0 +1,34 @@
+@import "login/login.css";
+
+
+
+.btn-material-add {
+	position: fixed;
+	right: 35px;
+	bottom: 35px;
+}
+
+.full-height {
+	height: 100%;
+}
+
+md-tab-content {
+	display: initial;
+}
+
+.btn-aligned-left {
+	text-align: left;
+	min-width: 40px;
+}
+
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 75vw !important;
+    max-width: 400px !important;
+} 
+
+md-dialog form {
+	padding: 10px;
+}

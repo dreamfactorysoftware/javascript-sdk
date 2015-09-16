@@ -1,0 +1,79 @@
+<md-dialog>
+    <form name="contactInfoForm" ng-submit="submit()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-if="!contactInfo.id">Add new contact info</h2>
+                <h2 ng-if="contactInfo.id">Edit contact info</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:500px;height:500px; ">
+
+        	<div layout="row">
+                <md-input-container flex>
+	                <md-select placeholder="Type" ng-model="contactInfo.info_type">
+			        	<md-option ng-repeat="item in info_types" value="{{ item }}">{{ item }}</md-option>
+			        </md-select>
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Phone</label>
+                    <input ng-model="contactInfo.phone" type="tel">
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input ng-model="contactInfo.email" type="email">
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Address</label>
+                    <input ng-model="contactInfo.address" required>
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>City</label>
+                    <input ng-model="contactInfo.city">
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>State</label>
+                    <input ng-model="contactInfo.state">
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>ZIP</label>
+                    <input ng-model="contactInfo.zip">
+			   	</md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Country</label>
+                    <input ng-model="contactInfo.country">
+			   	</md-input-container>
+            </div>
+
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button type="submit" ng-disabled="contactInfoForm.$invalid">
+                Save
+            </md-button>
+            <md-button type="button" ng-click="cancel()" style="margin-right:20px;">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
