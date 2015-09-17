@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top df-nav cen" role="navigation" style="">
+            <ul class="nav navbar-nav" style="width: 100%">
+                <li class="pull-left" style="margin-top: 10px"><button type="button" id="menu_left" class="btn btn-link">Back</button></li>
+                <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                <li class="pull-right" style="margin-top: 10px"><button type="button" id="menu_right" class="btn btn-link" disabled>Edit</button></li>
+                <li class="pull-right" style="margin-top: 10px"><button type="button" id="menu_plus" class="btn btn-link">+</button></li>
+            </ul>
+        </nav>
+        <div class="row vert-offset-top-30"></div>
+        <div class="row">
+            <div id="template_index">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="login">
+                        <form>
+                            <div class="form-group form-control-size" >
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <input type="text" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <button id="signin" class="btn btn-default login-btn-signin" type="button">Sign In</button>
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <button id="register" class="btn btn-default login-btn-register" type="button">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div id="template_groups">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <table class="table table-hover" id="table_groups">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div id="template_group">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div id="template_contact">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row" style="text-align: center">
+                        <img src="img/default_portrait.png" height="180">
+                    </div>
+                    <div class="row" style="text-align: center">
+                        <h2><span id="contact_firstName"></span> <span id="contact_lastName"></span></h2>
+                    </div>
+                    <div class="row" id="contact_social">
+                    </div>
+                    <div class="row">
+                        <br>
+                        <h4>Notes</h4>
+                        <span id="contact_notes"></span>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div id="template_group_create">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="form-inline">
+                        <input type="text" class="form-control" id="groupName" placeholder="Group Name">
+                        <input id="group_save" class="btn btn-default" type="button" value="Save">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group_create">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <div class="row vert-offset-top-30"></div>
+    </body>
+</html>
+
+<script src="js/route.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/script.js"></script>
+
+
+
+
+
+

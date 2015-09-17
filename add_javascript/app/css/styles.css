@@ -1,0 +1,139 @@
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.text p{
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.df-nav {
+    background-color:#F0F0F0;
+}
+
+
+
+
+
+
+.cen {
+
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    float: none;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+.parent{
+    /*display:table;*/
+}
+.child{
+    display:table-cell;*
+vertical-align:middle;
+}
+
+.content {
+    float: none; margin: 0 auto;
+    width: 250px;
+    /*
+        float: none;
+        position: relative;
+
+        text-align: center;*/
+}
+
+.login {
+    float: none; margin: 0 auto;
+    width: 250px;
+    /*
+        float: none;
+        position: relative;
+
+        text-align: center;*/
+}
+
+.person {
+    float: none; margin: 0 auto;
+    width: 40%;
+}
+
+.person-btn-image {
+    width: 100%;
+}
+
+.person-btn-address {
+    background: #6baab2;
+    width: 100%;
+    border: 1px solid #6baab2;
+    color: #ffffff;
+}
+
+.login-btn-signin {
+    background: #d86a27;
+    width: 250px;
+    border: 1px solid #d86a27;
+    color: #ffffff;
+}
+
+.login-btn-register {
+    background: #6baab2;
+    width: 250px;
+    border: 1px solid #6baab2;
+    color: #ffffff;
+}
+
+.menu {
+    float: none;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.vert-offset-top-30 {
+    margin-top: 50px;
+}
+.top-buffer { margin-top:30px; }
+
+
+.form-control-size {
+    /*
+    width: 200px;
+    float: none;
+    position: relative;
+    text-align: center;
+    */
+}
+
+.row-height {
+    display: table;
+    table-layout: fixed;
+    height: 10px;
+    width: 100%;
+}
+
+
+.dataTables_filter {
+    display: none;
+}
+
+.infobox {
+    padding-top: 1px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    background: #7093b5;
+    color: #ffffff;
+    height: 110px;
+}
