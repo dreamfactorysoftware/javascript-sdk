@@ -4,8 +4,8 @@
     //  Defines
     //--------------------------------------------------------------------------
 
-    var instanceHost	= 'http://localhost:8080';
-    var apiKey 			= '8ca4d26917f4802693ad5219e0b7777e0c6b05ed01e842424c75453caffb0ee1';
+    var instanceHost	= 'YOUR_DSP_HOST';
+    var apiKey 			= 'YOUR_APP';
 
 
 
