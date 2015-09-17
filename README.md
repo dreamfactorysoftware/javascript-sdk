@@ -34,9 +34,17 @@ To download and install DreamFactory, follow the instructions [here](https://git
     - Save changes.
 
 - Import the package file for the app.
-    - From the Apps tab in the admin console, click Import and click 'Address Book for AngularJS' in the list of sample apps. The Address Book package contains the application description, source code, schemas, and sample data.
-    - Leave storage service and folder blank. It will use the default local file service.
+    - From the Apps tab in the admin console, click Import and click 'Address Book for JavaScript' in the list of sample apps. The Address Book package contains the application description, source code, schemas, and sample data.
+    - Leave storage service and folder blank. It will use the default local file service named 'files'.
     - Click the Import button. If successful, your app will appear on the Apps tab. You may have to refresh the page to see your new app in the list.
+    
+- Make your app files public.
+    - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
+    - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., 'AddressBookForJavaScript'.
+    - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Save your changes.
+    
+- Edit your app API key
+    - When you imported the app it created the folder for the app files. Go to AddressBookForJavaScript/add_javascript/app/js and open the file script.js for editing. Replace the API key in that file with the one for your new app. The API key is shown on the app details in the Apps tab of the admin console.
     
 - Make sure you have a SQL database service named 'db'. Depending on how you installed DreamFactory you may or may not have a 'db' service already available on your instance. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.
 
