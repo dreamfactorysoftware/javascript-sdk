@@ -1,0 +1,212 @@
+{
+  "service": [
+    {
+      "name": "db",
+      "table": [
+        {
+          "description": "The main table for tracking contacts.",
+          "name": "contact",
+          "field": [
+            {
+              "name": "id",
+              "label": "Contact Id",
+              "type": "id"
+            },
+            {
+              "name": "first_name",
+              "type": "string",
+              "size": 40,
+              "allow_null": false,
+              "is_index": true,
+              "validation": {
+                "not_empty": {
+                  "on_fail": "First name value must not be empty."
+                }
+              }
+            },
+            {
+              "name": "last_name",
+              "type": "string",
+              "size": 40,
+              "allow_null": false,
+              "is_index": true,
+              "validation": {
+                "not_empty": {
+                  "on_fail": "Last name value must not be empty."
+                }
+              }
+            },
+            {
+              "name": "image_url",
+              "label": "image_url",
+              "type": "text",
+              "validation": {
+                "url": {
+                  "on_fail": "Not a valid URL value."
+                }
+              },
+              "allow_null": true
+            },
+            {
+              "name": "twitter",
+              "label": "Twitter Handle",
+              "type": "string",
+              "size": 18,
+              "allow_null": true
+            },
+            {
+              "name": "skype",
+              "label": "Skype Account",
+              "type": "string",
+              "size": 255,
+              "allow_null": true
+            },
+            {
+              "name": "notes",
+              "label": "notes",
+              "type": "text",
+              "allow_null": true
+            }
+          ]
+        },
+        {
+          "description": "The contact details sub-table, owned by contact table row.",
+          "name": "contact_info",
+          "field": [
+            {
+              "name": "id",
+              "label": "Info Id",
+              "type": "id"
+            },
+            {
+              "name": "ordinal",
+              "type": "integer",
+              "allow_null": true
+            },
+            {
+              "name": "contact_id",
+              "type": "reference",
+              "allow_null": false,
+              "ref_table": "contact",
+              "ref_fields": "id",
+              "ref_on_delete": "CASCADE"
+            },
+            {
+              "name": "info_type",
+              "type": "string",
+              "size": 32,
+              "allow_null": false,
+              "validation": {
+                "not_empty": {
+                  "on_fail": "Information type can not be empty."
+                },
+                "picklist": {
+                  "on_fail": "Not a valid information type."
+                }
+              },
+              "picklist": [
+                "work",
+                "home",
+                "mobile",
+                "other"
+              ]
+            },
+            {
+              "name": "phone",
+              "label": "Phone Number",
+              "type": "string",
+              "size": 32
+            },
+            {
+              "name": "email",
+              "label": "Email Address",
+              "type": "string",
+              "size": 255,
+              "validation": {
+                "email": {
+                  "on_fail": "Not a valid email address."
+                }
+              }
+            },
+            {
+              "name": "address",
+              "label": "Street Address",
+              "type": "string"
+            },
+            {
+              "name": "city",
+              "label": "city",
+              "type": "string",
+              "size": 64
+            },
+            {
+              "name": "state",
+              "label": "state",
+              "type": "string",
+              "size": 64
+            },
+            {
+              "name": "zip",
+              "label": "zip",
+              "type": "string",
+              "size": 16
+            },
+            {
+              "name": "country",
+              "label": "country",
+              "type": "string",
+              "size": 64
+            }
+          ]
+        },
+        {
+          "description": "The main table for tracking groups of contact.",
+          "name": "contact_group",
+          "field": [
+            {
+              "name": "id",
+              "type": "id"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "size": 128,
+              "allow_null": false,
+              "validation": {
+                "not_empty": {
+                  "on_fail": "Group name value must not be empty."
+                }
+              }
+            }
+          ]
+        },
+        {
+          "description": "The join table for tracking contacts in groups.",
+          "name": "contact_group_relationship",
+          "field": [
+            {
+              "name": "id",
+              "type": "id"
+            },
+            {
+              "name": "contact_id",
+              "type": "reference",
+              "allow_null": false,
+              "ref_table": "contact",
+              "ref_fields": "id",
+              "ref_on_delete": "CASCADE"
+            },
+            {
+              "name": "contact_group_id",
+              "type": "reference",
+              "allow_null": false,
+              "ref_table": "contact_group",
+              "ref_fields": "id",
+              "ref_on_delete": "CASCADE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

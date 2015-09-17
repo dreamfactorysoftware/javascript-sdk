@@ -1,0 +1,68 @@
+<div>
+    <md-toolbar ng-hide="group.id">
+        <div class="md-toolbar-tools">
+            <h2 ng-if="!contactInfo.id">Add new group</h2>
+            <h2 ng-if="contactInfo.id">Edit group</h2>
+        </div>
+    </md-toolbar>
+    <form ng-submit="submit()">
+        <md-dialog-content>
+            <div layout="column">
+                <label>Group name</label>
+                <md-input-container flex>
+                    <input ng-model="group.name">
+    		   	</md-input-container>
+            </div>
+
+            <div layout="column" ng-show="group.id">
+                <label>Contacts</label>
+                <br />
+                <div layout="row">
+                    <md-button class="btn-aligned-left" ng-click="addContact(selectedContact)" ng-disabled="!selectedContact">
+                        <i class="fa fa-plus"></i>
+                    </md-button>
+                    <md-autocomplete
+                        md-no-cache="false"
+                        md-selected-item="selectedContact"
+                        md-search-text="searchText"
+                        md-items="item in searchContacts(searchText)"
+                        md-item-text="item.first_name + ' ' + item.last_name"
+                        placeholder="Search contacts">
+                        
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
+                                {{ item.first_name + ' ' + item.last_name }}
+                            </span>
+                        </md-item-template>
+
+                        <md-not-found>
+                            No matches found for "{{ searchText }}".
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="item in contacts">
+                        <md-button type="button" class="btn-aligned-left" ng-click="removeContact(item)">
+                            <i class="fa fa-trash"></i>
+                        </md-button>
+                        <div class="md-list-item-text" ng-click="showContact(item.data)">
+                            {{ item.data.first_name + ' ' + item.data.last_name }}
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+            
+
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-raised md-primary" ng-disabled="!group.name">
+                Save
+            </md-button>
+            <md-button type="button" ng-click="cancel()" style="margin-right:20px;" class="md-raised md-warn">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</div>
