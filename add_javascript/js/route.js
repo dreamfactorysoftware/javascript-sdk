@@ -81,7 +81,7 @@
                         $.redirect('groups');
                     });
 
-                    $.api.getRecords('contact_groups', '', apiKey, getCookie('token'), populateGroupsTable);
+                    $.api.getRecords('contacts', '', apiKey, getCookie('token'), populateGroupCreateTable);
                     break;
 
                 case 'contact_show':
