@@ -5,7 +5,7 @@
     //--------------------------------------------------------------------------
 
     var instanceHost	= 'YOUR_DSP_HOST';
-    var apiKey 			= 'YOUR_APP';
+    var apiKey 		= 'YOUR_APP_APIKEY';
 
 
 
@@ -16,9 +16,15 @@
     $('div[id^="template_"]').hide();
     $('#template_index').show();
 
+
+    $('button[id^="menu_"]').hide();
+
+
+    /*
     $('#menu_left').hide();
     $('#menu_right').hide();
     $('#menu_plus').hide();
+    */
 
     $.redirect('index');
 
@@ -127,9 +133,7 @@
         var params = JSON.stringify(save);
 
         $.api.setRecord('contact_groups', params, apiKey, getCookie('token'), function (data) {
-            //console.log(data);
             var groupId  = data[0].contactGroupId;
-            //console.log(groupId);
             createRelationships(groupId);
         });
     });
@@ -226,8 +230,6 @@
     //--------------------------------------------------------------------------
 
     var populateContact = function(data) {
-        console.log(data);
-
         $('#contact_firstName').text(data.firstName);
         $('#contact_lastName').text(data.lastName);
         $('#contact_notes').text(data.notes);
@@ -247,7 +249,6 @@
     //--------------------------------------------------------------------------
 
     function setCookie(key, value) {
-        console.log('here');
         var expires = new Date();
         expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
         window.parent.document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();

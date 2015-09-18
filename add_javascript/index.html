@@ -1,88 +1,228 @@
-<!doctype html>
-<html ng-app="addressbook">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
-
-    <link rel="stylesheet" href="app/app.css">
-    <title>Address book</title>
-</head>
-
-<body>
-
-	<div layout="column" role="main" layout-fill flex>
-
-        <!-- Header -->
-		<md-toolbar class="md-whiteframe-glow-z1 md-default-theme" ng-controller="HeaderCtrl" ng-hide="!$root.isLoggedIn">
-            <div class="md-toolbar-tools">
-                <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleSidebar()">
-                    <md-icon md-font-icon="fa-bars" class="fa fa-2x"></md-icon>
-                </md-button>
-                <h2 class="text-center" flex><span>Address book</span></h2>
-                
-                <md-menu md-position-mode="target-right target">
-                    <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
-                        <md-icon md-font-icon="fa-sign-out" class="fa fa-2x"></md-icon>
-                    </md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item>
-                            <md-button ng-click="logout()">
-                                <p>Logout</p>
-                                <md-icon md-menu-align-target md-svg-icon="call:portable-wifi-off"></md-icon>
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
+        <div class="row">
+            <div id="template_index">
+                <nav class="navbar navbar-fixed-top df-nav cen" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="login">
+                        <form>
+                            <div class="form-group form-control-size" >
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <input type="text" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <button id="signin" class="btn btn-default login-btn-signin" type="button">Sign In</button>
+                            </div>
+                            <div class="form-group form-control-size" >
+                                <button id="register" class="btn btn-default login-btn-register" type="button">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
             </div>
-        </md-toolbar>
 
-        <!-- Sidebar -->
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left-sidebar">
-            <md-content layout-padding ng-controller="SidebarCtrl">
-                <div class="md-list-item-text">
-                    <h3>
-                        <a class="md-button" href="#/contacts" ng-click="toggleSidebar()">Contacts</a>
-                    </h3>
-                    <md-divider></md-divider>
+            <div id="template_groups">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="groups_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="groups_menu_plus" class="btn btn-link">+</button></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <table class="table table-hover" id="table_groups">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="col-md-2"></div>
+            </div>
 
-                <div class="md-list-item-text">
-                    <h3>
-                        <a class="md-button" href="#/groups" ng-click="toggleSidebar()">Groups</a>
-                    </h3>
-                    <md-divider></md-divider>
+            <div id="template_group_show">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_show_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="col-md-2"></div>
+            </div>
 
-            </md-content>
-        </md-sidenav>
+            <div id="template_contact_show">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_show_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_right" class="btn btn-link" disabled>Edit</button></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_plus" class="btn btn-link">+</button></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row" style="text-align: center">
+                        <img src="img/default_portrait.png" height="180">
+                    </div>
+                    <div class="row" style="text-align: center">
+                        <h2><span id="contact_firstName"></span> <span id="contact_lastName"></span></h2>
+                    </div>
+                    <div class="row" id="contact_social">
+                    </div>
+                    <div class="row">
+                        <br>
+                        <h4>Notes</h4>
+                        <span id="contact_notes"></span>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-        <!-- Main content -->
-        <md-content ng-view md-scroll-y flex layout-padding>
-		</md-content>
+            <div id="template_group_create">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_create_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="form-inline">
+                        <input type="text" class="form-control" id="groupName" placeholder="Group Name">
+                        <input id="group_save" class="btn btn-default" type="button" value="Save">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group_create">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-	</div>
 
-    <!-- Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-touch.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+            <div id="template_contact_create">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_create_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_create_menu_right" class="btn btn-link" disabled>Edit</button></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_create_menu_plus" class="btn btn-link">+</button></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="person">
+                        <form>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="twitter" placeholder="Twitter">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="skype" placeholder="Skype">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="notes" placeholder="Notes">
+                            </div>
+                            <div class="form-group" >
+                                <input type="hidden" class="form-control" id="imageUrl" placeholder="">
+                            </div>
+                            <div class="form-group" >
+                                <button class="btn btn-default person-btn-image" type="button">Change Image</button>
+                            </div>
+                            <div id="person_address"></div>
+                            <div class="form-group" >
+                                <button class="btn btn-default person-btn-address" id="person_create_add_address" type="button">Add New Address</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-    <!-- app files -->
-    <script src="app/app.js"></script>
-    <script src="app/contacts/contacts.js"></script>
-    <script src="app/contact-info/contact-info.js"></script>
-    <script src="app/groups/groups.js"></script>
-    <script src="app/login/login.js"></script>
 
-</body>
-
+        </div>
+        <div class="row vert-offset-top-30"></div>
+    </body>
 </html>
+
+<script src="js/route.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/script.js"></script>
+
+
+
+
+
+
