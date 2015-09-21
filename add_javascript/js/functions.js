@@ -8,7 +8,7 @@
             login: function(email, password) {
                 $.ajax({
                     dataType: 'json',
-                    url: instanceHost + '/api/v2/user/session',
+                    url: instanceHost + '/user/session',
                     data: JSON.stringify({
                         "email": email,
                         "password": password
@@ -17,7 +17,7 @@
                     type:'POST',
                     success:function (response) {
                         setCookie('token', response.session_token);
-                        return response.session_token;
+                        $.redirect('groups');
                     },
                     error:function (response) {
                         alert('Sign in failed! Please check your credentials and try again.')
@@ -30,7 +30,7 @@
             getRecords: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'GET',
@@ -53,7 +53,7 @@
             setRecord: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'POST',

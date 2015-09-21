@@ -4,9 +4,9 @@
     //  Defines
     //--------------------------------------------------------------------------
 
-    var instanceHost	= 'YOUR_DSP_HOST';
-    var apiKey 		= 'YOUR_APP_APIKEY';
-
+    var instanceHost    = 'YOUR_DSP_HOST';
+    var apiKey          = 'YOUR_APP_API_KEY';
+    var appName         = 'YOUR_APP_NAME';
 
 
     //--------------------------------------------------------------------------
@@ -16,15 +16,7 @@
     $('div[id^="template_"]').hide();
     $('#template_index').show();
 
-
     $('button[id^="menu_"]').hide();
-
-
-    /*
-    $('#menu_left').hide();
-    $('#menu_right').hide();
-    $('#menu_plus').hide();
-    */
 
     $.redirect('index');
 
@@ -37,9 +29,7 @@
         var email = $('#email').val();
         var password = $('#password').val();
 
-        if (!$.api.login(email, password)) {
-            $.redirect('groups');
-        }
+        $.api.login(email, password);
     });
 
 
@@ -76,7 +66,7 @@
 
         $('#table_groups').dataTable().fnClearTable();
         $('#table_groups').dataTable().fnAddData(groups);
-    }
+    };
 
 
     //--------------------------------------------------------------------------
@@ -121,10 +111,10 @@
                 contact.lastName.charAt(0).toUpperCase(),
                 "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.contactId + "'>Select</button>"
             ])
-        })
+        });
 
         $('#table_group_create').dataTable().fnAddData(contacts);
-    }
+    };
 
     $('#group_save').on('click', function() {
         var save = {};
@@ -134,11 +124,13 @@
 
         $.api.setRecord('contact_groups', params, apiKey, getCookie('token'), function (data) {
             var groupId  = data[0].contactGroupId;
-            createRelationships(groupId);
+            createGroupRelationships(groupId);
         });
+
+        clearForm();
     });
 
-    function createRelationships(groupId) {
+    function createGroupRelationships(groupId) {
         $('#table_group_create tr').each(function() {
             var columns = $(this).find('td');
 
@@ -177,7 +169,7 @@
             { "visible": false, "targets": 2 }
         ],
 
-        "drawCallback": function ( settings ) {
+        "drawCallback": function () {
             var api = this.api();
             var rows = api.rows( {page:'current'} ).nodes();
             var last=null;
@@ -195,7 +187,6 @@
             $("#table_group thead").remove();
             $("#table_group tfoot").remove();
         }
-
     });
 
     var populateGroupTable = function(data) {
@@ -211,7 +202,7 @@
 
         $('#table_group').dataTable().fnClearTable();
         $('#table_group').dataTable().fnAddData(users);
-    }
+    };
 
     $('#table_group_search').keyup(function(){
         $('#table_group').DataTable().search($(this).val(), false, true).draw() ;
@@ -226,23 +217,158 @@
 
 
     //--------------------------------------------------------------------------
-    //  Group       group/{id}
+    //  Contact Show      contact/{id}
     //--------------------------------------------------------------------------
 
     var populateContact = function(data) {
         $('#contact_firstName').text(data.firstName);
         $('#contact_lastName').text(data.lastName);
         $('#contact_notes').text(data.notes);
+        $('#contact_social').empty();
 
-        if(data.twitter)
+        if (data.twitter) {
             $('#contact_social').append('<img src="img/twitter2.png" height="25">&nbsp;&nbsp;' +
             data.twitter + '<br><br>');
+        }
 
-        if(data.skype)
+        if (data.skype) {
             $('#contact_social').append('<img src="img/skype.png" height="25">&nbsp;&nbsp;' +
             data.skype + '<br><br>');
+        }
+    };
+
+    var populateContactInfo = function(data) {
+        var types = '';
+
+        $.each(data, function(index, value) {
+            types += '<br><div class="infobox">';
+            types += '<h5>' + value.infoType + '</h5>';
+            types += '<div class="col-md-12">';
+            types += '<div class="col-md-1">&nbsp;</div>';
+            types += '<div class="col-md-1"><div style="height: 25px"><img src="img/phone.png" height="25"></div><br><img src="img/mail.png" height="25"></div>';
+            types += '<div class="col-md-4"><div style="height: 25px">' + value.phone + '</div><br>' + value.email + '</div>';
+            types += '<div class="col-md-1"><img src="img/home.png" height="25"></div>';
+            types += '<div class="col-md-4">' + value.address + '<br>' + value.city + ', ' + value.state + ' ' + value.zip + '<br>' + value.country + '</div>';
+            types += '<div class="col-md-1">&nbsp;</div>';
+            types += '</div>';
+            types += '</div>';
+        });
+
+        $('#contact_info_types').append(types);
+    };
+
+    //--------------------------------------------------------------------------
+    //  Contact Create       contact/{:group_id}/create
+    //--------------------------------------------------------------------------
+
+    var contactGroupId = 0;
+
+    $('#btn_contact_save').on('click', function() {
+        var save = {};
+
+        $('#contact_create').find('input').each(function () {
+            save[this.id] = this.value;
+        });
+
+        contactGroupId = $('#contact_create_group').val();
+
+        var params = JSON.stringify(save);
+
+        $.api.setRecord('contacts', params, apiKey, getCookie('token'), function (data) {
+            var contactId = data[0].contactId;
+            createContactRelationships(contactGroupId, contactId);
+            createContactInfos(contactId);
+        });
+
+        clearForm();
+
+        $.redirect('group/' + contactGroupId);
+    });
+
+    function createContactRelationships(groupId, contactId) {
+
+        var save = {};
+
+        save['contactGroupId'] = groupId;
+        save['contactId'] = contactId;
+
+        var params = JSON.stringify(save);
+
+        $.api.setRecord('contact_relationships', params, apiKey, getCookie('token'), function (){});
     }
 
+    function createContactInfos(contactId) {
+
+        var type = [], phone = [], email = [], address = [],
+            city = [], state = [], zip = [], country = [];
+
+        $('.type').each(function(index, value){
+            type[index] = $(value).val();
+        });
+
+        $('.phone').each(function(index, value){
+            phone[index] = $(value).val();
+        });
+
+        $('.email').each(function(index, value){
+            email[index] = $(value).val();
+        });
+
+        $('.address').each(function(index, value){
+            address[index] = $(value).val();
+        });
+
+        $('.city').each(function(index, value){
+            city[index] = $(value).val();
+        });
+
+        $('.state').each(function(index, value){
+            state[index] = $(value).val();
+        });
+
+        $('.zip').each(function(index, value){
+            zip[index] = $(value).val();
+        });
+
+        $('.country').each(function(index, value){
+            country[index] = $(value).val();
+        });
+
+        for (var i = 0; i < type.length; i++) {
+            var save = {};
+
+            save['infoType'] = type[i];
+            save['phone'] = phone[i];
+            save['email'] = email[i];
+            save['address'] = address[i];
+            save['city'] = city[i];
+            save['state'] = state[i];
+            save['zip'] = zip[i];
+            save['country'] = country[i];
+            save['contactId'] = contactId;
+
+            var params = JSON.stringify(save);
+
+            $.api.setRecord('contact_info', params, apiKey, getCookie('token'), function (){});
+        }
+    }
+
+    $('#person_create_add_address').on('click', function() {
+        console.log('person_create_add_address');
+
+        var form = '<div class="form-group vert-offset-top-30"></div>';
+
+        form += '<div class="form-group" ><input type="text" class="form-control type" name="type[]" placeholder="Type"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control phone" name="phone[]" placeholder="Phone"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control email" name="email[]" placeholder="Email"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control address" name="address[]" placeholder="Address"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control city" name="city[]" placeholder="City"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control state" name="state[]" placeholder="State"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control zip" name="zip[]" placeholder="Zip"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control country" name="country[]" placeholder="Country"></div>';
+
+        $('#contact_infos').append(form);
+    });
 
     //--------------------------------------------------------------------------
     //  Misc functions
@@ -257,6 +383,12 @@
     function getCookie(key) {
         var keyValue = window.parent.document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
         return keyValue ? keyValue[2] : null;
+    }
+
+    function clearForm() {
+        $('input').each(function(){
+            $(this).val('');
+        });
     }
 
 

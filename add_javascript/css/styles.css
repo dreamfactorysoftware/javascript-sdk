@@ -69,14 +69,21 @@ vertical-align:middle;
     width: 40%;
 }
 
-.person-btn-image {
+.contact-btn-image {
     width: 100%;
 }
 
-.person-btn-address {
+.contact-btn-address {
     background: #6baab2;
     width: 100%;
     border: 1px solid #6baab2;
+    color: #ffffff;
+}
+
+.contact-btn-save {
+    background: #d86a27;
+    width: 100%;
+    border: 1px solid #d86a27;
     color: #ffffff;
 }
 
