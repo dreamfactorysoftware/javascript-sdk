@@ -54,7 +54,7 @@
                     $('#groups_menu_plus').on('click', function(){
                         $.redirect('group/create');
                     });
-                    $.api.getRecords('contact_groups', '', apiKey, getCookie('token'), populateGroupsTable);
+                    $.api.getRecords('contact_groups', '', apiKey, getToken('token'), populateGroupsTable);
                     break;
 
                 case 'group_show':
@@ -69,7 +69,7 @@
                     });
 
                     var params = 'filter=contactGroupId%3D' + pathArray[1] + '&fields=contactId';
-                    $.api.getRecords('contact_relationships', params, apiKey, getCookie('token'), function(data){
+                    $.api.getRecords('contact_relationships', params, apiKey, getToken('token'), function(data){
                         var contacts = '';
 
                         $.each(data, function(id, contact){
@@ -78,7 +78,7 @@
 
                         if(contacts) {
                             var params = 'ids=' + contacts;
-                            $.api.getRecords('contacts', params, apiKey, getCookie('token'), populateGroupTable);
+                            $.api.getRecords('contacts', params, apiKey, getToken('token'), populateGroupTable);
                         }
                     });
                     break;
@@ -88,7 +88,7 @@
                         $.redirect('groups');
                     });
 
-                    $.api.getRecords('contacts', '', apiKey, getCookie('token'), populateGroupCreateTable);
+                    $.api.getRecords('contacts', '', apiKey, getToken('token'), populateGroupCreateTable);
                     break;
 
                 case 'contact_show':
@@ -97,8 +97,8 @@
                     });
 
                     var params = 'filter=contactId%3D' + pathArray[1];
-                    $.api.getRecords('contacts/' + pathArray[1], '', apiKey, getCookie('token'), populateContact);
-                    $.api.getRecords('contact_info', params, apiKey, getCookie('token'), populateContactInfo);
+                    $.api.getRecords('contacts/' + pathArray[1], '', apiKey, getToken('token'), populateContact);
+                    $.api.getRecords('contact_info', params, apiKey, getToken('token'), populateContactInfo);
                     break;
 
                 case 'contact_create':

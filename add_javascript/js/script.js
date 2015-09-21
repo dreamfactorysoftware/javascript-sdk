@@ -6,7 +6,6 @@
 
     var instanceHost    = 'YOUR_DSP_HOST';
     var apiKey          = 'YOUR_APP_API_KEY';
-    var appName         = 'YOUR_APP_NAME';
 
 
     //--------------------------------------------------------------------------
@@ -122,7 +121,7 @@
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contact_groups', params, apiKey, getCookie('token'), function (data) {
+        $.api.setRecord('contact_groups', params, apiKey, getToken('token'), function (data) {
             var groupId  = data[0].contactGroupId;
             createGroupRelationships(groupId);
         });
@@ -148,7 +147,7 @@
 
                         var params = JSON.stringify(save);
 
-                        $.api.setRecord('contact_relationships', params, apiKey, getCookie('token'), function (data){});
+                        $.api.setRecord('contact_relationships', params, apiKey, getToken('token'), function (data){});
                     }
                 }
             });
@@ -274,7 +273,7 @@
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contacts', params, apiKey, getCookie('token'), function (data) {
+        $.api.setRecord('contacts', params, apiKey, getToken('token'), function (data) {
             var contactId = data[0].contactId;
             createContactRelationships(contactGroupId, contactId);
             createContactInfos(contactId);
@@ -294,7 +293,7 @@
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contact_relationships', params, apiKey, getCookie('token'), function (){});
+        $.api.setRecord('contact_relationships', params, apiKey, getToken('token'), function (){});
     }
 
     function createContactInfos(contactId) {
@@ -349,7 +348,7 @@
 
             var params = JSON.stringify(save);
 
-            $.api.setRecord('contact_info', params, apiKey, getCookie('token'), function (){});
+            $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
         }
     }
 
@@ -374,15 +373,12 @@
     //  Misc functions
     //--------------------------------------------------------------------------
 
-    function setCookie(key, value) {
-        var expires = new Date();
-        expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-        window.parent.document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    function setToken(key, value) {
+        sessionStorage.setItem(key, value);
     }
 
-    function getCookie(key) {
-        var keyValue = window.parent.document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-        return keyValue ? keyValue[2] : null;
+    function getToken(key) {
+        return sessionStorage.getItem(key);
     }
 
     function clearForm() {

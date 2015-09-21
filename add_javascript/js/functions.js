@@ -16,7 +16,7 @@
                     cache:false,
                     type:'POST',
                     success:function (response) {
-                        setCookie('token', response.session_token);
+                        setToken('token', response.session_token);
                         $.redirect('groups');
                     },
                     error:function (response) {
