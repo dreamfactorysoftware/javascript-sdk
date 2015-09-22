@@ -54,7 +54,8 @@
                     $('#groups_menu_plus').on('click', function(){
                         $.redirect('group/create');
                     });
-                    $.api.getRecords('contact_groups', '', apiKey, getToken('token'), populateGroupsTable);
+
+                    $.api.getRecords('contact_group', '', apiKey, getToken('token'), populateGroupsTable);
                     break;
 
                 case 'group_show':
@@ -64,21 +65,24 @@
                     });
 
                     $('#group_show_menu_plus').on('click', function(){
-                        console.log('contact/create');
-                        $.redirect('contact/15/create');
+                        $.redirect('contact/' + pathArray[1] + '/create');
                     });
 
-                    var params = 'filter=contactGroupId%3D' + pathArray[1] + '&fields=contactId';
-                    $.api.getRecords('contact_relationships', params, apiKey, getToken('token'), function(data){
+                    $('#group_show_menu_right').on('click', function(){
+                        $.redirect('group/' + pathArray[1] + '/edit');
+                    });
+
+                    var params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
+                    $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                         var contacts = '';
 
                         $.each(data, function(id, contact){
-                            contacts += contact.contactId + ',';
+                            contacts += contact.contact_id + ',';
                         });
 
                         if(contacts) {
                             var params = 'ids=' + contacts;
-                            $.api.getRecords('contacts', params, apiKey, getToken('token'), populateGroupTable);
+                            $.api.getRecords('contact', params, apiKey, getToken('token'), populateGroupTable);
                         }
                     });
                     break;
@@ -88,7 +92,7 @@
                         $.redirect('groups');
                     });
 
-                    $.api.getRecords('contacts', '', apiKey, getToken('token'), populateGroupCreateTable);
+                    $.api.getRecords('contact', '', apiKey, getToken('token'), populateGroupCreateTable);
                     break;
 
                 case 'contact_show':
@@ -96,8 +100,8 @@
                         $.redirect(previousUrl);
                     });
 
-                    var params = 'filter=contactId%3D' + pathArray[1];
-                    $.api.getRecords('contacts/' + pathArray[1], '', apiKey, getToken('token'), populateContact);
+                    var params = 'filter=id%3D' + pathArray[1];
+                    $.api.getRecords('contact/' + pathArray[1], '', apiKey, getToken('token'), populateContact);
                     $.api.getRecords('contact_info', params, apiKey, getToken('token'), populateContactInfo);
                     break;
 

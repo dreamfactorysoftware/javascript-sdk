@@ -58,8 +58,8 @@
 
         $.each(_groups, function(id, group){
             groups.push([
-                group.contactGroupId,
-                group.groupName
+                group.id,
+                group.name
             ])
         })
 
@@ -105,10 +105,10 @@
 
         $.each(data, function(id, contact){
             contacts.push([
-                contact.contactId,
-                contact.firstName + ' ' + contact.lastName,
-                contact.lastName.charAt(0).toUpperCase(),
-                "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.contactId + "'>Select</button>"
+                contact.id,
+                contact.first_name + ' ' + contact.last_name,
+                contact.last_name.charAt(0).toUpperCase(),
+                "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>"
             ])
         });
 
@@ -117,16 +117,18 @@
 
     $('#group_save').on('click', function() {
         var save = {};
-        save['groupName'] = $('#groupName').val();
+        save['name'] = $('#groupName').val();
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contact_groups', params, apiKey, getToken('token'), function (data) {
-            var groupId  = data[0].contactGroupId;
+        $.api.setRecord('contact_group', params, apiKey, getToken('token'), function (data) {
+            var groupId  = data[0].id;
+
             createGroupRelationships(groupId);
         });
 
         clearForm();
+        $.redirect('groups');
     });
 
     function createGroupRelationships(groupId) {
@@ -142,12 +144,12 @@
                     if ($('#' + id).hasClass('active')) {
                         var save = {};
 
-                        save['contactGroupId'] = groupId;
-                        save['contactId'] = id.replace('contact_', '');
+                        save['contact_group_id'] = groupId;
+                        save['contact_id'] = id.replace('contact_', '');
 
                         var params = JSON.stringify(save);
 
-                        $.api.setRecord('contact_relationships', params, apiKey, getToken('token'), function (data){});
+                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
                     }
                 }
             });
@@ -156,7 +158,7 @@
 
 
     //--------------------------------------------------------------------------
-    //  Group       group/{id}
+    //  Group Show      group/{id}
     //--------------------------------------------------------------------------
 
     var tableGroup = $('#table_group').DataTable({
@@ -189,18 +191,18 @@
     });
 
     var populateGroupTable = function(data) {
-        var users = [];
+        var contacts = [];
 
-        $.each(data, function(id, user){
-            users.push([
-                user.contactId,
-                user.firstName + ' ' + user.lastName,
-                user.lastName.charAt(0).toUpperCase()
+        $.each(data, function(id, contact){
+            contacts.push([
+                contact.id,
+                contact.first_name + ' ' + contact.last_name,
+                contact.last_name.charAt(0).toUpperCase()
             ])
         });
 
         $('#table_group').dataTable().fnClearTable();
-        $('#table_group').dataTable().fnAddData(users);
+        $('#table_group').dataTable().fnAddData(contacts);
     };
 
     $('#table_group_search').keyup(function(){
@@ -220,8 +222,8 @@
     //--------------------------------------------------------------------------
 
     var populateContact = function(data) {
-        $('#contact_firstName').text(data.firstName);
-        $('#contact_lastName').text(data.lastName);
+        $('#contact_firstName').text(data.first_name);
+        $('#contact_lastName').text(data.last_name);
         $('#contact_notes').text(data.notes);
         $('#contact_social').empty();
 
@@ -241,7 +243,7 @@
 
         $.each(data, function(index, value) {
             types += '<br><div class="infobox">';
-            types += '<h5>' + value.infoType + '</h5>';
+            types += '<h4>' + value.info_type.charAt(0).toUpperCase() + value.info_type.slice(1) + '</h4>';
             types += '<div class="col-md-12">';
             types += '<div class="col-md-1">&nbsp;</div>';
             types += '<div class="col-md-1"><div style="height: 25px"><img src="img/phone.png" height="25"></div><br><img src="img/mail.png" height="25"></div>';
@@ -273,7 +275,7 @@
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contacts', params, apiKey, getToken('token'), function (data) {
+        $.api.setRecord('contact', params, apiKey, getToken('token'), function (data) {
             var contactId = data[0].contactId;
             createContactRelationships(contactGroupId, contactId);
             createContactInfos(contactId);
@@ -288,12 +290,12 @@
 
         var save = {};
 
-        save['contactGroupId'] = groupId;
-        save['contactId'] = contactId;
+        save['contact_group_id'] = groupId;
+        save['contact_id'] = contactId;
 
         var params = JSON.stringify(save);
 
-        $.api.setRecord('contact_relationships', params, apiKey, getToken('token'), function (){});
+        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (){});
     }
 
     function createContactInfos(contactId) {
@@ -336,7 +338,7 @@
         for (var i = 0; i < type.length; i++) {
             var save = {};
 
-            save['infoType'] = type[i];
+            save['info_type'] = type[i];
             save['phone'] = phone[i];
             save['email'] = email[i];
             save['address'] = address[i];
@@ -344,7 +346,7 @@
             save['state'] = state[i];
             save['zip'] = zip[i];
             save['country'] = country[i];
-            save['contactId'] = contactId;
+            save['contact_id'] = contactId;
 
             var params = JSON.stringify(save);
 
