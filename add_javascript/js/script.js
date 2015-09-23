@@ -112,6 +112,7 @@
             ])
         });
 
+        $('#table_group_create').dataTable().fnClearTable();
         $('#table_group_create').dataTable().fnAddData(contacts);
     };
 
@@ -123,7 +124,6 @@
 
         $.api.setRecord('contact_group', params, apiKey, getToken('token'), function (data) {
             var groupId  = data[0].id;
-
             createGroupRelationships(groupId);
         });
 
@@ -214,6 +214,111 @@
 
         if (contactId !== undefined)
             $.redirect('contact/' + contactId[0]);
+    });
+
+
+
+
+    //--------------------------------------------------------------------------
+    //  Group Edit      group/{id}/edit
+    //--------------------------------------------------------------------------
+
+    var tableGroupEdit = $('#table_group_edit').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "columnDefs": [
+            { "visible": false, "targets": 0 },
+            { "visible": false, "targets": 2 }
+        ],
+
+        "drawCallback": function () {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+
+            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group info"><td colspan="3">'+group+'</td></tr>'
+                    );
+
+                    last = group;
+                }
+            } );
+
+            $("#table_group_edit thead").remove();
+            $("#table_group_edit tfoot").remove();
+        }
+    });
+
+    var populateGroupName = function(data) {
+        $('#group_edit_name').val(data.name);
+    }
+
+    var populateGroupEditTable = function(data, ids) {
+        var contacts = [];
+
+        $.each(data, function(id, contact){
+            var selectButton = "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>";
+
+            if(ids.indexOf(parseInt(contact.id)) > -1) {
+                selectButton = "<button type='button' class='btn btn-default btn-xs pull-right active' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>";
+            }
+
+            contacts.push([
+                contact.id,
+                contact.first_name + ' ' + contact.last_name,
+                contact.last_name.charAt(0).toUpperCase(),
+                selectButton
+            ])
+        });
+
+        $('#table_group_edit').dataTable().fnClearTable();
+        $('#table_group_edit').dataTable().fnAddData(contacts);
+    }
+
+    $('#group_update').on('click', function() {
+        var groupId = $('#group_edit_group').val();
+        var params = 'filter=contact_group_id%3D' + groupId;
+
+        $.api.deleteRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){
+            updateGroupRelationships(groupId);
+        });
+
+        clearForm();
+        $.redirect('groups/' + groupId);
+    });
+
+
+    function updateGroupRelationships(groupId) {
+        $('#table_group_edit tr').each(function() {
+            var columns = $(this).find('td');
+
+            columns.each(function() {
+                var box = $(this).find('button');
+
+                if(box.length){
+                    var id = box[0].id;
+                    var idVal = id.replace('contact_', '');
+
+                    if ($('#' + id).hasClass('active')) {
+                        var save = {};
+
+                        save['contact_group_id'] = groupId;
+                        save['contact_id'] = idVal;
+
+                        var params = JSON.stringify(save);
+
+                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
+                    }
+                }
+            });
+        });
+    }
+
+    $('#table_group_edit_search').keyup(function(){
+        $('#table_group_edit').DataTable().search($(this).val(), false, true).draw() ;
     });
 
 

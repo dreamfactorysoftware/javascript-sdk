@@ -95,6 +95,29 @@
                     $.api.getRecords('contact', '', apiKey, getToken('token'), populateGroupCreateTable);
                     break;
 
+                case 'group_edit':
+                    $('#group_edit_menu_left').on('click', function(){
+                        $.redirect('group/' + pathArray[1]);
+                    });
+
+                    $('#group_edit_group').val(pathArray[1]);
+
+                    $.api.getRecords('contact_group/' + pathArray[1], '', apiKey, getToken('token'), populateGroupName);
+
+                    var params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
+                    $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data) {
+                        var ids = [];
+
+                        $.each(data, function(index, value) {
+                            ids.push(value.contact_id);
+                        })
+
+                        $.api.getRecords('contact', '', apiKey, getToken('token'), function(data) {
+                            populateGroupEditTable(data, ids);
+                        });
+                    });
+                    break;
+
                 case 'contact_show':
                     $('#contact_show_menu_left').on('click', function(){
                         $.redirect(previousUrl);

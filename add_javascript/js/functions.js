@@ -71,6 +71,75 @@
                         console.log('error');
                     }
                 });
+            },
+
+            updateRecord: function(table, params, apiKey, token, callback) {
+                $.ajax({
+                    dataType: 'json',
+                    url: instanceHost + '/db/_table/' + table,
+                    data: params,
+                    cache:false,
+                    type:'PATCH',
+                    headers: {
+                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-Session-Token": token
+                    },
+                    success:function (response) {
+                        if (response.hasOwnProperty('resource'))
+                            callback(response.resource);
+                        else
+                            callback(response);
+                    },
+                    error:function (response) {
+                        console.log('error');
+                    }
+                });
+            },
+
+            deleteRecord: function(table, params, apiKey, token, callback) {
+                $.ajax({
+                    dataType: 'json',
+                    url: instanceHost + '/db/_table/' + table + '?' + params,
+                    //data: params,
+                    cache:false,
+                    type:'DELETE',
+                    headers: {
+                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-Session-Token": token
+                    },
+                    success:function (response) {
+                        if (response.hasOwnProperty('resource'))
+                            callback(response.resource);
+                        else
+                            callback(response);
+                    },
+                    error:function (response) {
+                        console.log('error');
+                    }
+                });
+            },
+
+            replaceRecord: function(table, params, apiKey, token, callback) {
+                $.ajax({
+                    dataType: 'json',
+                    url: instanceHost + '/db/_table/' + table,
+                    data: params,
+                    cache: false,
+                    type: 'PUT',
+                    headers: {
+                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-Session-Token": token
+                    },
+                    success: function (response) {
+                        if (response.hasOwnProperty('resource'))
+                            callback(response.resource);
+                        else
+                            callback(response);
+                    },
+                    error: function (response) {
+                        console.log('error');
+                    }
+                });
             }
         }
     });

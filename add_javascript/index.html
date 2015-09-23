@@ -72,7 +72,7 @@
                     <ul class="nav navbar-nav" style="width: 100%">
                         <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_show_menu_left" class="btn btn-link">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_plus" class="btn btn-link">+</button></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_right" class="btn btn-link">Edit</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
@@ -166,6 +166,46 @@
             </div>
 
 
+            <div id="template_group_edit">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_edit_menu_left" class="btn btn-link">Back</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="form-inline">
+                        <input type="hidden" class="form-control" id="group_edit_group" value="">
+                        <input type="text" class="form-control" id="group_edit_name" placeholder="Group Name">
+                        <button id="group_update" class="btn btn-default">Update</button>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_edit_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group_edit">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
             <div id="template_contact_create">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
@@ -180,10 +220,10 @@
                         <form id="contact_create">
                             <input type="hidden" id="contact_create_group" value="">
                             <div class="form-group" >
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                <input type="text" class="form-control" id="first_name" placeholder="First Name">
                             </div>
                             <div class="form-group" >
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                <input type="text" class="form-control" id="last_name" placeholder="Last Name">
                             </div>
                             <div class="form-group" >
                                 <input type="text" class="form-control" id="twitter" placeholder="Twitter">
@@ -195,9 +235,10 @@
                                 <input type="text" class="form-control" id="notes" placeholder="Notes">
                             </div>
                             <div class="form-group" >
-                                <input type="hidden" class="form-control" id="imageUrl" placeholder="">
+                                <input type="hidden" class="form-control" id="image_url" placeholder="">
                             </div>
                             <div class="form-group" >
+                                <input type="file" class="btn btn-default contact-btn-image" id="fileSelect">
                                 <button class="btn btn-default contact-btn-image" type="button">Change Image</button>
                             </div>
                             <div id="contact_infos"></div>
