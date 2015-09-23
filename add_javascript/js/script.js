@@ -380,11 +380,15 @@
 
         var params = JSON.stringify(save);
 
+        var contactId = 0;
+
         $.api.setRecord('contact', params, apiKey, getToken('token'), function (data) {
-            var contactId = data[0].contactId;
+            contactId = data[0].id;
             createContactRelationships(contactGroupId, contactId);
-            createContactInfos(contactId);
+
         });
+
+        createContactInfos(contactId);
 
         clearForm();
 
@@ -395,8 +399,8 @@
 
         var save = {};
 
-        save['contact_group_id'] = groupId;
-        save['contact_id'] = contactId;
+        save['contact_group_id'] = parseInt(groupId);
+        save['contact_id'] = parseInt(contactId);
 
         var params = JSON.stringify(save);
 
@@ -413,7 +417,7 @@
         });
 
         $('.phone').each(function(index, value){
-            phone[index] = $(value).val();
+            phone[index] = parseInt($(value).val());
         });
 
         $('.email').each(function(index, value){
@@ -433,7 +437,7 @@
         });
 
         $('.zip').each(function(index, value){
-            zip[index] = $(value).val();
+            zip[index] = parseInt($(value).val());
         });
 
         $('.country').each(function(index, value){
@@ -451,7 +455,7 @@
             save['state'] = state[i];
             save['zip'] = zip[i];
             save['country'] = country[i];
-            save['contact_id'] = contactId;
+            save['contact_id'] = parseInt(contactId);
 
             var params = JSON.stringify(save);
 
@@ -459,9 +463,7 @@
         }
     }
 
-    $('#person_create_add_address').on('click', function() {
-        console.log('person_create_add_address');
-
+    $('#contact_create_add_address').on('click', function() {
         var form = '<div class="form-group vert-offset-top-30"></div>';
 
         form += '<div class="form-group" ><input type="text" class="form-control type" name="type[]" placeholder="Type"></div>';
@@ -475,6 +477,151 @@
 
         $('#contact_infos').append(form);
     });
+
+
+
+
+    //--------------------------------------------------------------------------
+    //  Contact Edit       contact/{:contact_id}/edit
+    //--------------------------------------------------------------------------
+
+    var populateEditContact = function(data) {
+
+        $.each(data, function(id, contact) {
+            if(id === 'id') {
+                $('#contact_edit_contact').val(contact);
+            }
+            else {
+                $('#' + id + '_edit').val(contact);
+            }
+        });
+    };
+
+    var populateEditContactInfo = function(data) {
+        $('#contact_infos_edit').empty();
+
+        $.each(data, function(id, info) {
+            console.log(info.address);
+
+            var form = '<div class="form-group vert-offset-top-30"></div>';
+
+            form += '<div class="form-group" ><input type="text" class="form-control type_edit" name="type_edit[]" placeholder="Type" value="' + info.info_type + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control phone_edit" name="phone_edit[]" placeholder="Phone" value="' + info.phone + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control email_edit" name="email_edit[]" placeholder="Email" value="' + info.email + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control address_edit" name="address_edit[]" placeholder="Address" value="' + info.address + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control city_edit" name="city_edit[]" placeholder="City" value="' + info.city + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control state_edit" name="state_edit[]" placeholder="State" value="' + info.state + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control zip_edit" name="zip_edit[]" placeholder="Zip" value="' + info.zip + '"></div>';
+            form += '<div class="form-group" ><input type="text" class="form-control country_edit" name="country_edit[]" placeholder="Country" value="' + info.country + '"></div>';
+
+            $('#contact_infos_edit').append(form);
+        });
+    };
+
+
+    $('#contact_edit_add_address').on('click', function() {
+        var form = '<div class="form-group vert-offset-top-30"></div>';
+
+        form += '<div class="form-group" ><input type="text" class="form-control type_edit" name="type_edit[]" placeholder="Type"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control phone_edit" name="phone[]" placeholder="Phone"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control email_edit" name="email[]" placeholder="Email"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control address_edit" name="address[]" placeholder="Address"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control city_edit" name="city[]" placeholder="City"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control state_edit" name="state[]" placeholder="State"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control zip_edit" name="zip[]" placeholder="Zip"></div>';
+        form += '<div class="form-group" ><input type="text" class="form-control country_edit" name="country[]" placeholder="Country"></div>';
+
+        $('#contact_infos_edit').append(form);
+    });
+
+
+    $('#btn_contact_update').on('click', function() {
+        var save = {};
+
+        $('#contact_edit').find('input').each(function () {
+            var indexMod = this.id.replace('_edit', '');
+
+            if(indexMod.indexOf('contact_') < 0) {
+                save[indexMod] = this.value;
+            }
+        });
+
+        var contactId = $('#contact_edit_contact').val();
+        var params = JSON.stringify(save);
+
+        $.api.updateRecord('contact/' + contactId, params, apiKey, getToken('token'), function (data) {});
+
+        var params = 'filter=contact_id%3D' + contactId;
+        $.api.deleteRecord('contact_info', params, apiKey, getToken('token'), function (data){
+            updateContactInfos(contactId);
+        });
+
+        clearForm();
+
+        var previousUrl = window.location.hash.slice(1);
+        $.redirect(previousUrl);
+    });
+
+    function updateContactInfos(contactId) {
+
+        var type = [], phone = [], email = [], address = [],
+            city = [], state = [], zip = [], country = [];
+
+        $('.type_edit').each(function(index, value){
+            console.log(index + ', ' + value);
+            type[index] = $(value).val();
+        });
+
+        $('.phone_edit').each(function(index, value){
+            phone[index] = $(value).val();
+        });
+
+        $('.email_edit').each(function(index, value){
+            email[index] = $(value).val();
+        });
+
+        $('.address_edit').each(function(index, value){
+            address[index] = $(value).val();
+        });
+
+        $('.city_edit').each(function(index, value){
+            city[index] = $(value).val();
+        });
+
+        $('.state_edit').each(function(index, value){
+            state[index] = $(value).val();
+        });
+
+        $('.zip_edit').each(function(index, value){
+            zip[index] = $(value).val();
+        });
+
+        $('.country_edit').each(function(index, value){
+            country[index] = $(value).val();
+        });
+
+        for (var i = 0; i < type.length; i++) {
+            var save = {};
+
+            save['info_type'] = type[i];
+            save['phone'] = phone[i];
+            save['email'] = email[i];
+            save['address'] = address[i];
+            save['city'] = city[i];
+            save['state'] = state[i];
+            save['zip'] = zip[i];
+            save['country'] = country[i];
+            save['ordinal'] = 0;
+            save['contact_id'] = contactId;
+
+            var params = JSON.stringify(save);
+
+            $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
+        }
+    }
+
+
+
 
     //--------------------------------------------------------------------------
     //  Misc functions

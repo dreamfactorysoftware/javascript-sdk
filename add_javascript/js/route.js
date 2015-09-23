@@ -15,15 +15,15 @@
             $('button[id^="menu_"]').hide();
 
              var routes = [
-                 {id: 1,     name: 'index',          regex: '(index)'                        },  // index
-                 {id: 2,     name: 'groups',         regex: '(groups)'                       },  // groups
-                 {id: 3,     name: 'group_create',   regex: '(group/create)'                 },  // group/create
-                 {id: 4,     name: 'group_show',     regex: '(group).*?(\\d+)'               },  // group/{:id}
-                 {id: 5,     name: 'group_edit',     regex: '(group).*?(\\d+).*?(edit)'      },  // group/{:id}/edit
-                 {id: 6,     name: 'contacts',       regex: '(/^contacts$/)'                     },  // contacts
-                 {id: 7,     name: 'contact_create', regex: 'contact.*?\\d+.*?create$'               },  // contact/create/{:group_id}
-                 {id: 8,     name: 'contact_show',   regex: '^(contact).*?(\\d+)$'             },  // contact/{:id}
-                 {id: 9,     name: 'contact_edit',   regex: '(/^contact$/).*?(\\d+).*?(edit)'    }   // contact/{:id}/edit
+                 {id: 1,     name: 'index',          regex: '(index)'                           },  // index
+                 {id: 2,     name: 'groups',         regex: '(groups)'                          },  // groups
+                 {id: 3,     name: 'group_create',   regex: '(group/create)'                    },  // group/create
+                 {id: 4,     name: 'group_show',     regex: '(group).*?(\\d+)'                  },  // group/{:id}
+                 {id: 5,     name: 'group_edit',     regex: '(group).*?(\\d+).*?(edit)'         },  // group/{:id}/edit
+                 {id: 6,     name: 'contacts',       regex: '(/^contacts$/)'                    },  // contacts
+                 {id: 7,     name: 'contact_create', regex: 'contact.*?\\d+.*?create$'          },  // contact/create/{:group_id}
+                 {id: 8,     name: 'contact_show',   regex: '^(contact).*?(\\d+)$'              },  // contact/{:id}
+                 {id: 9,     name: 'contact_edit',   regex: '(contact).*?(\\d+).*?(edit)'       }   // contact/{:id}/edit
              ];
 
             var route       = 0;
@@ -59,7 +59,6 @@
                     break;
 
                 case 'group_show':
-
                     $('#group_show_menu_left').on('click', function(){
                         $.redirect('groups');
                     });
@@ -119,21 +118,40 @@
                     break;
 
                 case 'contact_show':
+
+                    $('#contact_show_menu_right').on('click', function(){
+                        $.redirect('contact/' + pathArray[1] + '/edit');
+                    });
+
                     $('#contact_show_menu_left').on('click', function(){
                         $.redirect(previousUrl);
                     });
 
-                    var params = 'filter=id%3D' + pathArray[1];
+                    var params = 'filter=contact_id%3D' + pathArray[1];
                     $.api.getRecords('contact/' + pathArray[1], '', apiKey, getToken('token'), populateContact);
                     $.api.getRecords('contact_info', params, apiKey, getToken('token'), populateContactInfo);
                     break;
 
                 case 'contact_create':
                     $('#contact_create_group').val(pathArray[1]);
+                    $('#contact_infos').empty();
 
                     $('#contact_create_menu_left').on('click', function(){
                         $.redirect(previousUrl);
                     });
+                    break;
+
+                case 'contact_edit':
+                    $('#contact_infos_edit').empty();
+
+                    $('#contact_edit_menu_left').on('click', function(){
+                        $.redirect(previousUrl);
+                    });
+
+                    var params = 'filter=contact_id%3D' + pathArray[1];
+                    $.api.getRecords('contact/' + pathArray[1], '', apiKey, getToken('token'), populateEditContact);
+                    $.api.getRecords('contact_info', params, apiKey, getToken('token'), populateEditContactInfo);
+
                     break;
             }
         }
