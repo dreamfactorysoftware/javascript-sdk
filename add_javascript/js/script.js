@@ -74,7 +74,7 @@
 
     var tableGroupCreate = $('#table_group_create').DataTable({
         "paging":   false,
-        "ordering": false,
+        "order": [[ 2, "asc" ]],
         "info":     false,
         "columnDefs": [
             { "visible": false, "targets": 0 },
@@ -88,7 +88,7 @@
             api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group info"><td colspan="3">'+group+'</td></tr>'
+                        '<tr class="group info"><td colspan="4">'+group+'</td></tr>'
                     );
 
                     last = group;
@@ -104,21 +104,25 @@
         var contacts = [];
 
         $.each(data, function(id, contact){
+            var selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default pull-right'>";
+
             contacts.push([
                 contact.id,
                 contact.first_name + ' ' + contact.last_name,
                 contact.last_name.charAt(0).toUpperCase(),
-                "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>"
+                selectCheckbox
             ])
         });
 
         $('#table_group_create').dataTable().fnClearTable();
         $('#table_group_create').dataTable().fnAddData(contacts);
+
+        $('#group_create_name').val('');
     };
 
     $('#group_save').on('click', function() {
         var save = {};
-        save['name'] = $('#groupName').val();
+        save['name'] = $('#group_create_name').val();
 
         var params = JSON.stringify(save);
 
