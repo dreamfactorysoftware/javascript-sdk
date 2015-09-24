@@ -21,8 +21,8 @@
                  {id: 4,     name: 'group_show',     regex: '(group).*?(\\d+)'                  },  // group/{:id}
                  {id: 5,     name: 'group_edit',     regex: '(group).*?(\\d+).*?(edit)'         },  // group/{:id}/edit
                  {id: 6,     name: 'contacts',       regex: '(/^contacts$/)'                    },  // contacts
-                 {id: 7,     name: 'contact_create', regex: 'contact.*?\\d+.*?create$'          },  // contact/create/{:group_id}
-                 {id: 8,     name: 'contact_show',   regex: '^(contact).*?(\\d+)$'              },  // contact/{:id}
+                 {id: 7,     name: 'contact_create', regex: '(contact).*?\\d+.*?create$'          },  // contact/create/{:group_id}
+                 {id: 8,     name: 'contact_show',   regex: '(contact).*?(\\d+)$'              },  // contact/{:id}
                  {id: 9,     name: 'contact_edit',   regex: '(contact).*?(\\d+).*?(edit)'       }   // contact/{:id}/edit
              ];
 

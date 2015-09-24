@@ -8,6 +8,7 @@
             login: function(email, password) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/user/session',
                     data: JSON.stringify({
                         "email": email,
@@ -30,6 +31,7 @@
             getRecords: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache:false,
@@ -53,6 +55,7 @@
             setRecord: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache:false,
@@ -76,6 +79,7 @@
             updateRecord: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache:false,
@@ -99,6 +103,7 @@
             deleteRecord: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/db/_table/' + table + '?' + params,
                     //data: params,
                     cache:false,
@@ -122,6 +127,7 @@
             replaceRecord: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
                     url: instanceHost + '/db/_table/' + table,
                     data: params,
                     cache: false,

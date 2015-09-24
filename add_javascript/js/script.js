@@ -582,8 +582,7 @@
 
         clearForm();
 
-        var previousUrl = window.location.hash.slice(1);
-        $.redirect(previousUrl);
+        $.redirect('groups');
     });
 
     function getContactEditInfos() {
