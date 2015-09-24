@@ -370,6 +370,7 @@
     var contactGroupId = 0;
 
     $('#btn_contact_save').on('click', function() {
+        var infos = getContactInfos();
         var save = {};
 
         $('#contact_create').find('input').each(function () {
@@ -379,24 +380,28 @@
         contactGroupId = $('#contact_create_group').val();
 
         var params = JSON.stringify(save);
-
         var contactId = 0;
 
-        $.api.setRecord('contact', params, apiKey, getToken('token'), function (data) {
+        $.api.setRecord('contact', params, apiKey, getToken('token'), function(data) {
             contactId = data[0].id;
+            $('#contact_create_contact').val(contactId);
             createContactRelationships(contactGroupId, contactId);
 
+            $.each(infos, function(id, info) {
+                info['contact_id'] = parseInt(contactId);
+                var params = JSON.stringify(info);
+                $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
+            });
         });
 
-        createContactInfos(contactId);
 
         clearForm();
 
         $.redirect('group/' + contactGroupId);
     });
 
-    function createContactRelationships(groupId, contactId) {
 
+    function createContactRelationships(groupId, contactId) {
         var save = {};
 
         save['contact_group_id'] = parseInt(groupId);
@@ -407,7 +412,22 @@
         $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (){});
     }
 
-    function createContactInfos(contactId) {
+    $('#contact_create_add_address').on('click', function() {
+        var form = '<div class="form-group vert-offset-top-30"></div>';
+
+        form += '<div class="form-group"><select name=type[] class="form-control type"><option value="work">Work</option><option value="home">Home</option><option value="mobile">Mobile</option><option value="other">Other</option></select></div>';
+        form += '<div class="form-group"><input type="text" class="form-control phone" name="phone[]" placeholder="Phone"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control email" name="email[]" placeholder="Email"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control address" name="address[]" placeholder="Address"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control city" name="city[]" placeholder="City"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control state" name="state[]" placeholder="State"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control zip" name="zip[]" placeholder="Zip"></div>';
+        form += '<div class="form-group"><input type="text" class="form-control country" name="country[]" placeholder="Country"></div>';
+
+        $('#contact_infos').append(form);
+    });
+
+    function getContactInfos() {
 
         var type = [], phone = [], email = [], address = [],
             city = [], state = [], zip = [], country = [];
@@ -444,41 +464,26 @@
             country[index] = $(value).val();
         });
 
+        var collection = [];
+
         for (var i = 0; i < type.length; i++) {
             var save = {};
 
             save['info_type'] = type[i];
-            save['phone'] = phone[i];
+            save['phone'] = parseInt(phone[i]);
             save['email'] = email[i];
             save['address'] = address[i];
             save['city'] = city[i];
             save['state'] = state[i];
-            save['zip'] = zip[i];
+            save['zip'] = parseInt(zip[i]);
             save['country'] = country[i];
-            save['contact_id'] = parseInt(contactId);
+            save['ordinal'] = 0;
 
-            var params = JSON.stringify(save);
-
-            $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
+            collection.push(save);
         }
+
+        return collection;
     }
-
-    $('#contact_create_add_address').on('click', function() {
-        var form = '<div class="form-group vert-offset-top-30"></div>';
-
-        form += '<div class="form-group" ><input type="text" class="form-control type" name="type[]" placeholder="Type"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control phone" name="phone[]" placeholder="Phone"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control email" name="email[]" placeholder="Email"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control address" name="address[]" placeholder="Address"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control city" name="city[]" placeholder="City"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control state" name="state[]" placeholder="State"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control zip" name="zip[]" placeholder="Zip"></div>';
-        form += '<div class="form-group" ><input type="text" class="form-control country" name="country[]" placeholder="Country"></div>';
-
-        $('#contact_infos').append(form);
-    });
-
-
 
 
     //--------------------------------------------------------------------------
@@ -501,11 +506,25 @@
         $('#contact_infos_edit').empty();
 
         $.each(data, function(id, info) {
-            console.log(info.address);
-
+            var options = '';
             var form = '<div class="form-group vert-offset-top-30"></div>';
 
-            form += '<div class="form-group" ><input type="text" class="form-control type_edit" name="type_edit[]" placeholder="Type" value="' + info.info_type + '"></div>';
+            switch (info.info_type) {
+                case 'work':
+                    options = '<option value="work" selected>Work</option><option value="home">Home</option><option value="mobile">Mobile</option><option value="other">Other</option>';
+                    break;
+                case 'home':
+                    options = '<option value="work">Work</option><option value="home" selected>Home</option><option value="mobile">Mobile</option><option value="other">Other</option>';
+                    break;
+                case 'mobile':
+                    options = '<option value="work">Work</option><option value="home">Home</option><option value="mobile" selected>Mobile</option><option value="other">Other</option>';
+                    break;
+                case 'other':
+                    options = '<option value="work">Work</option><option value="home">Home</option><option value="mobile">Mobile</option><option value="other" selected>Other</option>';
+                    break;
+            }
+
+            form += '<div class="form-group"><select name=type_edit[] class="form-control type_edit">' + options + '</select></div>';
             form += '<div class="form-group" ><input type="text" class="form-control phone_edit" name="phone_edit[]" placeholder="Phone" value="' + info.phone + '"></div>';
             form += '<div class="form-group" ><input type="text" class="form-control email_edit" name="email_edit[]" placeholder="Email" value="' + info.email + '"></div>';
             form += '<div class="form-group" ><input type="text" class="form-control address_edit" name="address_edit[]" placeholder="Address" value="' + info.address + '"></div>';
@@ -522,7 +541,7 @@
     $('#contact_edit_add_address').on('click', function() {
         var form = '<div class="form-group vert-offset-top-30"></div>';
 
-        form += '<div class="form-group" ><input type="text" class="form-control type_edit" name="type_edit[]" placeholder="Type"></div>';
+        form += '<div class="form-group"><select name=type_edit[] class="form-control type_edit"><option value="work">Work</option><option value="home">Home</option><option value="mobile">Mobile</option><option value="other">Other</option></select></div>';
         form += '<div class="form-group" ><input type="text" class="form-control phone_edit" name="phone[]" placeholder="Phone"></div>';
         form += '<div class="form-group" ><input type="text" class="form-control email_edit" name="email[]" placeholder="Email"></div>';
         form += '<div class="form-group" ><input type="text" class="form-control address_edit" name="address[]" placeholder="Address"></div>';
@@ -536,6 +555,7 @@
 
 
     $('#btn_contact_update').on('click', function() {
+        var infos = getContactEditInfos();
         var save = {};
 
         $('#contact_edit').find('input').each(function () {
@@ -553,7 +573,11 @@
 
         var params = 'filter=contact_id%3D' + contactId;
         $.api.deleteRecord('contact_info', params, apiKey, getToken('token'), function (data){
-            updateContactInfos(contactId);
+            $.each(infos, function(id, info) {
+                info['contact_id'] = parseInt(contactId);
+                var params = JSON.stringify(info);
+                $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
+            });
         });
 
         clearForm();
@@ -562,13 +586,12 @@
         $.redirect(previousUrl);
     });
 
-    function updateContactInfos(contactId) {
+    function getContactEditInfos() {
 
         var type = [], phone = [], email = [], address = [],
             city = [], state = [], zip = [], country = [];
 
         $('.type_edit').each(function(index, value){
-            console.log(index + ', ' + value);
             type[index] = $(value).val();
         });
 
@@ -600,27 +623,26 @@
             country[index] = $(value).val();
         });
 
+        var collection = [];
+
         for (var i = 0; i < type.length; i++) {
             var save = {};
 
             save['info_type'] = type[i];
-            save['phone'] = phone[i];
+            save['phone'] = parseInt(phone[i]);
             save['email'] = email[i];
             save['address'] = address[i];
             save['city'] = city[i];
             save['state'] = state[i];
-            save['zip'] = zip[i];
+            save['zip'] = parseInt(zip[i]);
             save['country'] = country[i];
             save['ordinal'] = 0;
-            save['contact_id'] = contactId;
 
-            var params = JSON.stringify(save);
-
-            $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
+            collection.push(save);
         }
+
+        return collection;
     }
-
-
 
 
     //--------------------------------------------------------------------------
