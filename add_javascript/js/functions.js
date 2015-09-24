@@ -9,7 +9,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/user/session',
+                    url: instanceHost + '/api/v2/user/session',
                     data: JSON.stringify({
                         "email": email,
                         "password": password
@@ -32,7 +32,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/db/_table/' + table,
+                    url: instanceHost + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'GET',
@@ -56,7 +56,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/db/_table/' + table,
+                    url: instanceHost + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'POST',
@@ -80,7 +80,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/db/_table/' + table,
+                    url: instanceHost + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'PATCH',
@@ -104,7 +104,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/db/_table/' + table + '?' + params,
+                    url: instanceHost + '/api/v2/db/_table/' + table + '?' + params,
                     //data: params,
                     cache:false,
                     type:'DELETE',
@@ -128,7 +128,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/db/_table/' + table,
+                    url: instanceHost + '/api/v2/db/_table/' + table,
                     data: params,
                     cache: false,
                     type: 'PUT',

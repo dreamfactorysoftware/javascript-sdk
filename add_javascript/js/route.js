@@ -73,14 +73,14 @@
 
                     var params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
                     $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
-                        var contacts = '';
+                        var contacts = [];
 
                         $.each(data, function(id, contact){
-                            contacts += contact.contact_id + ',';
+                            contacts.push(contact.contact_id);
                         });
 
-                        if(contacts) {
-                            var params = 'ids=' + contacts;
+                        if(contacts.length) {
+                            var params = 'ids=' + contacts.toString();
                             $.api.getRecords('contact', params, apiKey, getToken('token'), populateGroupTable);
                         }
                     });
