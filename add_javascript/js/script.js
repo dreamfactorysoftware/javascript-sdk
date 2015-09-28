@@ -21,7 +21,7 @@
 
 
     //--------------------------------------------------------------------------
-    //  Login/Register
+    //  Login
     //--------------------------------------------------------------------------
 
     $('#signin').on('click', function () {
@@ -29,6 +29,30 @@
         var password = $('#password').val();
 
         $.api.login(email, password);
+    });
+
+    $('#register').on('click', function () {
+        $.redirect('register');
+    });
+
+
+    //--------------------------------------------------------------------------
+    //  Register
+    //--------------------------------------------------------------------------
+
+    $('#register_user').on('click', function () {
+        var firstname = $('#register_firstname').val();
+        var lastname = $('#register_lastname').val();
+        var email = $('#register_email').val();
+        var password = $('#register_password').val();
+
+        $.api.register(firstname, lastname, email, password, function(data) {
+            $.redirect('index');
+        });
+    });
+
+    $('#register_cancel').on('click', function () {
+        $.redirect('index');
     });
 
 
@@ -735,6 +759,10 @@
 
     function getToken(key) {
         return sessionStorage.getItem(key);
+    }
+
+    function removeToken(key) {
+        return sessionStorage.removeItem(key);
     }
 
     function clearForm() {

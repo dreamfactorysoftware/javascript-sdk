@@ -28,6 +28,30 @@
                 });
             },
 
+            register: function(firstname, lastname, email, password, callback) {
+                $.ajax({
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    url: instanceHost + '/api/v2/user/register',
+                    data: JSON.stringify({
+                        "first_name": firstname,
+                        "last_name": lastname,
+                        "email": email,
+                        "new_password": password
+                    }),
+                    cache:false,
+                    type:'POST',
+                    success:function (response) {
+                        callback(response);
+                    },
+                    error:function (response) {
+                        alert('Register user failed! Please verify the provided information.')
+                        console.log('error');
+                        return false;
+                    }
+                });
+            },
+
             getRecords: function(table, params, apiKey, token, callback) {
                 $.ajax({
                     dataType: 'json',

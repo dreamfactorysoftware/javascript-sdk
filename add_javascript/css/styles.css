@@ -108,6 +108,13 @@ vertical-align:middle;
     color: #ffffff;
 }
 
+.login-btn-cancel {
+    background: #ffffff;
+    width: 100%;
+    border: 1px solid #808080;
+    color: #000000;
+}
+
 .menu {
     float: none;
     display: inline-block;
