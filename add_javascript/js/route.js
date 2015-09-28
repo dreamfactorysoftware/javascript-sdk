@@ -75,14 +75,13 @@
                         deleteGroup(pathArray[1]);
                     });
 
-                    $('#table_group').dataTable().fnClearTable();
-
                     var params = 'filter=id%3D' + pathArray[1] + '&fields=name';
                     $.api.getRecords('contact_group', params, apiKey, getToken('token'), populateGroupShowName);
 
                     params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
                     $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                         var contacts = [];
+                        $('#table_group').dataTable().fnClearTable();
 
                         $.each(data, function(id, contact){
                             contacts.push(contact.contact_id);

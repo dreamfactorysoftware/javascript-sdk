@@ -169,7 +169,7 @@
                         save['contact_id'] = id.replace('contact_', '');
 
                         var params = JSON.stringify(save);
-                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'));//, function (data){});
+                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
                     }
                 }
             });
@@ -223,16 +223,12 @@
         var dialog = confirm("Delete this group?");
 
         if (dialog === true) {
-            $.api.deleteRecord('contact_group/' + id, '', apiKey, getToken('token'), function(data){
-                console.log(data);
-            });
+            $.api.deleteRecord('contact_group/' + id, '', apiKey, getToken('token'), function(data){});
 
             var params = 'filter=contact_group_id%3D' + id + '&fields=id';
             $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                 $.each(data, function(index, r_id) {
-                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){
-
-                    });
+                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){});
                 });
             });
 
@@ -344,7 +340,7 @@
         });
 
         clearForm();
-        $.redirect('groups/' + groupId);
+        $.redirect('groups');
     });
 
 
@@ -367,7 +363,6 @@
                         save['contact_id'] = idVal;
 
                         var params = JSON.stringify(save);
-
                         $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
                     }
 
@@ -406,6 +401,8 @@
     var populateContactInfo = function(data) {
         var types = '';
 
+        $('#contact_info_types').empty();
+
         $.each(data, function(index, value) {
             types += '<br><div class="infobox">';
             types += '<h4>' + value.info_type.charAt(0).toUpperCase() + value.info_type.slice(1) + '</h4>';
@@ -427,26 +424,19 @@
         var dialog = confirm("Delete this contact?");
 
         if (dialog === true) {
-
             $.api.deleteRecord('contact/' + id, '', apiKey, getToken('token'), function(data){});
-
-
 
             var params = 'filter=contact_id%3D' + id + '&fields=id';
             $.api.getRecords('contact_info', params, apiKey, getToken('token'), function(data){
                 $.each(data, function(index, info_id) {
-                    $.api.deleteRecord('contact_info/' + info_id.id, '', apiKey, getToken('token'), function(data){
-
-                    });
+                    $.api.deleteRecord('contact_info/' + info_id.id, '', apiKey, getToken('token'), function(data){});
                 });
             });
 
             params = 'filter=contact_id%3D' + id + '&fields=id';
             $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                 $.each(data, function(index, r_id) {
-                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){
-
-                    });
+                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){});
                 });
             });
 
@@ -660,9 +650,7 @@
         var contactId = $('#contact_edit_contact').val();
         var params = JSON.stringify(save);
 
-        $.api.updateRecord('contact/' + contactId, params, apiKey, getToken('token'), function (data) {
-
-        });
+        $.api.updateRecord('contact/' + contactId, params, apiKey, getToken('token'), function (data) {});
 
         var params = 'filter=contact_id%3D' + contactId;
         $.api.deleteRecord('contact_info', params, apiKey, getToken('token'), function (data){
