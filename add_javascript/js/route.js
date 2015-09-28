@@ -47,11 +47,11 @@
 
                 case 'groups':
 
-                    $('#groups_menu_left').on('click', function(){
+                    $('#groups_menu_left').off().on('click', function(){
                         $.redirect('index');
                     });
 
-                    $('#groups_menu_plus').on('click', function(){
+                    $('#groups_menu_plus').off().on('click', function(){
                         $.redirect('group/create');
                     });
 
@@ -59,19 +59,28 @@
                     break;
 
                 case 'group_show':
-                    $('#group_show_menu_left').on('click', function(){
+                    $('#group_show_menu_left').off().on('click', function(){
                         $.redirect('groups');
                     });
 
-                    $('#group_show_menu_plus').on('click', function(){
+                    $('#group_show_menu_plus').off().on('click', function(){
                         $.redirect('contact/' + pathArray[1] + '/create');
                     });
 
-                    $('#group_show_menu_right').on('click', function(){
+                    $('#group_show_menu_right').off().on('click', function(){
                         $.redirect('group/' + pathArray[1] + '/edit');
                     });
 
-                    var params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
+                    $('#group_show_menu_delete').off().on('click', function(){
+                        deleteGroup(pathArray[1]);
+                    });
+
+                    $('#table_group').dataTable().fnClearTable();
+
+                    var params = 'filter=id%3D' + pathArray[1] + '&fields=name';
+                    $.api.getRecords('contact_group', params, apiKey, getToken('token'), populateGroupShowName);
+
+                    params = 'filter=contact_group_id%3D' + pathArray[1] + '&fields=contact_id';
                     $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                         var contacts = [];
 
@@ -87,7 +96,7 @@
                     break;
 
                 case 'group_create':
-                    $('#group_create_menu_left').on('click', function(){
+                    $('#group_create_menu_left').off().on('click', function(){
                         $.redirect('groups');
                     });
 
@@ -95,7 +104,7 @@
                     break;
 
                 case 'group_edit':
-                    $('#group_edit_menu_left').on('click', function(){
+                    $('#group_edit_menu_left').off().on('click', function(){
                         $.redirect('group/' + pathArray[1]);
                     });
 
@@ -118,13 +127,16 @@
                     break;
 
                 case 'contact_show':
-
-                    $('#contact_show_menu_right').on('click', function(){
+                    $('#contact_show_menu_right').off().on('click', function(){
                         $.redirect('contact/' + pathArray[1] + '/edit');
                     });
 
-                    $('#contact_show_menu_left').on('click', function(){
-                        $.redirect(previousUrl);
+                    $('#contact_show_menu_left').off().on('click', function(){
+                        $.redirect('groups');
+                    });
+
+                    $('#contact_show_menu_delete').off().on('click', function(){
+                        deleteContact(pathArray[1], previousUrl);
                     });
 
                     var params = 'filter=contact_id%3D' + pathArray[1];
@@ -136,7 +148,11 @@
                     $('#contact_create_group').val(pathArray[1]);
                     $('#contact_infos').empty();
 
-                    $('#contact_create_menu_left').on('click', function(){
+                    $('#contact_create_menu_left').off().on('click', function(){
+                        $.redirect(previousUrl);
+                    });
+
+                    $('#btn_contact_cancel').off().on('click', function(){
                         $.redirect(previousUrl);
                     });
                     break;
@@ -144,8 +160,12 @@
                 case 'contact_edit':
                     $('#contact_infos_edit').empty();
 
-                    $('#contact_edit_menu_left').on('click', function(){
-                        $.redirect(previousUrl);
+                    $('#contact_edit_menu_left').off().on('click', function(){
+                        $.redirect('contact/' + pathArray[1]);
+                    });
+
+                    $('#btn_contact_edit_cancel').off().on('click', function(){
+                        $.redirect('contact/' + pathArray[1]);
                     });
 
                     var params = 'filter=contact_id%3D' + pathArray[1];

@@ -53,6 +53,12 @@
                 <div class="row vert-offset-top-30"></div>
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_groups_search" class="form-control" placeholder="Search">
+                    </div>
                     <table class="table table-hover" id="table_groups">
                         <thead>
                         <tr>
@@ -74,12 +80,14 @@
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                         <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_plus" class="btn btn-link">+</button></li>
                         <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_right" class="btn btn-link">Edit</button></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_delete" class="btn btn-link">Delete</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <div class="input-group"></div>
+
+                    <div style="text-align: center"><h2><span id="group_show_name"></span></h2></div>
                     <div class="input-group">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -106,6 +114,7 @@
                         <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_show_menu_left" class="btn btn-link">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                         <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_right" class="btn btn-link">Edit</button></li>
+                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_delete" class="btn btn-link">Delete</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
@@ -170,9 +179,11 @@
                             <div class="form-group" >
                                 <button class="btn btn-default contact-btn-address" id="contact_edit_add_address" type="button">Add New Address</button>
                             </div>
-
                             <div class="form-group" >
                                 <button id="btn_contact_update" class="btn btn-default contact-btn-save" type="button">Save</button>
+                            </div>
+                            <div class="form-group" >
+                                <button id="btn_contact_edit_cancel" class="btn btn-default contact-btn-cancel" type="button">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -206,6 +217,7 @@
                     <table class="table table-hover" id="table_group_create">
                         <thead>
                         <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -246,6 +258,7 @@
                     <table class="table table-hover" id="table_group_edit">
                         <thead>
                         <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -300,11 +313,12 @@
                             <div class="form-group" >
                                 <button class="btn btn-default contact-btn-address" id="contact_create_add_address" type="button">Add New Address</button>
                             </div>
-
                             <div class="form-group" >
                                 <button id="btn_contact_save" class="btn btn-default contact-btn-save" type="button">Save</button>
                             </div>
-
+                            <div class="form-group" >
+                                <button id="btn_contact_cancel" class="btn btn-default contact-btn-cancel" type="button">Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>

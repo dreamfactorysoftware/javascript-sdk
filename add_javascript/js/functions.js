@@ -41,10 +41,12 @@
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
-                        if (response.hasOwnProperty('resource'))
-                            callback(response.resource);
-                        else
-                            callback(response);
+                        if(typeof callback !== 'undefined') {
+                            if (response.hasOwnProperty('resource'))
+                                callback(response.resource);
+                            else
+                                callback(response);
+                        }
                     },
                     error:function (response) {
                         console.log('error');
@@ -65,10 +67,12 @@
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
-                        if (response.hasOwnProperty('resource'))
-                            callback(response.resource);
-                        else
-                            callback(response);
+                        if(typeof callback !== 'undefined') {
+                            if (response.hasOwnProperty('resource'))
+                                callback(response.resource);
+                            else
+                                callback(response);
+                        }
                     },
                     error:function (response) {
                         console.log('error');
@@ -89,10 +93,12 @@
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
-                        if (response.hasOwnProperty('resource'))
-                            callback(response.resource);
-                        else
-                            callback(response);
+                        if(typeof callback !== 'undefined') {
+                            if (response.hasOwnProperty('resource'))
+                                callback(response.resource);
+                            else
+                                callback(response);
+                        }
                     },
                     error:function (response) {
                         console.log('error');
@@ -113,10 +119,12 @@
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
-                        if (response.hasOwnProperty('resource'))
-                            callback(response.resource);
-                        else
-                            callback(response);
+                        if(typeof callback !== 'undefined') {
+                            if (response.hasOwnProperty('resource'))
+                                callback(response.resource);
+                            else
+                                callback(response);
+                        }
                     },
                     error:function (response) {
                         console.log('error');
@@ -137,10 +145,12 @@
                         "X-DreamFactory-Session-Token": token
                     },
                     success: function (response) {
-                        if (response.hasOwnProperty('resource'))
-                            callback(response.resource);
-                        else
-                            callback(response);
+                        if(typeof callback !== 'undefined') {
+                            if (response.hasOwnProperty('resource'))
+                                callback(response.resource);
+                            else
+                                callback(response);
+                        }
                     },
                     error: function (response) {
                         console.log('error');

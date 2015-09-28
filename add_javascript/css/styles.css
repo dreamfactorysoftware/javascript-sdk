@@ -87,6 +87,13 @@ vertical-align:middle;
     color: #ffffff;
 }
 
+.contact-btn-cancel {
+    background: #ffffff;
+    width: 100%;
+    border: 1px solid #808080;
+    color: #000000;
+}
+
 .login-btn-signin {
     background: #d86a27;
     width: 250px;
@@ -144,3 +151,4 @@ vertical-align:middle;
     color: #ffffff;
     height: 120px;
 }
+

@@ -38,12 +38,19 @@
 
     var table = $('#table_groups').DataTable({
         "paging":   false,
-        "ordering": false,
+        "order": [
+            [ 1, "asc" ]
+        ],
         "info":     false,
         "columnDefs": [
             { "visible": false, "targets": 0 }
-        ]
-    } );
+        ],
+        "drawCallback": function ( settings ) {
+            $("#table_groups thead").remove();
+            $("#table_groups tfoot").remove();
+        }
+
+    });
 
     // Detect click on table row
     $('#table_groups tbody').on( 'click', 'tr', function () {
@@ -67,6 +74,10 @@
         $('#table_groups').dataTable().fnAddData(groups);
     };
 
+    $('#table_groups_search').keyup(function(){
+        $('#table_groups').DataTable().search($(this).val(), false, true).draw() ;
+    });
+
 
     //--------------------------------------------------------------------------
     //  Group Create    group/create
@@ -74,11 +85,16 @@
 
     var tableGroupCreate = $('#table_group_create').DataTable({
         "paging":   false,
-        "order": [[ 2, "asc" ]],
+        "order": [
+            [ 2, "asc" ],
+            [ 3, "asc" ],
+            [ 1, "asc" ]
+        ],
         "info":     false,
         "columnDefs": [
             { "visible": false, "targets": 0 },
-            { "visible": false, "targets": 2 }
+            { "visible": false, "targets": 2 },
+            { "visible": false, "targets": 3 }
         ],
         "drawCallback": function ( settings ) {
             var api = this.api();
@@ -88,7 +104,7 @@
             api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group info"><td colspan="4">'+group+'</td></tr>'
+                        '<tr class="group info"><td colspan="5">'+group+'</td></tr>'
                     );
 
                     last = group;
@@ -110,6 +126,7 @@
                 contact.id,
                 contact.first_name + ' ' + contact.last_name,
                 contact.last_name.charAt(0).toUpperCase(),
+                contact.last_name,
                 selectCheckbox
             ])
         });
@@ -140,20 +157,19 @@
             var columns = $(this).find('td');
 
             columns.each(function() {
-                var box = $(this).find('button');
+                var box = $(this).find('input');
 
                 if(box.length){
                     var id = box[0].id;
 
-                    if ($('#' + id).hasClass('active')) {
+                    if ($('#' + id).is(":checked")) {
                         var save = {};
 
                         save['contact_group_id'] = groupId;
                         save['contact_id'] = id.replace('contact_', '');
 
                         var params = JSON.stringify(save);
-
-                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
+                        $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'));//, function (data){});
                     }
                 }
             });
@@ -168,10 +184,15 @@
     var tableGroup = $('#table_group').DataTable({
         "paging":   false,
         "info":     false,
-        "order": [[ 2, "asc" ]],
+        "order": [
+            [2, "asc" ],
+            [3, "asc"],
+            [1, "asc"]
+        ],
         "columnDefs": [
             { "visible": false, "targets": 0 },
-            { "visible": false, "targets": 2 }
+            { "visible": false, "targets": 2 },
+            { "visible": false, "targets": 3 }
         ],
 
         "drawCallback": function () {
@@ -182,7 +203,7 @@
             api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group info"><td colspan="3">'+group+'</td></tr>'
+                        '<tr class="group info"><td colspan="4">'+group+'</td></tr>'
                     );
 
                     last = group;
@@ -194,6 +215,31 @@
         }
     });
 
+    var populateGroupShowName = function(data) {
+        $('#group_show_name').text(data[0].name);
+    };
+
+    function deleteGroup(id) {
+        var dialog = confirm("Delete this group?");
+
+        if (dialog === true) {
+            $.api.deleteRecord('contact_group/' + id, '', apiKey, getToken('token'), function(data){
+                console.log(data);
+            });
+
+            var params = 'filter=contact_group_id%3D' + id + '&fields=id';
+            $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
+                $.each(data, function(index, r_id) {
+                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){
+
+                    });
+                });
+            });
+
+            $.redirect('groups');
+        }
+    }
+
     var populateGroupTable = function(data) {
         var contacts = [];
 
@@ -201,7 +247,8 @@
             contacts.push([
                 contact.id,
                 contact.first_name + ' ' + contact.last_name,
-                contact.last_name.charAt(0).toUpperCase()
+                contact.last_name.charAt(0).toUpperCase(),
+                contact.last_name
             ])
         });
 
@@ -229,11 +276,16 @@
 
     var tableGroupEdit = $('#table_group_edit').DataTable({
         "paging":   false,
-        "order": [[ 2, "asc" ]],
+        "order": [
+            [ 2, "asc" ],
+            [ 3, "asc" ],
+            [ 1, "asc" ]
+        ],
         "info":     false,
         "columnDefs": [
             { "visible": false, "targets": 0 },
-            { "visible": false, "targets": 2 }
+            { "visible": false, "targets": 2 },
+            { "visible": false, "targets": 3 }
         ],
 
         "drawCallback": function () {
@@ -244,7 +296,7 @@
             api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group info"><td colspan="4">'+group+'</td></tr>'
+                        '<tr class="group info"><td colspan="5">'+group+'</td></tr>'
                     );
 
                     last = group;
@@ -264,19 +316,17 @@
         var contacts = [];
 
         $.each(data, function(id, contact){
-            var selectButton = "<button type='button' class='btn btn-default btn-xs pull-right' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>";
-
             var selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default pull-right'>";
 
             if(ids.indexOf(parseInt(contact.id)) > -1) {
                 selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default pull-right' checked>";
-                selectButton = "<button type='button' class='btn btn-default btn-xs pull-right active' data-toggle='button' aria-pressed='false' autocomplete='off' id='contact_" + contact.id + "'>Select</button>";
             }
 
             contacts.push([
                 contact.id,
                 contact.first_name + ' ' + contact.last_name,
                 contact.last_name.charAt(0).toUpperCase(),
+                contact.last_name,
                 selectCheckbox
             ])
         });
@@ -320,6 +370,7 @@
 
                         $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
                     }
+
                 }
             });
         });
@@ -328,6 +379,7 @@
     $('#table_group_edit_search').keyup(function(){
         $('#table_group_edit').DataTable().search($(this).val(), false, true).draw() ;
     });
+
 
 
     //--------------------------------------------------------------------------
@@ -370,6 +422,38 @@
 
         $('#contact_info_types').append(types);
     };
+
+    function deleteContact(id, redirectUrl) {
+        var dialog = confirm("Delete this contact?");
+
+        if (dialog === true) {
+
+            $.api.deleteRecord('contact/' + id, '', apiKey, getToken('token'), function(data){});
+
+
+
+            var params = 'filter=contact_id%3D' + id + '&fields=id';
+            $.api.getRecords('contact_info', params, apiKey, getToken('token'), function(data){
+                $.each(data, function(index, info_id) {
+                    $.api.deleteRecord('contact_info/' + info_id.id, '', apiKey, getToken('token'), function(data){
+
+                    });
+                });
+            });
+
+            params = 'filter=contact_id%3D' + id + '&fields=id';
+            $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
+                $.each(data, function(index, r_id) {
+                    $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){
+
+                    });
+                });
+            });
+
+            $.redirect(redirectUrl);
+        }
+    }
+
 
     //--------------------------------------------------------------------------
     //  Contact Create       contact/{:group_id}/create
@@ -499,7 +583,6 @@
     //--------------------------------------------------------------------------
 
     var populateEditContact = function(data) {
-
         $.each(data, function(id, contact) {
             if(id === 'id') {
                 $('#contact_edit_contact').val(contact);
@@ -577,7 +660,9 @@
         var contactId = $('#contact_edit_contact').val();
         var params = JSON.stringify(save);
 
-        $.api.updateRecord('contact/' + contactId, params, apiKey, getToken('token'), function (data) {});
+        $.api.updateRecord('contact/' + contactId, params, apiKey, getToken('token'), function (data) {
+
+        });
 
         var params = 'filter=contact_id%3D' + contactId;
         $.api.deleteRecord('contact_info', params, apiKey, getToken('token'), function (data){
