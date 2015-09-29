@@ -96,6 +96,7 @@
 
         $('#table_groups').dataTable().fnClearTable();
         $('#table_groups').dataTable().fnAddData(groups);
+        $('#table_groups').dataTable().fnDraw();
     };
 
     $('#table_groups_search').keyup(function(){
@@ -157,6 +158,7 @@
 
         $('#table_group_create').dataTable().fnClearTable();
         $('#table_group_create').dataTable().fnAddData(contacts);
+        $('#table_group_create').dataTable().fnDraw();
 
         $('#group_create_name').val('');
     };
@@ -274,6 +276,7 @@
 
         $('#table_group').dataTable().fnClearTable();
         $('#table_group').dataTable().fnAddData(contacts);
+        $('#table_group').dataTable().fnDraw();
     };
 
     $('#table_group_search').keyup(function(){
@@ -286,8 +289,6 @@
         if (contactId !== undefined)
             $.redirect('contact/' + contactId[0]);
     });
-
-
 
 
     //--------------------------------------------------------------------------
@@ -353,6 +354,7 @@
 
         $('#table_group_edit').dataTable().fnClearTable();
         $('#table_group_edit').dataTable().fnAddData(contacts);
+        $('#table_group_edit').dataTable().fnDraw();
     }
 
     $('#group_update').on('click', function() {
@@ -361,10 +363,12 @@
 
         $.api.deleteRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){
             updateGroupRelationships(groupId);
+            $.redirect('groups/' + groupId);
+            return;
         });
 
-        clearForm();
-        $.redirect('groups');
+        //clearForm();
+        //$.redirect('groups/' + groupId);
     });
 
 
@@ -389,7 +393,6 @@
                         var params = JSON.stringify(save);
                         $.api.setRecord('contact_group_relationship', params, apiKey, getToken('token'), function (data){});
                     }
-
                 }
             });
         });

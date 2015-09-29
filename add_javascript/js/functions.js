@@ -21,8 +21,7 @@
                         $.redirect('groups');
                     },
                     error:function (response) {
-                        alert('Sign in failed! Please check your credentials and try again.')
-                        console.log('error');
+                        showMessage(response);
                         return false;
                     }
                 });
@@ -45,8 +44,7 @@
                         callback(response);
                     },
                     error:function (response) {
-                        alert('Register user failed! Please verify the provided information.')
-                        console.log('error');
+                        showMessage(response);
                         return false;
                     }
                 });
@@ -73,7 +71,8 @@
                         }
                     },
                     error:function (response) {
-                        console.log('error');
+                        showMessage(response);
+                        return false;
                     }
                 });
             },
@@ -99,7 +98,8 @@
                         }
                     },
                     error:function (response) {
-                        console.log('error');
+                        showMessage(response);
+                        return false;
                     }
                 });
             },
@@ -125,7 +125,8 @@
                         }
                     },
                     error:function (response) {
-                        console.log('error');
+                        showMessage(response);
+                        return false;
                     }
                 });
             },
@@ -151,7 +152,8 @@
                         }
                     },
                     error:function (response) {
-                        console.log('error');
+                        showMessage(response);
+                        return false;
                     }
                 });
             },
@@ -177,12 +179,31 @@
                         }
                     },
                     error: function (response) {
-                        console.log('error');
+                        showMessage(response);
+                        return false;
                     }
                 });
             }
         }
     });
+
+
+    function showMessage(response) {
+        var responseObj = jQuery.parseJSON( response.responseText );
+
+        if(responseObj.error.context !== null) {
+            var errMsg = '[' + responseObj.error.code + '] ' + responseObj.error.message + '\n\n';
+
+            $.each(responseObj.error.context, function(data){
+                errMsg += responseObj.error.context[data][0].replace(/&quot;/g, '\"') + '\n';
+            })
+            alert(errMsg);
+        }
+        else {
+            alert('[' + responseObj.error.code + '] ' + responseObj.error.message.replace(/&quot;/g, '\"'));
+        }
+    }
+
 
 }(jQuery));
 

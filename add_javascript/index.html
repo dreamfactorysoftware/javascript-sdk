@@ -80,9 +80,9 @@
             <div id="template_groups">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="groups_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="groups_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="groups_menu_plus" class="btn btn-link">+</button></li>
+                        <li class="pull-right"><button type="button" id="groups_menu_plus" class="btn btn-default btn-menu">+</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
@@ -92,7 +92,7 @@
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </div>
-                        <input type="text" id="table_groups_search" class="form-control" placeholder="Search">
+                        <input type="text" id="table_groups_search" class="form-control" placeholder="Search for groups">
                     </div>
                     <table class="table table-hover" id="table_groups">
                         <thead>
@@ -111,11 +111,11 @@
             <div id="template_group_show">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_show_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="group_show_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_plus" class="btn btn-link">+</button></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_right" class="btn btn-link">Edit</button></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="group_show_menu_delete" class="btn btn-link">Delete</button></li>
+                        <li class="pull-right"><button type="button" id="group_show_menu_plus" class="btn btn-default btn-menu">+</button></li>
+                        <li class="pull-right"><button type="button" id="group_show_menu_right" class="btn btn-default btn-menu">Edit Group</button></li>
+                        <li class="pull-right"><button type="button" id="group_show_menu_delete" class="btn btn-default btn-menu">Delete Group</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
@@ -127,7 +127,7 @@
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </div>
-                        <input type="text" id="table_group_search" class="form-control" placeholder="Search">
+                        <input type="text" id="table_group_search" class="form-control" placeholder="Search for contacts">
                     </div>
                     <table class="table table-hover" id="table_group">
                         <thead>
@@ -146,10 +146,10 @@
             <div id="template_contact_show">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_show_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="contact_show_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_right" class="btn btn-link">Edit</button></li>
-                        <li class="pull-right" style="margin-top: 10px"><button type="button" id="contact_show_menu_delete" class="btn btn-link">Delete</button></li>
+                        <li class="pull-right"><button type="button" id="contact_show_menu_right" class="btn btn-default btn-menu">Edit Contact</button></li>
+                        <li class="pull-right"><button type="button" id="contact_show_menu_delete" class="btn btn-default btn-menu">Delete Contact</button></li>
                     </ul>
                 </nav>
                 <div class="row vert-offset-top-30"></div>
@@ -177,7 +177,7 @@
             <div id="template_contact_edit">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_edit_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="contact_edit_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                     </ul>
                 </nav>
@@ -206,13 +206,13 @@
                             <div class="form-group" >
                                 <input type="hidden" class="form-control" id="image_url_edit" placeholder="">
                             </div>
-                            <div class="form-group" >
+                            <!--div class="form-group" >
                                 <input type="file" class="btn btn-default contact-btn-image" id="fileSelectEdit">
                                 <button class="btn btn-default contact-btn-image" type="button">Change Image</button>
-                            </div>
+                            </div-->
                             <div id="contact_infos_edit"></div>
                             <div class="form-group" >
-                                <button class="btn btn-default contact-btn-address" id="contact_edit_add_address" type="button">Add New Address</button>
+                                <button class="btn btn-default contact-btn-address" id="contact_edit_add_address" type="button">Add New Contact Info</button>
                             </div>
                             <div class="form-group" >
                                 <button id="btn_contact_update" class="btn btn-default contact-btn-save" type="button">Save</button>
@@ -230,7 +230,7 @@
             <div id="template_group_create">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_create_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="group_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                     </ul>
                 </nav>
@@ -247,7 +247,7 @@
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </div>
-                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search">
+                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search for contacts">
                     </div>
                     <table class="table table-hover" id="table_group_create">
                         <thead>
@@ -270,7 +270,7 @@
             <div id="template_group_edit">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="group_edit_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="group_edit_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                     </ul>
                 </nav>
@@ -311,7 +311,7 @@
             <div id="template_contact_create">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left" style="margin-top: 10px"><button type="button" id="contact_create_menu_left" class="btn btn-link">Back</button></li>
+                        <li class="pull-left"><button type="button" id="contact_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
                         <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
                     </ul>
                 </nav>

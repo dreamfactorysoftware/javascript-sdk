@@ -47,7 +47,6 @@
                     break;
 
                 case 'register':
-
                     break;
 
                 case 'groups':
