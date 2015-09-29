@@ -501,12 +501,10 @@
                 var params = JSON.stringify(info);
                 $.api.setRecord('contact_info', params, apiKey, getToken('token'), function (){});
             });
+
+            clearForm();
+            $.redirect('group/' + contactGroupId);
         });
-
-
-        clearForm();
-
-        $.redirect('group/' + contactGroupId);
     });
 
 
