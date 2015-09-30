@@ -76,7 +76,11 @@ vertical-align:middle;
     margin-right: 10px;
 }
 
-
+.btn-menu-logout {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 10px;
+}
 
 .contact-btn-image {
     width: 100%;
@@ -166,5 +170,10 @@ vertical-align:middle;
     background: #7093b5;
     color: #ffffff;
     height: 120px;
+}
+
+.large-checkbox {
+    width: 18px;
+    height: 18px;
 }
 

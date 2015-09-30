@@ -59,6 +59,11 @@
                         $.redirect('group/create');
                     });
 
+                    $('#groups_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
+                    });
+
                     $.api.getRecords('contact_group', '', apiKey, getToken('token'), populateGroupsTable);
                     break;
 
@@ -73,6 +78,11 @@
 
                     $('#group_show_menu_right').off().on('click', function(){
                         $.redirect('group/' + pathArray[1] + '/edit');
+                    });
+
+                    $('#group_show_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
                     });
 
                     $('#group_show_menu_delete').off().on('click', function(){
@@ -103,12 +113,22 @@
                         $.redirect('groups');
                     });
 
+                    $('#group_create_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
+                    });
+
                     $.api.getRecords('contact', '', apiKey, getToken('token'), populateGroupCreateTable);
                     break;
 
                 case 'group_edit':
                     $('#group_edit_menu_left').off().on('click', function(){
                         $.redirect('group/' + pathArray[1]);
+                    });
+
+                    $('#group_edit_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
                     });
 
                     $('#group_edit_group').val(pathArray[1]);
@@ -138,6 +158,11 @@
                         $.redirect('groups');
                     });
 
+                    $('#contact_show_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
+                    });
+
                     $('#contact_show_menu_delete').off().on('click', function(){
                         deleteContact(pathArray[1], previousUrl);
                     });
@@ -145,11 +170,19 @@
                     var params = 'filter=contact_id%3D' + pathArray[1];
                     $.api.getRecords('contact/' + pathArray[1], '', apiKey, getToken('token'), populateContact);
                     $.api.getRecords('contact_info', params, apiKey, getToken('token'), populateContactInfo);
+
+                    var urlParts = previousUrl.split('/');
+                    $('#contact_edit_group').val(urlParts[1]);
                     break;
 
                 case 'contact_create':
                     $('#contact_create_group').val(pathArray[1]);
                     $('#contact_infos').empty();
+
+                    $('#contact_create_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
+                    });
 
                     $('#contact_create_menu_left').off().on('click', function(){
                         $.redirect(previousUrl);
@@ -169,6 +202,11 @@
 
                     $('#btn_contact_edit_cancel').off().on('click', function(){
                         $.redirect('contact/' + pathArray[1]);
+                    });
+
+                    $('#contact_edit_menu_logout').on('click', function () {
+                        removeToken('token');
+                        $.redirect('index');
                     });
 
                     var params = 'filter=contact_id%3D' + pathArray[1];

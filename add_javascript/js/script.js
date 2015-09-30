@@ -28,12 +28,28 @@
         var email = $('#email').val();
         var password = $('#password').val();
 
-        $.api.login(email, password);
+        $.api.login(email, password, loginHandle);
     });
 
     $('#register').on('click', function () {
         $.redirect('register');
     });
+
+
+    var loginHandle = function(response) {
+
+        if(response.hasOwnProperty('session_token')) {
+            setToken('token', response.session_token);
+            $.redirect('groups');
+        }
+        else {
+            var msgObj = {};
+            msgObj = parseResponse(response);
+            if(msgObj) {
+                messageBox(msgObj.code, msgObj.message, msgObj.error);
+            }
+        }
+    };
 
 
     //--------------------------------------------------------------------------
@@ -46,8 +62,18 @@
         var email = $('#register_email').val();
         var password = $('#register_password').val();
 
-        $.api.register(firstname, lastname, email, password, function(data) {
-            $.redirect('index');
+        $.api.register(firstname, lastname, email, password, function(response) {
+            if(response.hasOwnProperty('session_token')) {
+                setToken('token', response.session_token);
+                $.redirect('groups');
+            }
+            else {
+                var msgObj = {};
+                msgObj = parseResponse(response);
+                if(msgObj) {
+                    messageBox(msgObj.code, msgObj.message, msgObj.error);
+                }
+            }
         });
     });
 
@@ -87,16 +113,23 @@
         var _groups = data;
         var groups = [];
 
-        $.each(_groups, function(id, group){
-            groups.push([
-                group.id,
-                group.name
-            ])
-        })
+        if (data.hasOwnProperty('error')) {
 
-        $('#table_groups').dataTable().fnClearTable();
-        $('#table_groups').dataTable().fnAddData(groups);
-        $('#table_groups').dataTable().fnDraw();
+            var response = parseResponse(data);
+            messageBox(response.code, response.message, response.error);
+        }
+        else {
+            $.each(_groups, function (id, group) {
+                groups.push([
+                    group.id,
+                    group.name
+                ])
+            });
+
+            $('#table_groups').dataTable().fnClearTable();
+            $('#table_groups').dataTable().fnAddData(groups);
+            $('#table_groups').dataTable().fnDraw();
+        }
     };
 
     $('#table_groups_search').keyup(function(){
@@ -337,10 +370,10 @@
         var contacts = [];
 
         $.each(data, function(id, contact){
-            var selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default pull-right'>";
+            var selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default large-checkbox pull-right'>";
 
             if(ids.indexOf(parseInt(contact.id)) > -1) {
-                selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default pull-right' checked>";
+                selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default large-checkbox pull-right' checked>";
             }
 
             contacts.push([
@@ -687,8 +720,8 @@
         });
 
         clearForm();
-
-        $.redirect('groups');
+        var groupId = $('#contact_edit_group').val();
+        $.redirect('group/' + groupId);
     });
 
     function getContactEditInfos() {
@@ -772,10 +805,35 @@
         });
     }
 
+    function messageBox(title, body, error) {
+        $('#modal_title').html(title);
+        $('#modal_body').html(body);
+        $('#errorMsg').html(error);
+        $('#messageBox').modal('show');
+    }
 
+    function parseResponse(response) {
+        var responseObj = jQuery.parseJSON( response.responseText );
 
+        if (responseObj.hasOwnProperty('error')) {
+            if(responseObj.error.context !== null) {
+                var errMsg = '';
 
+                $.each(responseObj.error.context, function(data){
+                    errMsg += '<br> - ' + responseObj.error.context[data][0].replace(/&quot;/g, '\"');
+                });
 
+                var message = responseObj.error.message + '<br>' + errMsg;
+                return {code: responseObj.error.code, message: message, error: JSON.stringify(response)};
+            }
+            else {
+                return {code: responseObj.error.code, message: responseObj.error.message.replace(/&quot;/g, '\"'), error: JSON.stringify(response)};
+            }
+        }
+        else {
+            return false;
+        }
+    }
 
 
 

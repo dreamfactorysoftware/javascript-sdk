@@ -5,7 +5,7 @@
     $.extend({
 
         api: {
-            login: function(email, password) {
+            login: function(email, password, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
@@ -17,11 +17,10 @@
                     cache:false,
                     type:'POST',
                     success:function (response) {
-                        setToken('token', response.session_token);
-                        $.redirect('groups');
+                        callback(response);
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -31,7 +30,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/user/register',
+                    url: instanceHost + '/api/v2/user/register?login=true',
                     data: JSON.stringify({
                         "first_name": firstname,
                         "last_name": lastname,
@@ -44,7 +43,7 @@
                         callback(response);
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -71,7 +70,7 @@
                         }
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -98,7 +97,7 @@
                         }
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -125,7 +124,7 @@
                         }
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -152,7 +151,7 @@
                         }
                     },
                     error:function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
@@ -179,7 +178,7 @@
                         }
                     },
                     error: function (response) {
-                        showMessage(response);
+                        callback(response);
                         return false;
                     }
                 });
