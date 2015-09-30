@@ -370,10 +370,10 @@
         var contacts = [];
 
         $.each(data, function(id, contact){
-            var selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default large-checkbox pull-right'>";
+            var selectCheckbox = "<input type='checkbox' id='contact_edit_" + contact.id + "' class='btn btn-default large-checkbox pull-right'>";
 
             if(ids.indexOf(parseInt(contact.id)) > -1) {
-                selectCheckbox = "<input type='checkbox' id='contact_" + contact.id + "' class='btn btn-default large-checkbox pull-right' checked>";
+                selectCheckbox = "<input type='checkbox' id='contact_edit_" + contact.id + "' class='btn btn-default large-checkbox pull-right' checked>";
             }
 
             contacts.push([
@@ -414,10 +414,9 @@
 
                 if(box.length){
                     var id = box[0].id;
+                    var idVal = id.replace('contact_edit_', '');
 
-                    var idVal = id.replace('contact_', '');
-
-                    if ($('#' + id).is(":checked")) {
+                    if ($('#' + id).prop("checked")) {
                         var save = {};
 
                         save['contact_group_id'] = groupId;
@@ -487,16 +486,15 @@
             $.api.deleteRecord('contact/' + id, '', apiKey, getToken('token'), function(data){});
 
             var params = 'filter=contact_id%3D' + id + '&fields=id';
-            $.api.getRecords('contact_info', params, apiKey, getToken('token'), function(data){
-                $.each(data, function(index, info_id) {
-                    $.api.deleteRecord('contact_info/' + info_id.id, '', apiKey, getToken('token'), function(data){});
-                });
-            });
-
-            params = 'filter=contact_id%3D' + id + '&fields=id';
             $.api.getRecords('contact_group_relationship', params, apiKey, getToken('token'), function(data){
                 $.each(data, function(index, r_id) {
                     $.api.deleteRecord('contact_group_relationship/' + r_id.id, '', apiKey, getToken('token'), function(data){});
+                });
+            });
+
+            $.api.getRecords('contact_info', params, apiKey, getToken('token'), function(data){
+                $.each(data, function(index, info_id) {
+                    $.api.deleteRecord('contact_info/' + info_id.id, '', apiKey, getToken('token'), function(data){});
                 });
             });
 
