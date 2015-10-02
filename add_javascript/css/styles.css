@@ -20,7 +20,12 @@
     background-color:#F0F0F0;
 }
 
-
+.df-nav-li {
+    float: none;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
 
 
 
@@ -62,11 +67,6 @@ vertical-align:middle;
         position: relative;
 
         text-align: center;*/
-}
-
-.person {
-    float: none; margin: 0 auto;
-    width: 40%;
 }
 
 
