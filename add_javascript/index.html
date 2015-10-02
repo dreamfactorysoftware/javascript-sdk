@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>JavaScript Address Book v1.0.0</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="css/styles.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-
-
         <div class="row">
             <div id="template_index">
                 <nav class="navbar navbar-fixed-top df-nav cen" role="navigation" style="">
@@ -109,6 +105,46 @@
                 <div class="col-md-2"></div>
             </div>
 
+            <div id="template_group_create">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left"><button type="button" id="group_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
+                        <li class="pull-left"><button type="button" id="group_create_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="form-inline">
+                        <input type="text" class="form-control" id="group_create_name" placeholder="Group Name" value="">
+                        <input id="group_save" class="btn btn-default" type="button" value="Save">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search for contacts">
+                    </div>
+                    <table class="table table-hover" id="table_group_create">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
             <div id="template_group_show">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
                     <ul class="nav navbar-nav" style="width: 100%">
@@ -144,6 +180,100 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
+
+            <div id="template_group_edit">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left"><button type="button" id="group_edit_menu_left" class="btn btn-default btn-menu">Back</button></li>
+                        <li class="pull-left"><button type="button" id="group_edit_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="input-group"></div>
+                    <div class="form-inline">
+                        <input type="hidden" class="form-control" id="group_edit_group" value="">
+                        <input type="text" class="form-control" id="group_edit_name" placeholder="Group Name">
+                        <button id="group_update" class="btn btn-default">Update</button>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" id="table_group_edit_search" class="form-control" placeholder="Search">
+                    </div>
+                    <table class="table table-hover" id="table_group_edit">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <div id="template_contact_create">
+                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
+                    <ul class="nav navbar-nav" style="width: 100%">
+                        <li class="pull-left"><button type="button" id="contact_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
+                        <li class="pull-left"><button type="button" id="contact_create_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
+                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
+                    </ul>
+                </nav>
+                <div class="row vert-offset-top-30"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="person">
+                        <form id="contact_create">
+                            <input type="hidden" id="contact_create_group" value="">
+                            <input type="hidden" id="contact_create_contact" value="">
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="first_name" placeholder="First Name">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="last_name" placeholder="Last Name">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="twitter" placeholder="Twitter">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="skype" placeholder="Skype">
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" class="form-control" id="notes" placeholder="Notes">
+                            </div>
+                            <div class="form-group" >
+                                <input type="hidden" class="form-control" id="image_url" placeholder="">
+                            </div>
+                            <!--div class="form-group" >
+                                <button class="btn btn-default contact-btn-image" type="button">Change Image</button>
+                            </div-->
+                            <div id="contact_infos"></div>
+                            <div class="form-group" >
+                                <button class="btn btn-default contact-btn-address" id="contact_create_add_address" type="button">Add New Address</button>
+                            </div>
+                            <div class="form-group" >
+                                <button id="btn_contact_save" class="btn btn-default contact-btn-save" type="button">Save</button>
+                            </div>
+                            <div class="form-group" >
+                                <button id="btn_contact_cancel" class="btn btn-default contact-btn-cancel" type="button">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
 
             <div id="template_contact_show">
                 <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
@@ -229,148 +359,11 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
-
-
-            <div id="template_group_create">
-                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
-                    <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left"><button type="button" id="group_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
-                        <li class="pull-left"><button type="button" id="group_create_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
-                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                    </ul>
-                </nav>
-                <div class="row vert-offset-top-30"></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="input-group"></div>
-                    <div class="form-inline">
-                        <input type="text" class="form-control" id="group_create_name" placeholder="Group Name" value="">
-                        <input id="group_save" class="btn btn-default" type="button" value="Save">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </div>
-                        <input type="text" id="table_group_create_search" class="form-control" placeholder="Search for contacts">
-                    </div>
-                    <table class="table table-hover" id="table_group_create">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-
-
-            <div id="template_group_edit">
-                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
-                    <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left"><button type="button" id="group_edit_menu_left" class="btn btn-default btn-menu">Back</button></li>
-                        <li class="pull-left"><button type="button" id="group_edit_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
-                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                    </ul>
-                </nav>
-                <div class="row vert-offset-top-30"></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="input-group"></div>
-                    <div class="form-inline">
-                        <input type="hidden" class="form-control" id="group_edit_group" value="">
-                        <input type="text" class="form-control" id="group_edit_name" placeholder="Group Name">
-                        <button id="group_update" class="btn btn-default">Update</button>
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </div>
-                        <input type="text" id="table_group_edit_search" class="form-control" placeholder="Search">
-                    </div>
-                    <table class="table table-hover" id="table_group_edit">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-
-
-            <div id="template_contact_create">
-                <nav class="navbar navbar-fixed-top df-nav cen col-md-12" role="navigation" style="">
-                    <ul class="nav navbar-nav" style="width: 100%">
-                        <li class="pull-left"><button type="button" id="contact_create_menu_left" class="btn btn-default btn-menu">Back</button></li>
-                        <li class="pull-left"><button type="button" id="contact_create_menu_logout" class="btn btn-default btn-menu-logout">Logout</button></li>
-                        <li style="float: none; display: inline-block; position: relative; text-align: center"><a href="#index"><img src="img/DreamFactory-logo-horiz.png" height="25"></a></li>
-                    </ul>
-                </nav>
-                <div class="row vert-offset-top-30"></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="person">
-                        <form id="contact_create">
-                            <input type="hidden" id="contact_create_group" value="">
-                            <input type="hidden" id="contact_create_contact" value="">
-                            <div class="form-group" >
-                                <input type="text" class="form-control" id="first_name" placeholder="First Name">
-                            </div>
-                            <div class="form-group" >
-                                <input type="text" class="form-control" id="last_name" placeholder="Last Name">
-                            </div>
-                            <div class="form-group" >
-                                <input type="text" class="form-control" id="twitter" placeholder="Twitter">
-                            </div>
-                            <div class="form-group" >
-                                <input type="text" class="form-control" id="skype" placeholder="Skype">
-                            </div>
-                            <div class="form-group" >
-                                <input type="text" class="form-control" id="notes" placeholder="Notes">
-                            </div>
-                            <div class="form-group" >
-                                <input type="hidden" class="form-control" id="image_url" placeholder="">
-                            </div>
-                            <!--div class="form-group" >
-                                <input type="file" class="btn btn-default contact-btn-image" id="fileSelect">
-                                <button class="btn btn-default contact-btn-image" type="button">Change Image</button>
-                            </div-->
-                            <div id="contact_infos"></div>
-                            <div class="form-group" >
-                                <button class="btn btn-default contact-btn-address" id="contact_create_add_address" type="button">Add New Address</button>
-                            </div>
-                            <div class="form-group" >
-                                <button id="btn_contact_save" class="btn btn-default contact-btn-save" type="button">Save</button>
-                            </div>
-                            <div class="form-group" >
-                                <button id="btn_contact_cancel" class="btn btn-default contact-btn-cancel" type="button">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-
-
         </div>
         <div class="row vert-offset-top-30"></div>
-
+        <div class="row">
+            <p class="text-center">JavaScript Address Book v1.0.0</p></div>
+        </div>
 
         <div class="modal fade" id="messageBox">
             <div class="modal-dialog">
@@ -380,9 +373,7 @@
                         <h4 class="modal-title" id="modal_title"></h4>
                     </div>
                     <div class="modal-body">
-                        <br>
-                        <p id="modal_body"></p>
-                        <br>
+                        <br><p id="modal_body"></p><br>
                         <div>
                             <a class="btn btn-link" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 <h6>Show/hide full message</h6>
@@ -398,10 +389,15 @@
                 </div>
             </div>
         </div>
-
     </body>
 </html>
 
+<!-- Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- app files -->
 <script src="js/route.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/script.js"></script>

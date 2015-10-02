@@ -9,7 +9,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/user/session',
+                    url: INSTANCE_HOST + '/api/v2/user/session',
                     data: JSON.stringify({
                         "email": email,
                         "password": password
@@ -30,7 +30,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/user/register?login=true',
+                    url: INSTANCE_HOST + '/api/v2/user/register?login=true',
                     data: JSON.stringify({
                         "first_name": firstname,
                         "last_name": lastname,
@@ -49,16 +49,16 @@
                 });
             },
 
-            getRecords: function(table, params, apiKey, token, callback) {
+            getRecords: function(table, params, token, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: INSTANCE_HOST + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'GET',
                     headers: {
-                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-API-Key": DSP_API_KEY,
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
@@ -76,16 +76,16 @@
                 });
             },
 
-            setRecord: function(table, params, apiKey, token, callback) {
+            setRecord: function(table, params, token, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: INSTANCE_HOST + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'POST',
                     headers: {
-                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-API-Key": DSP_API_KEY,
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
@@ -103,16 +103,16 @@
                 });
             },
 
-            updateRecord: function(table, params, apiKey, token, callback) {
+            updateRecord: function(table, params, token, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: INSTANCE_HOST + '/api/v2/db/_table/' + table,
                     data: params,
                     cache:false,
                     type:'PATCH',
                     headers: {
-                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-API-Key": DSP_API_KEY,
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
@@ -130,16 +130,16 @@
                 });
             },
 
-            deleteRecord: function(table, params, apiKey, token, callback) {
+            deleteRecord: function(table, params, token, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/db/_table/' + table + '?' + params,
+                    url: INSTANCE_HOST + '/api/v2/db/_table/' + table + '?' + params,
                     //data: params,
                     cache:false,
                     type:'DELETE',
                     headers: {
-                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-API-Key": DSP_API_KEY,
                         "X-DreamFactory-Session-Token": token
                     },
                     success:function (response) {
@@ -157,16 +157,16 @@
                 });
             },
 
-            replaceRecord: function(table, params, apiKey, token, callback) {
+            replaceRecord: function(table, params, token, callback) {
                 $.ajax({
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    url: instanceHost + '/api/v2/db/_table/' + table,
+                    url: INSTANCE_HOST + '/api/v2/db/_table/' + table,
                     data: params,
                     cache: false,
                     type: 'PUT',
                     headers: {
-                        "X-DreamFactory-API-Key": apiKey,
+                        "X-DreamFactory-API-Key": DSP_API_KEY,
                         "X-DreamFactory-Session-Token": token
                     },
                     success: function (response) {
@@ -185,24 +185,6 @@
             }
         }
     });
-
-
-    function showMessage(response) {
-        var responseObj = jQuery.parseJSON( response.responseText );
-
-        if(responseObj.error.context !== null) {
-            var errMsg = '[' + responseObj.error.code + '] ' + responseObj.error.message + '\n\n';
-
-            $.each(responseObj.error.context, function(data){
-                errMsg += responseObj.error.context[data][0].replace(/&quot;/g, '\"') + '\n';
-            })
-            alert(errMsg);
-        }
-        else {
-            alert('[' + responseObj.error.code + '] ' + responseObj.error.message.replace(/&quot;/g, '\"'));
-        }
-    }
-
 
 }(jQuery));
 
