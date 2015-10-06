@@ -50,9 +50,163 @@ To download and install DreamFactory, follow the instructions [here](https://git
 
 #Running the Address Book app
 
-Almost there! You can launch the app from the Apps tab in the admin console. When the app starts up you can register a new user, or log in as an existing user. Currently the app does not support registering and logging in admin users.
+Almost there! You can launch the app from the Apps tab in the admin console, but before running the app you need to edit DSP_API_KEY in script.js to match your new app. This key can be found by selecting your app from the list on the Apps tab in the admin console.
+
+The default admin console URL is localhost:8080. If your admin console is not at that path, you can change the default path in script.js (INSTANCE_HOST).
+
+When the app starts up you can register a new user, or log in as an existing user. Currently the app does not support registering and logging in admin users.
 
 #Example API calls
+
+The DreamFactory Address Book for JavaScript uses AJAX to make API calls and the file `functions.js` contains the most common functions for CRUD operations.
+
+The general form of a DreamFactory REST API call is:
+
+`<rest-verb> http[s]://<server-name>/api/v2/[<service-api-name>]/[<resource-path>][?<param-name>=<param-value>]`
+
+The JavaScript app AJAX call format is:
+
+```javascript
+     dataType: String
+  contentType: String
+          url: String
+         data: String,Object
+       method: String
+      headers: Object
+```
+
+Breaking down each parameter:
+  - **dataType** Format of the returned data. This depends on the application, but will typically be JSON.
+  - **contentType** The format of data sent to the API. This is commonly JSON and char set UTF-8.
+  - **url** Holds the value of `http[s]://<server-name>/api/v2/[<service-api-name>]/[<resource-path>]` from the generic call. You can include the query parameters here. However, it is easier and cleaner to pass in the query parameters by using the **data** parameter than it is to format them into the url.
+  - **data** The (optional) query parameters.
+  - **method** The REST verb.
+  - **headers** The header object must include the app specific API key and a session token.
+
+### Examples of log in and registration:
+
+#####Login:
+``` javascript
+// if the app is imported to the DreamFactory 2.0 instance leave INSTANCE_HOST blank. Email and password are typically input fields in the app UI.
+var INSTANCE_HOST = 'http[s]://<server-name>';
+var email         = 'my@email.com';
+var password      = 'mypassword';
+
+$.ajax({
+   dataType: 'json',
+   contentType: 'application/json; charset=utf-8',
+   url: INSTANCE_HOST + '/api/v2/user/session',
+   data: JSON.stringify({
+      'email': email,
+      'password': password
+   }),
+   method:'POST',
+   success:function (response) {
+      // Handle success
+   },
+   error:function (response) {
+      // Handle error
+   }
+});
+
+```
+
+The `user/session` API request will return a session token.
+
+#####Registration:
+``` javascript
+// Email and password are typically input fields in the app UI.
+var firstname    = 'firstname';
+var lastname     = 'lastname';
+var email        = 'email';
+var new_password = 'new_password';
+
+$.ajax({
+   dataType: 'json',
+   contentType: 'application/json; charset=utf-8',
+   url: INSTANCE_HOST + '/api/v2/user/register?login=true',
+   data: JSON.stringify({
+      'first_name': firstname,
+      'last_name': lastname,
+      'email': email,
+      'new_password': password
+   }),
+   method:'POST',
+   success:function (response) {
+      // Handle success
+   },
+   error:function (response) {
+      // Handle error
+   }
+});
+```
+
+The API request will return a session token when the (optional) `login=true` parameter is appended to the url. So with this parameter appended, the new registered user doesn't have to login to get a session token.
+
+The login and registration examples illustrates how to make API requests to DreamFactory 2.0. This Address Book app has functions for common API request types, so in the following examples these functions are used.
+
+### Examples of fetching records
+
+#####all records in table:
+``` javascript
+// Use the function `getRecords()` function to get all records from the **contact_group** table.
+// Usage: getRecords(table, params, token, callback)   -   params can be fields, filters etc.
+
+$.api.getRecords('contact_group', null, session_token, callback);
+
+// create a callback function and handle the returned data there
+var callback = function(response) {
+    // The response contains an array of group objects
+}
+```
+
+#####width fields:
+``` javascript
+// only need to get the contact_id and full contact name
+// set the fields param to give us just the fields we need
+var params = 'fields=contact_id,first_name,last_name';
+$.api.getRecords('contacts', params, session_token, callback);
+```
+
+#####width filter:
+``` javascript
+// create filter to get only the contact ids in the group id 10
+// note the equal sign is url encoded (%3D) in the filter value;
+var params = 'filter=contact_group_id%3D10';
+$.api.getRecords('contact_group_relationship', params, session_token, callback);
+```
+
+###Example of creating a record
+
+#####single record:
+``` javascript
+// Store a group by posting a stringified object. The API request will return the new group id if successful.
+var group  = { name: 'My Group' };
+var params = JSON.stringify(group);
+$.api.setRecord('contact_group', params, session_token, callback);
+```
+
+###Example of deleting records
+
+#####with a single id:
+``` javascript
+// a single record can be deleted by id.
+$.api.deleteRecord('contact', null, session_token, callback);
+```
+
+#####with multiple ids:
+``` javascript
+// one or more records from e.g. contact can be deleted by adding one or more ids to the parameter.
+var params = ids=1,2,3;
+$.api.deleteRecord('contact', params, session_token, callback);
+```
+
+#####with fields:
+``` javascript
+// delete all records matching field conditions, in this case all contacts with the last name 'Smith'.
+var params = 'filter=last_name%3DSmith';
+$.api.deleteRecord('contact', params, session_token, callback);
+```
 
 #Additional Resources
 
