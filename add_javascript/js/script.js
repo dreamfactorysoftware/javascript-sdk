@@ -796,7 +796,17 @@
     }
 
     function removeToken(key) {
-        return sessionStorage.removeItem(key);
+
+        $.api.logout(function(data) {
+            if(data.success) {
+                sessionStorage.removeItem(key);
+                $.route('index');
+            }
+            else {
+                var response = parseResponse(data);
+                messageBox(response.code, response.message, response.error);
+            }
+        });
     }
 
     function clearForm() {

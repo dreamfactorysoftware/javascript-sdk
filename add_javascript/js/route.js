@@ -41,7 +41,6 @@
             //Logout button
             $('#' + template + '_menu_logout').on('click', function () {
                 removeToken('token');
-                $.route('index');
             });
 
             switch (template) {
