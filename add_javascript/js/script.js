@@ -4,8 +4,8 @@
     //  DreamFactory 2.0 instance specific constants
     //--------------------------------------------------------------------------
 
-    var INSTANCE_HOST   = '';
-    var DSP_API_KEY     = '';
+    var INSTANCE_URL   = '';
+    var APP_API_KEY     = '';
 
 
 

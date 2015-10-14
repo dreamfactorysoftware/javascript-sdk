@@ -37,25 +37,25 @@ To download and install DreamFactory, follow the instructions [here](https://git
     - From the Apps tab in the admin console, click Import and click 'Address Book for JavaScript' in the list of sample apps. The Address Book package contains the application description, source code, schemas, and sample data.
     - Leave storage service and folder blank. It will use the default local file service named 'files'.
     - Click the Import button. If successful, your app will appear on the Apps tab. You may have to refresh the page to see your new app in the list.
-    
-- Make your app files public.
+        
+- Decide if you're going to run the app locally or load it from the instance.
+    - For running locally you clone the repo to your machine and open index.html in the browser. If running locally you need to set the URL for your instance so the app can make the API calls. Go your local repo and edit script.js. Set the constant INSTANCE_URL to point to your DreamFactory instance such as http://localhost:8080.
+    - For running from the instance you launch the app directly from the Apps tab in the admin console.  Leave INSTANCE_URL set to empty string.
+
+- If running from instance make your app files public.
     - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
     - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., 'AddressBookForJavaScript'.
     - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Save your changes.
 
-- Edit your instance URL
-    - If your browser loads the app from your local machine rather than from your instance you need to set the URL for your instance so the app can make the API calls. Go to the source code and open script.js for editing. Set the constant INSTANCE_URL to point to your DreamFactory instance such as http://localhost:8080. If you are runnig the app from the instance and not locally, you can leave INSTANCE_URL set to empty string.
-
 - Edit your app API key
-    - When you imported the app it created the folder for the app files. Go to AddressBookForJavaScript/add_javascript/app/js and open the file script.js for editing. Replace the API key in that file with the one for your new app. The API key is shown on the app details in the Apps tab of the admin console.
+    - If you are running from instance use the file manager to edit script.js and set APP_API_KEY to the key for your new app. The API key is shown on the app details in the Apps tab of the admin console.
+    - If you are running locally edit script.js in your local repo.
     
-- Make sure you have a SQL database service named 'db'. Depending on how you installed DreamFactory you may or may not have a 'db' service already available on your instance. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.
+- Make sure you have a SQL database service named 'db'. Most DreamFactory instances have a default 'db' service for SQLite. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.
 
 #Running the Address Book app
 
-Almost there! You can launch the app from the Apps tab in the admin console, but before running the app you need to edit DSP_API_KEY in script.js to match your new app. This key can be found by selecting your app from the list on the Apps tab in the admin console.
-
-The default admin console URL is localhost:8080. If your admin console is not at that path, you can change the default path in script.js (INSTANCE_HOST).
+You can launch the app from the Apps tab in the admin console, or by opening your local index.html in your browser.
 
 When the app starts up you can register a new user, or log in as an existing user. Currently the app does not support registering and logging in admin users.
 
@@ -90,15 +90,15 @@ Breaking down each parameter:
 
 #####Login:
 ``` javascript
-// if the app is imported to the DreamFactory 2.0 instance leave INSTANCE_HOST blank. Email and password are typically input fields in the app UI.
-var INSTANCE_HOST = 'http[s]://<server-name>';
+// if the app is imported to the DreamFactory 2.0 instance leave INSTANCE_URL blank. Email and password are typically input fields in the app UI.
+var INSTANCE_URL = 'http[s]://<server-name>';
 var email         = 'my@email.com';
 var password      = 'mypassword';
 
 $.ajax({
    dataType: 'json',
    contentType: 'application/json; charset=utf-8',
-   url: INSTANCE_HOST + '/api/v2/user/session',
+   url: INSTANCE_URL + '/api/v2/user/session',
    data: JSON.stringify({
       'email': email,
       'password': password
@@ -127,7 +127,7 @@ var new_password = 'new_password';
 $.ajax({
    dataType: 'json',
    contentType: 'application/json; charset=utf-8',
-   url: INSTANCE_HOST + '/api/v2/user/register?login=true',
+   url: INSTANCE_URL + '/api/v2/user/register?login=true',
    data: JSON.stringify({
       'first_name': firstname,
       'last_name': lastname,
