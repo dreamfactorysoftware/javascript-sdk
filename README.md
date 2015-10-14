@@ -42,7 +42,10 @@ To download and install DreamFactory, follow the instructions [here](https://git
     - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
     - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., 'AddressBookForJavaScript'.
     - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Save your changes.
-    
+
+- Edit your instance URL
+    - If your browser loads the app from your local machine rather than from your instance you need to set the URL for your instance so the app can make the API calls. Go to the source code and open script.js for editing. Set the constant INSTANCE_URL to point to your DreamFactory instance such as http://localhost:8080. If you are runnig the app from the instance and not locally, you can leave INSTANCE_URL set to empty string.
+
 - Edit your app API key
     - When you imported the app it created the folder for the app files. Go to AddressBookForJavaScript/add_javascript/app/js and open the file script.js for editing. Replace the API key in that file with the one for your new app. The API key is shown on the app details in the Apps tab of the admin console.
     
