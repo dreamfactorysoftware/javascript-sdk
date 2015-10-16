@@ -45,7 +45,7 @@ To download and install DreamFactory, follow the instructions [here](https://git
 - If running from instance make your app files public.
     - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
     - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., 'AddressBookForJavaScript'.
-    - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Save your changes.
+    - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Now select the relevant container from the Container drop down.If you used the default storage settings to import the app then select "local" from the drop down list. Save your changes.
 
 - Edit your app API key
     - If you are running from instance use the file manager to edit script.js and set APP_API_KEY to the key for your new app. The API key is shown on the app details in the Apps tab of the admin console.
