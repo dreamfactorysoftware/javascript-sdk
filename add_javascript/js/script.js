@@ -4,8 +4,8 @@
     //  DreamFactory 2.0 instance specific constants
     //--------------------------------------------------------------------------
 
-    var INSTANCE_HOST   = '';
-    var DSP_API_KEY     = '';
+    var INSTANCE_URL   = '';
+    var APP_API_KEY     = '';
 
 
 
@@ -796,7 +796,17 @@
     }
 
     function removeToken(key) {
-        return sessionStorage.removeItem(key);
+
+        $.api.logout(function(data) {
+            if(data.success) {
+                sessionStorage.removeItem(key);
+                $.route('index');
+            }
+            else {
+                var response = parseResponse(data);
+                messageBox(response.code, response.message, response.error);
+            }
+        });
     }
 
     function clearForm() {
