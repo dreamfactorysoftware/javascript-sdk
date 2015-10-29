@@ -1,11 +1,171 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JavaScript Address Book v2.0.2</title>
+        <title>JavaScript Address Book v2.0.3</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
+        <style>
+            .col-centered{
+                float: none;
+                margin: 0 auto;
+            }
+
+            .centered{
+                float: none;
+                margin: 0 auto;
+            }
+
+            .text p{
+                position: relative;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+
+            .df-nav {
+                background-color:#F0F0F0;
+            }
+
+            .df-nav-li {
+                float: none;
+                display: inline-block;
+                position: relative;
+                text-align: center;
+            }
+
+            .cen {
+
+                position: relative;
+                vertical-align: middle;
+                display: inline-block;
+                float: none;
+                height: 100%;
+                width: 100%;
+                text-align: center;
+                margin: 0 auto;
+            }
+            .parent{
+                /*display:table;*/
+            }
+            .child{
+                display:table-cell;*
+            vertical-align:middle;
+            }
+
+            .content {
+                float: none; margin: 0 auto;
+                width: 250px;
+            }
+
+            .login {
+                float: none; margin: 0 auto;
+                width: 250px;
+            }
+
+            .btn-menu {
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .btn-menu-logout {
+                margin-top: 10px;
+                margin-left: 50px;
+                margin-right: 10px;
+            }
+
+            .contact-btn-image {
+                width: 100%;
+            }
+
+            .contact-btn-address {
+                background: #6baab2;
+                width: 100%;
+                border: 1px solid #6baab2;
+                color: #ffffff;
+            }
+
+            .contact-btn-save {
+                background: #d86a27;
+                width: 100%;
+                border: 1px solid #d86a27;
+                color: #ffffff;
+            }
+
+            .contact-btn-cancel {
+                background: #ffffff;
+                width: 100%;
+                border: 1px solid #808080;
+                color: #000000;
+            }
+
+            .login-btn-signin {
+                background: #d86a27;
+                width: 250px;
+                border: 1px solid #d86a27;
+                color: #ffffff;
+            }
+
+            .login-btn-register {
+                background: #6baab2;
+                width: 250px;
+                border: 1px solid #6baab2;
+                color: #ffffff;
+            }
+
+            .login-btn-cancel {
+                background: #ffffff;
+                width: 100%;
+                border: 1px solid #808080;
+                color: #000000;
+            }
+
+            .menu {
+                float: none;
+                display: inline-block;
+                position: relative;
+                text-align: center;
+            }
+
+            .vert-offset-top-30 {
+                margin-top: 50px;
+            }
+            .top-buffer { margin-top:30px; }
+
+
+            .form-control-size {
+
+            }
+
+            .row-height {
+                display: table;
+                table-layout: fixed;
+                height: 10px;
+                width: 100%;
+            }
+
+
+            .dataTables_filter {
+                display: none;
+            }
+
+            .infobox {
+                padding-top: 1px;
+                padding-right: 15px;
+                padding-bottom: 15px;
+                padding-left: 15px;
+                background: #7093b5;
+                color: #ffffff;
+                height: 120px;
+            }
+
+            .large-checkbox {
+                width: 18px;
+                height: 18px;
+            }
+        </style>
     </head>
     <body>
         <div class="row">
@@ -362,7 +522,7 @@
         </div>
         <div class="row vert-offset-top-30"></div>
         <div class="row">
-            <p class="text-center">JavaScript Address Book v2.0.2</p></div>
+            <p class="text-center">JavaScript Address Book v2.0.3</p></div>
         </div>
 
         <div class="modal fade" id="messageBox">
