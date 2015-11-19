@@ -5,7 +5,7 @@ This repo contains a sample address book application for JavaScript that demonst
 
 #Getting DreamFactory on your local machine
 
-To download and install DreamFactory, follow the instructions [here](https://github.com/dreamfactorysoftware/dsp-core/wiki/Usage-Options). Alternatively, you can create a [free hosted developer account](http://www.dreamfactory.com) at www.dreamfactory.com if you don't want to install DreamFactory locally.
+To download and install DreamFactory, follow the instructions [here](http://wiki.dreamfactory.com/DreamFactory/Installation). Alternatively, you can create a [free hosted developer account](http://www.dreamfactory.com) at www.dreamfactory.com if you don't want to install DreamFactory locally.
 
 #Configuring your DreamFactory instance to run the app
 
@@ -16,7 +16,7 @@ To download and install DreamFactory, follow the instructions [here](https://git
     - Set Max Age to 0.
     - Allow all HTTP verbs and check the Enabled box.
     - Click update when you are done.
-    - More info on setting up CORS is available [here](https://github.com/dreamfactorysoftware/dsp-core/wiki/CORs-Configuration).
+    - More info on setting up CORS is available [here](http://wiki.dreamfactory.com/DreamFactory/Tutorials/Enabling_CORS_Access).
 
 - Create a default role for new users and enable open registration
     - In the admin console, click the Roles tab then click Create in the left sidebar.
@@ -213,7 +213,6 @@ $.api.deleteRecord('contact', params, session_token, callback);
 
 #Additional Resources
 
-More detailed information on the DreamFactory REST API is available [here](https://github.com/dreamfactorysoftware/dsp-core/wiki/REST-API).
+More detailed information on the DreamFactory REST API is available [here](http://wiki.dreamfactory.com/DreamFactory/API).
 
 The live API documentation included in the admin console is a great way to learn how the DreamFactory REST API works.
-Check out how to use the live API docs [here](https://github.com/dreamfactorysoftware/dsp-core/wiki/API-Docs).
