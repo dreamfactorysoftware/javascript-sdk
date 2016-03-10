@@ -212,7 +212,7 @@
                         save['contact_group_id'] = groupId;
                         save['contact_id'] = id.replace('contact_', '');
 
-                        var params = JSON.stringify(save);
+                        var params = JSON.stringify({resource: [save]});
                         $.api.setRecord('contact_group_relationship', params, getToken('token'), function (data){});
                     }
                 }
@@ -224,7 +224,7 @@
         var save = {};
         save['name'] = $('#group_create_name').val();
 
-        var params = JSON.stringify(save);
+        var params = JSON.stringify({resource: [save]});
 
         $.api.setRecord('contact_group', params, getToken('token'), function (data) {
             var groupId  = data[0].id;
@@ -411,7 +411,7 @@
                         save['contact_group_id'] = groupId;
                         save['contact_id'] = idVal;
 
-                        var params = JSON.stringify(save);
+                        var params = JSON.stringify({resource: [save]});
                         $.api.setRecord('contact_group_relationship', params, getToken('token'), function (data){});
                     }
                 }
@@ -453,7 +453,7 @@
 
         contactGroupId = $('#contact_create_group').val();
 
-        var params = JSON.stringify(save);
+        var params = JSON.stringify({resource: [save]});
         var contactId = 0;
 
         $.api.setRecord('contact', params, getToken('token'), function(data) {
@@ -463,7 +463,7 @@
 
             $.each(infos, function(id, info) {
                 info['contact_id'] = parseInt(contactId);
-                var params = JSON.stringify(info);
+                var params = JSON.stringify({resource: [info]});
                 $.api.setRecord('contact_info', params, getToken('token'), function (){});
             });
 
@@ -479,7 +479,7 @@
         save['contact_group_id'] = parseInt(groupId);
         save['contact_id'] = parseInt(contactId);
 
-        var params = JSON.stringify(save);
+        var params = JSON.stringify({resource: [save]});
 
         $.api.setRecord('contact_group_relationship', params, getToken('token'), function (){});
     }
@@ -763,7 +763,7 @@
         });
 
         var contactId = $('#contact_edit_contact').val();
-        var params = JSON.stringify(save);
+        var params = JSON.stringify({resource: [save]});
 
         $.api.updateRecord('contact/' + contactId, params, getToken('token'), function (data) {});
 
@@ -771,7 +771,7 @@
         $.api.deleteRecord('contact_info', params, getToken('token'), function (data){
             $.each(infos, function(id, info) {
                 info['contact_id'] = parseInt(contactId);
-                var params = JSON.stringify(info);
+                var params = JSON.stringify({resource: [info]});
                 $.api.setRecord('contact_info', params, getToken('token'), function (){});
             });
         });

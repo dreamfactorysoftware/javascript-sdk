@@ -184,7 +184,7 @@ $.api.getRecords('contact_group_relationship', params, session_token, callback);
 #####single record:
 ``` javascript
 // Store a group by posting a stringified object. The API request will return the new group id if successful.
-var group  = { name: 'My Group' };
+var group  = { resource: [ { name: 'My Group' } ] };
 var params = JSON.stringify(group);
 $.api.setRecord('contact_group', params, session_token, callback);
 ```
