@@ -44,18 +44,18 @@ To download and install DreamFactory, choose the desired installation package [h
 
 - If running from instance make your app files public.
     - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
-    - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., 'AddressBookForJavaScript'.
-    - Go to the Services tab in the admin console and click the 'files' service. Click the Config tab and add the app folder name 'AddressBookForJavaScript' as a public path. Now select the relevant container from the Container drop down. If you used the default storage settings to import the app then select "local" from the drop down list. Save your changes.
+    - Go to the Files tab in the admin console. Find your file service. Double click and find the folder for your app, e.g., `AddressBookForJavaScript`.
+    - Go to the `Services` tab in the admin console and click the `files` service. Click the `Config` tab and add the folder name `AddressBookForJavaScript` as a public path. Now select the relevant container from the Container drop down. If you used the default storage settings to import the app then select `local` from the drop down list. Save your changes.
 
 - Edit your app API key
-    - If you are running from instance use the file manager to edit script.js and set APP_API_KEY to the key for your new app. The API key is shown on the app details in the Apps tab of the admin console.
-    - If you are running locally edit script.js in your local repo.
+    - If you are running from instance use the file manager to edit `script.js` and set `APP_API_KEY` to the key for your new app. The API key is shown on the app details in the Apps tab of the admin console.
+    - If you are running locally edit `script.js` in your local repo.
     
-- Make sure you have a SQL database service named 'db'. Most DreamFactory instances have a default 'db' service for SQLite. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.
+- Make sure you have a SQL database service named `db`. Most DreamFactory instances have a default `db` service for SQLite. You can add one by going to the `Services` tab in the admin console and creating a new SQL service. Make sure you set the name to `db`.
 
 ## Running the Address Book app
 
-You can launch the app from the Apps tab in the admin console, or by opening your local index.html in your browser.
+You can launch the app from the Apps tab in the admin console, or by opening your local `index.html` in your browser.
 
 When the app starts up you can register a new user, or log in as an existing user. Currently the app does not support registering and logging in admin users.
 
@@ -91,7 +91,7 @@ Breaking down each parameter:
 #### Login
 
 ``` javascript
-// if the app is imported to the DreamFactory 2.0 instance leave INSTANCE_URL blank. Email and password are typically input fields in the app UI.
+// if the app is imported to the DreamFactory instance leave INSTANCE_URL blank. Email and password are typically input fields in the app UI.
 var INSTANCE_URL = 'http[s]://<server-name>';
 var email         = 'my@email.com';
 var password      = 'mypassword';
@@ -148,7 +148,7 @@ $.ajax({
 
 The API request will return a session token when the (optional) `login=true` parameter is appended to the url. So with this parameter appended, the new registered user doesn't have to login to get a session token.
 
-The login and registration examples illustrates how to make API requests to DreamFactory 2.0. This Address Book app has functions for common API request types, so in the following examples these functions are used.
+The login and registration examples illustrates how to make API requests to DreamFactory. This Address Book app has functions for common API request types, so in the following examples these functions are used.
 
 ### Examples of Fetching Records
 
