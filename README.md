@@ -3,11 +3,11 @@ Address Book for JavaScript
 
 This repo contains a sample address book application for JavaScript that demonstrates how to use the DreamFactory REST API. It includes new user registration, user login, and CRUD for related tables.
 
-#Getting DreamFactory on your local machine
+## Installing DreamFactory on your local machine
 
-To download and install DreamFactory, follow the instructions [here](http://wiki.dreamfactory.com/DreamFactory/Installation). Alternatively, you can create a [free hosted developer account](http://www.dreamfactory.com) at www.dreamfactory.com if you don't want to install DreamFactory locally.
+To download and install DreamFactory, choose the desired installation package [here](https://www.dreamfactory.com/downloads-interstitial).
 
-#Configuring your DreamFactory instance to run the app
+## Configuring your DreamFactory instance to run the app
 
 - Enable [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for development purposes.
     - In the admin console, navigate to the Config tab and click on CORS in the left sidebar.
@@ -39,8 +39,8 @@ To download and install DreamFactory, follow the instructions [here](http://wiki
     - Click the Import button. If successful, your app will appear on the Apps tab. You may have to refresh the page to see your new app in the list.
         
 - Decide if you're going to run the app locally or load it from the instance.
-    - For running locally you clone the repo to your machine and open index.html in the browser. If running locally you need to set the URL for your instance so the app can make the API calls. Go to your local repo and edit script.js. Set the constant INSTANCE_URL to point to your DreamFactory instance such as http://localhost:8080.
-    - For running from the instance you launch the app directly from the Apps tab in the admin console.  Leave INSTANCE_URL set to empty string.
+    - For running locally you clone the repo to your machine and open index.html in the browser. If running locally you need to set the URL for your instance so the app can make the API calls. Go to your local repo and edit script.js. Set the constant `INSTANCE_URL` to point to your DreamFactory instance such as http://localhost:8080.
+    - For running from the instance you launch the app directly from the Apps tab in the admin console.  Leave `INSTANCE_URL` set to empty string.
 
 - If running from instance make your app files public.
     - Figure out where your app files are stored. If you used the default storage settings to import the app, it'll be the default local file service named 'files'.
@@ -53,13 +53,13 @@ To download and install DreamFactory, follow the instructions [here](http://wiki
     
 - Make sure you have a SQL database service named 'db'. Most DreamFactory instances have a default 'db' service for SQLite. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.
 
-#Running the Address Book app
+## Running the Address Book app
 
 You can launch the app from the Apps tab in the admin console, or by opening your local index.html in your browser.
 
 When the app starts up you can register a new user, or log in as an existing user. Currently the app does not support registering and logging in admin users.
 
-#Example API calls
+## Example API calls
 
 The DreamFactory Address Book for JavaScript uses AJAX to make API calls and the file `functions.js` contains the most common functions for CRUD operations.
 
@@ -86,9 +86,10 @@ Breaking down each parameter:
   - **method** The REST verb.
   - **headers** The header object must include the app specific API key and a session token.
 
-### Examples of log in and registration:
+### Login and Registration Examples
 
-#####Login:
+#### Login
+
 ``` javascript
 // if the app is imported to the DreamFactory 2.0 instance leave INSTANCE_URL blank. Email and password are typically input fields in the app UI.
 var INSTANCE_URL = 'http[s]://<server-name>';
@@ -116,7 +117,8 @@ $.ajax({
 
 The `user/session` API request will return a session token.
 
-#####Registration:
+#### Registration
+
 ``` javascript
 // Email and password are typically input fields in the app UI.
 var firstname    = 'firstname';
@@ -148,9 +150,10 @@ The API request will return a session token when the (optional) `login=true` par
 
 The login and registration examples illustrates how to make API requests to DreamFactory 2.0. This Address Book app has functions for common API request types, so in the following examples these functions are used.
 
-### Examples of fetching records
+### Examples of Fetching Records
 
-#####all records in table:
+#### Fetch All Records in Table
+
 ``` javascript
 // Use the function `getRecords()` function to get all records from the **contact_group** table.
 // Usage: getRecords(table, params, token, callback)   -   params can be fields, filters etc.
@@ -163,7 +166,8 @@ var callback = function(response) {
 }
 ```
 
-#####width fields:
+#### Fetching Specific Fields
+
 ``` javascript
 // only need to get the contact_id and full contact name
 // set the fields param to give us just the fields we need
@@ -171,7 +175,8 @@ var params = 'fields=contact_id,first_name,last_name';
 $.api.getRecords('contacts', params, session_token, callback);
 ```
 
-#####width filter:
+#### Fetching with a Filter Applied
+
 ``` javascript
 // create filter to get only the contact ids in the group id 10
 // note the equal sign is url encoded (%3D) in the filter value;
@@ -179,9 +184,8 @@ var params = 'filter=contact_group_id%3D10';
 $.api.getRecords('contact_group_relationship', params, session_token, callback);
 ```
 
-###Example of creating a record
+### Creating a Record
 
-#####single record:
 ``` javascript
 // Store a group by posting a stringified object. The API request will return the new group id if successful.
 var group  = { resource: [ { name: 'My Group' } ] };
@@ -189,29 +193,31 @@ var params = JSON.stringify(group);
 $.api.setRecord('contact_group', params, session_token, callback);
 ```
 
-###Example of deleting records
+### Deleting Records
 
-#####with a single id:
+#### Deleting a Single Record by ID
+
 ``` javascript
 // a single record can be deleted by id.
 $.api.deleteRecord('contact', null, session_token, callback);
 ```
 
-#####with multiple ids:
+#### Deleting Multiple Records by ID
+
 ``` javascript
 // one or more records from e.g. contact can be deleted by adding one or more ids to the parameter.
 var params = ids=1,2,3;
 $.api.deleteRecord('contact', params, session_token, callback);
 ```
 
-#####with fields:
+#### Deleting Records Matching Field Conditions
 ``` javascript
 // delete all records matching field conditions, in this case all contacts with the last name 'Smith'.
 var params = 'filter=last_name%3DSmith';
 $.api.deleteRecord('contact', params, session_token, callback);
 ```
 
-#Additional Resources
+# Additional Resources
 
 More detailed information on the DreamFactory REST API is available [here](http://wiki.dreamfactory.com/DreamFactory/API).
 
