@@ -41,12 +41,14 @@
     text-align: center;
     margin: 0 auto;
 }
+
 .parent{
     /*display:table;*/
 }
+
 .child{
-    display:table-cell;*
-vertical-align:middle;
+    display:table-cell;
+    vertical-align:middle;
 }
 
 .content {
